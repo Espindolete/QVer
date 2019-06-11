@@ -1,0 +1,11 @@
+<RCC>
+  <qresource prefix="newPrefix">
+    <file>../Images-UI/LoginFotx.png</file>
+  </qresource>
+  <qresource prefix="Icono">
+    <file>../Images-UI/Icono.png</file>
+  </qresource>
+  <qresource prefix="Shield">
+    <file>../Images-UI/QverShield.png</file>
+  </qresource>
+</RCC>
