@@ -1,10 +1,12 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from Signup import Sign
 from validarcorreo import validarcorreo, verexist
-
+from Vista import *
 
 class Controlador_Login(object):
-
+    def __init__(self):
+        Dialog = QtWidgets.QDialog()
+        ventanalogin=
 
     def charge_confirm(self, password, user, info):
         database = open ("database.txt", "r")

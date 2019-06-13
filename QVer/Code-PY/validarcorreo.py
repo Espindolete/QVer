@@ -1,4 +1,4 @@
-#def validar():
+#def validar() USUARIO:
 def verexist(dato):
     val=True
     f = open ("database.txt", "r")
