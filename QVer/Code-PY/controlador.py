@@ -3,6 +3,10 @@ from validarcorreo import validarcorreo, verexist
 from Vista import *
 import sys
 
+#DEFINE LA PANTALLA QUE SEA LA PRINCIPAL
+
+
+
 class Controlador_Login(object):
     def __init__(self): 
         self.app = QtWidgets.QApplication(sys.argv)
@@ -10,11 +14,10 @@ class Controlador_Login(object):
         self.ventanalogin = Pantalla_Login()
         self.ventanalogin.setupUi(self.Dialog)
         self.function()
-        self.Dialog.show()
 
     def function(self):
         self.ventanalogin.btn_sgte.clicked.connect(lambda:self.charge_confirm(self.ventanalogin.txt_pass, self.ventanalogin.txt_usr, self.ventanalogin.lbl_info))
-        self.ventanalogin.btn_cc.clicked.connect(lambda:self.gotosign())
+        self.ventanalogin.btn_cc.clicked.connect(lambda:Mostrar_Sign())
 
     def charge_confirm(self, password, user, info):
         database = open ("database.txt", "r")
@@ -51,35 +54,27 @@ class Controlador_Login(object):
             info.show()
         database.close()
         #print (usrpass)
-
-    def cerrar(self, ventana1):
-        Dialog.show()
-        ventana1.hide()
-
-    def gotosign(self):
-        self.crearcuenta = QtWidgets.QMainWindow()
-        self.ui=Pantalla_Signup()
-        self.ui.setupUi(self.crearcuenta)
-        self.crearcuenta.setGeometry(280, 103,781,575)
-        self.crearcuenta.show()
-        self.ui.btn_log.clicked.connect(lambda:self.cerrar(self.crearcuenta))
-        self.Dialog.hide()
-
-
-#        self.ventanalogin.btn_sgte.clicked.connect(lambda:self.charge_confirm(self.txt_pass, self.txt_usr, self.lbl_info))
- #       self.ventanalogin.btn_cc.clicked.connect(lambda:self.crearcuenta())
-
-        
-
-
 class Controlador_Signup(object):
+    def __init__(self): 
+        self.app = QtWidgets.QApplication(sys.argv)
+        self.Dialog = QtWidgets.QDialog()
+        self.ventanasign = Pantalla_Signup()
+        self.ventanasign.setupUi(self.Dialog)
+        self.function()
+
+    def function(self):
+        self.ventanasign.btn_log.clicked.connect(lambda:Mostrar_Login())
+        self.ventanasign.btn_sgte.clicked.connect(lambda:self.registrar(self.ventanasign.txt_usr, self.ventanasign.txt_pass, self.ventanasign.txt_pass_con, self.ventanasign.lbl_info, self.ventanasign.txt_mail))
+        self.ventanasign.checkBox.toggled.connect(lambda:self.ver(self.ventanasign.checkBox,self.ventanasign.txt_pass, self.ventanasign.txt_pass_con))
+            
+
     def ver(self, ch, txt_pass, txt_pass_con):
         if ch.isChecked() == True:
-            self.txt_pass.setEchoMode(QtWidgets.QLineEdit.Normal)
-            self.txt_pass_con.setEchoMode(QtWidgets.QLineEdit.Normal)
+            self.ventanasign.txt_pass.setEchoMode(QtWidgets.QLineEdit.Normal)
+            self.ventanasign.txt_pass_con.setEchoMode(QtWidgets.QLineEdit.Normal)
         else:
-            self.txt_pass.setEchoMode(QtWidgets.QLineEdit.Password)
-            self.txt_pass_con.setEchoMode(QtWidgets.QLineEdit.Password)
+            self.ventanasign.txt_pass.setEchoMode(QtWidgets.QLineEdit.Password)
+            self.ventanasign.txt_pass_con.setEchoMode(QtWidgets.QLineEdit.Password)
 
     def limpiar(self, *args):
         for x in args:
@@ -151,29 +146,24 @@ class Controlador_Signup(object):
                     info.setText("Ingrese solo nombre entre 4 y 15 caracteres.")
                     info.show()
 
-        self.ventanalogin.btn_sgte.clicked.connect(lambda:self.registrar(self.txt_usr, self.txt_pass, self.txt_pass_con, self.lbl_info, self.txt_mail))
-        self.ventanalogin.checkBox.toggled.connect(lambda:self.ver(self.checkBox,self.txt_pass, self.txt_pass_con))
-            
 
 
 
-
-''' ????  Llamada a sign creo
-def logearse(self):
-    from Login import Ui_Dialog
-    self.ventana = QtWidgets.QMainWindow()
-    self.ui=Ui_Dialog()
-    self.ui.setupUi(self.ventana)
-    self.ventana.setGeometry(280, 65,781,575)
-    self.ventana.show()
-'''
+LoginScreen=Controlador_Login()
+SingupScreen=Controlador_Signup()
 
 
-		
+def Mostrar_Login():
+    LoginScreen.Dialog.show()
+    SingupScreen.Dialog.hide()
+def Mostrar_Sign():
+    LoginScreen.Dialog.hide()
+    SingupScreen.Dialog.show()
+
+
 
 #INIT DEL LOGIN
 if __name__ == "__main__":
-    Login = Controlador_Login()
-    sys.exit(Login.app.exec_())
-
+    Mostrar_Login()
+    sys.exit(LoginScreen.app.exec_())
 		
