@@ -1,7 +1,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import xz_rc
 from validarcorreo import validarcorreo, verexist
-import sys
 
 
 class Pantalla_Signup(object):
@@ -265,6 +264,9 @@ class Pantalla_Login(object):
         self.label.setText(_translate("Dialog", "<html><head/><body><p><span style=\" font-size:26pt; font-weight:600; color:#959595;\">QVer</span></p></body></html>"))
         self.DreamTeam.setText(_translate("Dialog", "<html><head/><body><p><span style=\" font-size:18pt; font-weight:600; color:#d0d0d0;\">Dream Team</span></p></body></html>"))
 
+
+        self.btn_sgte.clicked.connect(lambda:print("CLICKEADO"))
+        self.btn_cc.clicked.connect(lambda:self.crearcuenta())
 
 
 
