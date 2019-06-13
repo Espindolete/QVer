@@ -24,9 +24,6 @@ class Pantalla_Signup(object):
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
 
-        self.checkBox = QtWidgets.QCheckBox(self.frame)
-        self.checkBox.setGeometry(QtCore.QRect(450, 330, 41, 24))
-        self.checkBox.setObjectName("checkBox")
 
 
         self.txt_usr = QtWidgets.QLineEdit(self.frame)
@@ -36,11 +33,43 @@ class Pantalla_Signup(object):
         self.txt_usr.setPlaceholderText("Nombre de usuario *")
 
 
+        self.txt_mail = QtWidgets.QLineEdit(self.frame)
+        self.txt_mail.setEnabled(True)
+        self.txt_mail.setGeometry(QtCore.QRect(60, 230, 380, 51))
+        self.txt_mail.setObjectName("txt_mail")
+        self.txt_mail.setPlaceholderText("Correo electrónico")
+
+
         self.txt_pass = QtWidgets.QLineEdit(self.frame)
         self.txt_pass.setGeometry(QtCore.QRect(60, 314, 181, 51))
         self.txt_pass.setEchoMode(QtWidgets.QLineEdit.Password)
         self.txt_pass.setObjectName("txt_pass")
         self.txt_pass.setPlaceholderText("Contraseña *")
+
+
+        self.txt_pass_con = QtWidgets.QLineEdit(self.frame)
+        self.txt_pass_con.setGeometry(QtCore.QRect(260, 314, 181, 51))
+        self.txt_pass_con.setEchoMode(QtWidgets.QLineEdit.Password)
+        self.txt_pass_con.setObjectName("txt_pass_con")
+        self.txt_pass_con.setPlaceholderText("Confirmar contraseña *")
+
+
+        self.checkBox = QtWidgets.QCheckBox(self.frame)
+        self.checkBox.setGeometry(QtCore.QRect(450, 330, 41, 24))
+        self.checkBox.setObjectName("checkBox")
+
+
+
+        self.btn_log = QtWidgets.QPushButton(self.frame)
+        self.btn_log.setGeometry(QtCore.QRect(50, 451, 250, 29))
+        self.btn_log.setStyleSheet("color:rgb(10, 128, 255);\n"
+        "font: 75 11pt \"Cantarell\";\n"
+        "font-weight: bold;")
+        self.btn_log.setCheckable(False)
+        self.btn_log.setAutoDefault(True)
+        self.btn_log.setDefault(False)
+        self.btn_log.setFlat(True)
+        self.btn_log.setObjectName("btn_log")
 
 
         self.btn_sgte = QtWidgets.QPushButton(self.frame)
@@ -54,21 +83,15 @@ class Pantalla_Signup(object):
         "font-weight:bold;}")
         self.btn_sgte.setIconSize(QtCore.QSize(16, 16))
         self.btn_sgte.setObjectName("btn_sgte")
-        self.btn_log = QtWidgets.QPushButton(self.frame)
-        self.btn_log.setGeometry(QtCore.QRect(50, 451, 250, 29))
-        self.btn_log.setStyleSheet("color:rgb(10, 128, 255);\n"
-        "font: 75 11pt \"Cantarell\";\n"
-        "font-weight: bold;")
-        self.btn_log.setCheckable(False)
-        self.btn_log.setAutoDefault(True)
-        self.btn_log.setDefault(False)
-        self.btn_log.setFlat(True)
-        self.btn_log.setObjectName("btn_log")
+
+
         self.lbl_info = QtWidgets.QLabel(self.frame)
         self.lbl_info.setGeometry(QtCore.QRect(390, 500, 361, 19))
         self.lbl_info.setStyleSheet("color: rgb(255, 0, 4);")
         self.lbl_info.setObjectName("lbl_info")
         self.lbl_info.hide()
+
+
         self.lbl_regla1 = QtWidgets.QLabel(self.frame)
         self.lbl_regla1.setGeometry(QtCore.QRect(60, 374, 281, 16))
         font = QtGui.QFont()
@@ -81,6 +104,8 @@ class Pantalla_Signup(object):
         self.lbl_regla1.setStyleSheet("color: rgb(0, 0, 0);\n"
 		"font: 75 14pt \"Cantarell\";")
         self.lbl_regla1.setObjectName("lbl_regla1")
+
+
         self.frame_4 = QtWidgets.QFrame(self.frame)
         self.frame_4.setGeometry(QtCore.QRect(30, 20, 61, 71))
         self.frame_4.setStyleSheet("image: url(:/Icono/Images-UI/Icono.png);\n"
@@ -88,12 +113,18 @@ class Pantalla_Signup(object):
         self.frame_4.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_4.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_4.setObjectName("frame_4")
+
+
         self.lbl_dt = QtWidgets.QLabel(self.frame)
         self.lbl_dt.setGeometry(QtCore.QRect(100, 40, 141, 31))
         self.lbl_dt.setObjectName("lbl_dt")
+
+
         self.lbl_cc = QtWidgets.QLabel(self.frame)
         self.lbl_cc.setGeometry(QtCore.QRect(60, 100, 251, 31))
         self.lbl_cc.setObjectName("lbl_cc")
+
+
         self.lbl_regla2 = QtWidgets.QLabel(self.frame)
         self.lbl_regla2.setGeometry(QtCore.QRect(60, 390, 331, 20))
         font = QtGui.QFont()
@@ -106,20 +137,7 @@ class Pantalla_Signup(object):
         self.lbl_regla2.setStyleSheet("color: rgb(0, 0, 0);\n"
 		"font: 75 14pt \"Cantarell\";")
         self.lbl_regla2.setObjectName("lbl_regla2")
-
-
-        self.txt_pass_con = QtWidgets.QLineEdit(self.frame)
-        self.txt_pass_con.setGeometry(QtCore.QRect(260, 314, 181, 51))
-        self.txt_pass_con.setEchoMode(QtWidgets.QLineEdit.Password)
-        self.txt_pass_con.setObjectName("txt_pass_con")
-        self.txt_pass_con.setPlaceholderText("Confirmar contraseña *")
         
-
-        self.txt_mail = QtWidgets.QLineEdit(self.frame)
-        self.txt_mail.setEnabled(True)
-        self.txt_mail.setGeometry(QtCore.QRect(60, 230, 380, 51))
-        self.txt_mail.setObjectName("txt_mail")
-        self.txt_mail.setPlaceholderText("Correo electrónico")
 
 
         self.frame_2 = QtWidgets.QFrame(self.frame)
@@ -182,9 +200,19 @@ class Pantalla_Login(object):
         self.txt_pass.setEchoMode(QtWidgets.QLineEdit.Password)
         self.txt_pass.setObjectName("txt_pass")
         self.txt_pass.setPlaceholderText("Contraseña")
+    
         
 
-
+        self.btn_cc = QtWidgets.QPushButton(self.frame)
+        self.btn_cc.setGeometry(QtCore.QRect(50, 380, 101, 29))
+        self.btn_cc.setStyleSheet("color:rgb(10, 128, 255);\n"
+        "font: 75 11pt \"Cantarell\";\n"
+        "font-weight: bold;")
+        self.btn_cc.setCheckable(False)
+        self.btn_cc.setAutoDefault(True)
+        self.btn_cc.setDefault(False)
+        self.btn_cc.setFlat(True)
+        self.btn_cc.setObjectName("btn_cc")
 
         self.btn_sgte = QtWidgets.QPushButton(self.frame)
         self.btn_sgte.setGeometry(QtCore.QRect(310, 379, 96, 31))
@@ -197,16 +225,8 @@ class Pantalla_Login(object):
         "font-weight:bold;}")
         self.btn_sgte.setIconSize(QtCore.QSize(16, 16))
         self.btn_sgte.setObjectName("btn_sgte")
-        self.btn_cc = QtWidgets.QPushButton(self.frame)
-        self.btn_cc.setGeometry(QtCore.QRect(50, 380, 101, 29))
-        self.btn_cc.setStyleSheet("color:rgb(10, 128, 255);\n"
-        "font: 75 11pt \"Cantarell\";\n"
-        "font-weight: bold;")
-        self.btn_cc.setCheckable(False)
-        self.btn_cc.setAutoDefault(True)
-        self.btn_cc.setDefault(False)
-        self.btn_cc.setFlat(True)
-        self.btn_cc.setObjectName("btn_cc")
+
+
         self.frame_2 = QtWidgets.QFrame(self.frame)
         self.frame_2.setEnabled(True)
         self.frame_2.setGeometry(QtCore.QRect(196, 22, 61, 61))
@@ -217,35 +237,49 @@ class Pantalla_Login(object):
         self.frame_2.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_2.setLineWidth(0)
         self.frame_2.setObjectName("frame_2")
+
+
         self.lbl_info = QtWidgets.QLabel(self.frame)
         self.lbl_info.setGeometry(QtCore.QRect(59, 321, 221, 19))
         self.lbl_info.setStyleSheet("color: rgb(255, 0, 4);")
         self.lbl_info.setObjectName("lbl_info")
         self.lbl_info.hide()
+
+
         self.lbl_tit = QtWidgets.QLabel(self.frame)
         self.lbl_tit.setGeometry(QtCore.QRect(176, 92, 111, 31))
         self.lbl_tit.setStyleSheet("color: rgb(0, 0, 0);\n"
         "font: 75 22pt \"Cantarell\";")
         self.lbl_tit.setObjectName("lbl_tit")
+
+
         self.lbl_stc = QtWidgets.QLabel(self.frame)
         self.lbl_stc.setGeometry(QtCore.QRect(136, 130, 200, 31))
         self.lbl_stc.setStyleSheet("color: rgb(0, 0, 0);\n"
         "font: 75 14pt \"Cantarell\";")
         self.lbl_stc.setObjectName("lbl_stc")
+
+
         self.frame_3 = QtWidgets.QFrame(Dialog)
         self.frame_3.setGeometry(QtCore.QRect(-2, 0, 811, 61))
         self.frame_3.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_3.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_3.setObjectName("frame_3")
+
+
         self.frame_4 = QtWidgets.QFrame(self.frame_3)
         self.frame_4.setGeometry(QtCore.QRect(6, 5, 51, 51))
         self.frame_4.setStyleSheet("border-image: url(:/Icono/Images-UI/Icono.png);")
         self.frame_4.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_4.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_4.setObjectName("frame_4")
+
+
         self.label = QtWidgets.QLabel(self.frame_3)
         self.label.setGeometry(QtCore.QRect(350, 9, 91, 41))
         self.label.setObjectName("label")
+
+
         self.DreamTeam = QtWidgets.QLabel(self.frame_3)
         self.DreamTeam.setGeometry(QtCore.QRect(64, 15, 141, 31))
         self.DreamTeam.setObjectName("DreamTeam")
