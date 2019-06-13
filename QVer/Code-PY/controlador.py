@@ -3,7 +3,7 @@ from validarcorreo import validarcorreo, verexist
 from Vista import *
 import sys
 
-#DEFINE LA PANTALLA QUE SEA LA PRINCIPAL
+
 
 
 
@@ -146,13 +146,12 @@ class Controlador_Signup(object):
                     info.setText("Ingrese solo nombre entre 4 y 15 caracteres.")
                     info.show()
 
-
-
-
+#INSTANCIA LAS PANTALLAS
 LoginScreen=Controlador_Login()
 SingupScreen=Controlador_Signup()
 
 
+#LLAMA A LAS PANTALLAS
 def Mostrar_Login():
     LoginScreen.Dialog.show()
     SingupScreen.Dialog.hide()
@@ -161,6 +160,14 @@ def Mostrar_Sign():
     SingupScreen.Dialog.show()
 
 
+#CONECTA A LA BD
+def conectar(user='', password='', db=''):
+    # Connect to the database
+    connection = pymysql.connect(host='localhost',
+                                 user='user',
+                                 password='passwd',
+                                 db='db')
+    return connection
 
 #INIT DEL LOGIN
 if __name__ == "__main__":
