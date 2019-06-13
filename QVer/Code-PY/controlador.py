@@ -2,14 +2,19 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from validarcorreo import validarcorreo, verexist
 from Vista import *
 import sys
+
 class Controlador_Login(object):
     def __init__(self): 
         self.app = QtWidgets.QApplication(sys.argv)
         self.Dialog = QtWidgets.QDialog()
         self.ventanalogin = Pantalla_Login()
         self.ventanalogin.setupUi(self.Dialog)
+        self.function()
         self.Dialog.show()
-        print("GG")
+
+    def function(self):
+        self.ventanalogin.btn_sgte.clicked.connect(lambda:self.charge_confirm(self.ventanalogin.txt_pass, self.ventanalogin.txt_usr, self.ventanalogin.lbl_info))
+        self.ventanalogin.btn_cc.clicked.connect(lambda:self.crearcuenta())
 
     def charge_confirm(self, password, user, info):
         database = open ("database.txt", "r")
@@ -65,8 +70,7 @@ class Controlador_Login(object):
 #        self.ventanalogin.btn_sgte.clicked.connect(lambda:self.charge_confirm(self.txt_pass, self.txt_usr, self.lbl_info))
  #       self.ventanalogin.btn_cc.clicked.connect(lambda:self.crearcuenta())
 
-        self.ventanalogin.btn_sgte.clicked.connect(lambda:print("CLICKEADO"))
-        self.ventanalogin.btn_cc.clicked.connect(lambda:self.crearcuenta())
+        
 
 
 class Controlador_Signup(object):

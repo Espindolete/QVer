@@ -265,10 +265,6 @@ class Pantalla_Login(object):
         self.DreamTeam.setText(_translate("Dialog", "<html><head/><body><p><span style=\" font-size:18pt; font-weight:600; color:#d0d0d0;\">Dream Team</span></p></body></html>"))
 
 
-        self.btn_sgte.clicked.connect(lambda:print("CLICKEADO"))
-        self.btn_cc.clicked.connect(lambda:self.crearcuenta())
-
-
 
 
 '''
