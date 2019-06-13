@@ -14,7 +14,7 @@ class Controlador_Login(object):
 
     def function(self):
         self.ventanalogin.btn_sgte.clicked.connect(lambda:self.charge_confirm(self.ventanalogin.txt_pass, self.ventanalogin.txt_usr, self.ventanalogin.lbl_info))
-        self.ventanalogin.btn_cc.clicked.connect(lambda:self.crearcuenta())
+        self.ventanalogin.btn_cc.clicked.connect(lambda:self.gotosign())
 
     def charge_confirm(self, password, user, info):
         database = open ("database.txt", "r")
@@ -56,15 +56,14 @@ class Controlador_Login(object):
         Dialog.show()
         ventana1.hide()
 
-    def crearcuenta(self):
-        self.ventana1 = QtWidgets.QMainWindow()
-        self.gg=Sign
-        self.ui=Sign()
-        self.ui.setupUi(self.ventana1)
-        self.ventana1.setGeometry(280, 103,781,575)
-        self.ventana1.show()
-        self.ui.btn_log.clicked.connect(lambda:self.cerrar(self.ventana1))
-        Dialog.hide()
+    def gotosign(self):
+        self.crearcuenta = QtWidgets.QMainWindow()
+        self.ui=Pantalla_Signup()
+        self.ui.setupUi(self.crearcuenta)
+        self.crearcuenta.setGeometry(280, 103,781,575)
+        self.crearcuenta.show()
+        self.ui.btn_log.clicked.connect(lambda:self.cerrar(self.crearcuenta))
+        self.Dialog.hide()
 
 
 #        self.ventanalogin.btn_sgte.clicked.connect(lambda:self.charge_confirm(self.txt_pass, self.txt_usr, self.lbl_info))
