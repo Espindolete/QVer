@@ -1,8 +1,14 @@
+from controlador import conectar
+import pymysql
 #hacer las variables privadas en serio
 
 #la clase controlador se fija en el algoritmo
 
 
+coneccion=conectar("root","42922075","qver")
+cur=coneccion.cursor()
+cur.execute("select * from peliculas limit 1")
+print(cur.fetchall())
 
 class Usuario(object):
 	def __init__(self, nombre,correo,contraseña):
@@ -37,9 +43,12 @@ class Usuario(object):
 			peli.addUsuarioPeli(self)
 
 		if resp==NOMEGUSTA:
+			print(" ")
 			#se podria hacer algo
 		if resp==NOLAVI:
+			print(" ")
 			#se podria hacer algo
+
 
 
 

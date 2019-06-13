@@ -1,6 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from validarcorreo import validarcorreo, verexist
 from Vista import *
+import pymysql
 import sys
 
 
@@ -161,12 +162,13 @@ def Mostrar_Sign():
 
 
 #CONECTA A LA BD
-def conectar(user='', password='', db=''):
+def conectar(usr='', passwod='', bd=''):
     # Connect to the database
     connection = pymysql.connect(host='localhost',
-                                 user='user',
-                                 password='passwd',
-                                 db='db')
+                                 user=usr,
+                                 password=passwod,
+                                 charset='utf8mb4',
+                                 db=bd)
     return connection
 
 #INIT DEL LOGIN
