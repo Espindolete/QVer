@@ -1,8 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-from Signup import Sign
 import xz_rc
 from validarcorreo import validarcorreo, verexist
-
+import sys
 
 
 class Pantalla_Signup(object):
@@ -150,13 +149,6 @@ class Pantalla_Signup(object):
    
 
 
-
-
-
-
-
-
-
 class Pantalla_Login(object):
 
     def setupUi(self, Dialog):
@@ -277,18 +269,18 @@ class Pantalla_Login(object):
 
 
 
-	'''
-	TO DO 								DONE
-										Pantalla Login
-										Pantalla Sign Up
-	Pantalla Main Menu
-	Pantalla Quiz
-	Pantalla Profile
+'''
+TO DO 								DONE
+									Pantalla Login
+									Pantalla Sign Up
+Pantalla Main Menu
+Pantalla Quiz
+Pantalla Profile
 
 
-	Logueate()
-	Registrate()
-	Recomendame()
-	Ver_Perfil()
-	Calificar()
-	'''
+Logueate()
+Registrate()
+Recomendame()
+Ver_Perfil()
+Calificar()
+'''

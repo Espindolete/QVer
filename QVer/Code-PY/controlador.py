@@ -1,12 +1,15 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-from Signup import Sign
 from validarcorreo import validarcorreo, verexist
 from Vista import *
 
 class Controlador_Login(object):
     def __init__(self):
-        Dialog = QtWidgets.QDialog()
-        ventanalogin=
+        self.app = QtWidgets.QApplication(sys.argv)
+        self.Dialog = QtWidgets.QDialog()
+        self.ventanalogin = Pantalla_Login()
+        self.ventanalogin.setupUi(self.Dialog)
+        self.Dialog.show()
+        self.sys.exit(app.exec_())
 
     def charge_confirm(self, password, user, info):
         database = open ("database.txt", "r")
@@ -59,8 +62,8 @@ class Controlador_Login(object):
         Dialog.hide()
 
 
-  self.btn_sgte.clicked.connect(lambda:self.charge_confirm(self.txt_pass, self.txt_usr, self.lbl_info))
-        self.btn_cc.clicked.connect(lambda:self.crearcuenta())
+        self.ventanalogin.btn_sgte.clicked.connect(lambda:self.charge_confirm(self.txt_pass, self.txt_usr, self.lbl_info))
+        self.ventanalogin.btn_cc.clicked.connect(lambda:self.crearcuenta())
 
 
 class Controlador_Signup(object):
@@ -142,8 +145,8 @@ class Controlador_Signup(object):
                     info.setText("Ingrese solo nombre entre 4 y 15 caracteres.")
                     info.show()
 
-   self.btn_sgte.clicked.connect(lambda:self.registrar(self.txt_usr, self.txt_pass, self.txt_pass_con, self.lbl_info, self.txt_mail))
-        self.checkBox.toggled.connect(lambda:self.ver(self.checkBox,self.txt_pass, self.txt_pass_con))
+        self.ventanalogin.btn_sgte.clicked.connect(lambda:self.registrar(self.txt_usr, self.txt_pass, self.txt_pass_con, self.lbl_info, self.txt_mail))
+        self.ventanalogin.checkBox.toggled.connect(lambda:self.ver(self.checkBox,self.txt_pass, self.txt_pass_con))
             
 
 
@@ -164,12 +167,6 @@ def logearse(self):
 
 #INIT DEL LOGIN
 if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    Dialog = QtWidgets.QDialog()
-    ui = Ui_Dialog()
-    ui.setupUi(Dialog)
-    Dialog.show()
-    sys.exit(app.exec_())
+    Login = Controlador_Login()
 
 		
