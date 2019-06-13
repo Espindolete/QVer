@@ -29,8 +29,20 @@ class Usuario(object):
 
 		return pelis
 
-	def calificarPeli(self,peli,resp):
-		self.respuestas.append(respuesta(peli,resp))
+	def gustarPeli(self,peli,resp):
+		opinion=respuesta(peli,resp)
+		self.respuestas.append(opinion)
+		if resp==MEGUSTA:
+		#añadimos el usuario a la peli para el algoritmo nms
+			peli.addUsuarioPeli(self)
+
+		if resp==NOMEGUSTA:
+			#se podria hacer algo
+		if resp==NOLAVI:
+			#se podria hacer algo
+
+
+
 
 	def modificarCalificacion(self,peli,resp):
 		for x in respuestas:
@@ -43,11 +55,9 @@ class Usuario(object):
 
 
 
-#esto no se refleja con la base de datos
-#estoy pensando en cambiar esto en un futuro para hacer mas facil el desarrollo del algoritmo
 class respuesta(object):
 	def __init__(self, pelicula,respuesta):
-		self.pelicula=pelicula#si usaramos por id se reduciria la complejidad pero se complejaria el codeo
+		self.pelicula=pelicula
 		self.respuesta=respuesta
 
 	def getPelicula(self):
@@ -70,6 +80,7 @@ class Pelicula:
 		self.descripcion=descripcion
 		self.img=img
 		self.tags=args
+		self.usuarios=list()
 
 	def getNombre(self):
 		return self.nombre
@@ -106,4 +117,17 @@ class Pelicula:
 			if x==tag:
 				return True
 		return False
-	#copiar y pega rpor cada atributo xd
+
+
+	##los ifs estos son solo para casos negativos en la degustacion de peliculas xd	
+	def addUsuarioPeli(self,usuario):
+		if usuario not in usuarios:
+			usuarios.append(usuario)
+
+	def removeUsuarioPeli(self,usuario):
+		if usuario in usuarios:
+			usuarios.remove(usuario)
+		
+
+	def getUsuariosPeli(self):
+		return self.usuarios
