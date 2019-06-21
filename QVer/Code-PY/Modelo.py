@@ -5,11 +5,15 @@ import pymysql
 #la clase controlador se fija en el algoritmo
 
 
+MEGUSTA=1
+NOLAVI=0
+NOMEGUSTA=-1
+'''
 coneccion=conectar("root","42922075","qver")
 cur=coneccion.cursor()
 cur.execute("select * from peliculas limit 1")
 print(cur.fetchall())
-
+'''
 class Usuario(object):
 	def __init__(self, nombre,correo,contraseña):
 		#id tal vez?
@@ -21,17 +25,24 @@ class Usuario(object):
 		#so...
 		#hay que hacer una clase respuesta?
 
+	def getNombre(self):
+		return self.nombre
+
 	def login(self):
 		pass
 	def signin(self):
 		pass
 
-	def getPeliculas(self,calif):
+	def getPeliculas(self,calif=None):
 		#aca geteamos solo las peliculas q le gustaron o no o q no vio, depende de llo q queramos
 		pelis=list()
-		for x in respuestas:
-			if(x.getRespuesta()==calif):
-				pelis.append(x.getPelicula)
+		if(calif is None):
+			for x in self.respuestas:
+				pelis.append(x.getPelicula())
+		else:
+			for x in self.respuestas:
+				if(x.getRespuesta()==calif):
+					pelis.append(x.getPelicula())
 
 		return pelis
 
@@ -54,7 +65,7 @@ class Usuario(object):
 
 
 	def modificarCalificacion(self,peli,resp):
-		for x in respuestas:
+		for x in self.respuestas:
 			if(x.peli.getNombre()==peli.getNombre):
 				x.setRespuesta(resp)
 
@@ -72,7 +83,7 @@ class respuesta(object):
 	def getPelicula(self):
 		return self.pelicula
 	def getNombre(self):
-		return pelicula.getNombre
+		return self.pelicula.getNombre()
 
 	def getRespuesta(self):
 		return self.respuesta
@@ -127,15 +138,16 @@ class Pelicula:
 				return True
 		return False
 
-
+	def __str__(self):
+		return "pelicula: "+self.nombre
 	##los ifs estos son solo para casos negativos en la degustacion de peliculas xd	
 	def addUsuarioPeli(self,usuario):
-		if usuario not in usuarios:
-			usuarios.append(usuario)
+		if usuario not in self.usuarios:
+			self.usuarios.append(usuario)
 
 	def removeUsuarioPeli(self,usuario):
-		if usuario in usuarios:
-			usuarios.remove(usuario)
+		if usuario in self.usuarios:
+			self.usuarios.remove(usuario)
 		
 
 	def getUsuariosPeli(self):
