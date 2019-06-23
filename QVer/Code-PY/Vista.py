@@ -300,19 +300,3 @@ class Pantalla_Login(object):
 
 
 
-
-'''
-TO DO 								DONE
-									Pantalla Login
-									Pantalla Sign Up
-Pantalla Main Menu
-Pantalla Quiz
-Pantalla Profile
-
-
-Logueate()
-Registrate()
-Recomendame()
-Ver_Perfil()
-Calificar()
-'''

@@ -55,13 +55,13 @@ def validarcorreo(correo):
                 val=False
             return val
         else:
-            print("else")
+            #print("else")
             organ=domain
             if 1 < len(organ) < 10:
                 val=invalidchar(organ)
             else:
                 val=False
-        print("NO PASO NADA")
+        #print("NO PASO NADA")
         return val
     
     val=False

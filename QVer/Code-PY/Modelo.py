@@ -15,8 +15,8 @@ cur.execute("select * from peliculas limit 1")
 print(cur.fetchall())
 '''
 class Usuario(object):
-	def __init__(self,identificador, nombre,correo,contraseña):
-		self.id=identificador
+	def __init__(self,nombre, contraseña,correo=None):
+		
 		self.nombre=nombre
 		self.correo=correo
 		self.contraseña=contraseña

@@ -1,6 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from validarcorreo import validarcorreo, verexist
 from Vista import *
+from Modelo import *
 import pymysql
 import sys
 
@@ -25,11 +26,13 @@ class Controlador_Login(object):
         usrpass=[]
         flag=False
         for x in database:
+            print(x)
             usrpass=usrpass+x.split(",")
         for x in usrpass:
             bk=x.replace("\n", "")
             usrpass[usrpass.index(x)]=bk
         for x in usrpass:
+            print(x+user.text())
             try:
                 if (x == user.text()) and (usrpass[usrpass.index(x)+1]==password.text()):
                     flag=True
@@ -55,6 +58,7 @@ class Controlador_Login(object):
             info.show()
         database.close()
         #print (usrpass)
+
 class Controlador_Signup(object):
     def __init__(self): 
         self.app = QtWidgets.QApplication(sys.argv)
@@ -110,6 +114,7 @@ class Controlador_Signup(object):
                                     database.close()
                                     info.show()
                                     self.limpiar(usr, password, passconf, mail)
+                                    Mostrar_Login()
                                 else:
                             #Con correo registrado
                                     validar=validarcorreo(mail.text())
@@ -125,6 +130,7 @@ class Controlador_Signup(object):
                                             database.close()
                                             info.show()
                                             self.limpiar(usr, password, passconf, mail)
+                                            Mostrar_Login()
                                         else:
                                             info.setStyleSheet("color: rgb(255, 0, 4);")
                                             info.setText("Ya existe un usuario regisrado con su mail.")
