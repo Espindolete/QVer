@@ -2,15 +2,21 @@
   <qresource prefix="newPrefix">
     <file>../Images-UI/LoginFotx.png</file>
   </qresource>
+  <qresource prefix="pelis">
+    <file>../Images-UI/51poKKV63GL.jpg</file>
+    <file>../Images-UI/931823302_o.jpg</file>
+    <file>../Images-UI/avengers-7.jpg</file>
+    <file>../Images-UI/black-panther-web.jpg</file>
+    <file>../Images-UI/John-Wick-2-900x0-c-default.jpg</file>
+  </qresource>
+  <qresource prefix="iconos">
+    <file>../Images-UI/botonAnt.png</file>
+    <file>../Images-UI/botonSig.png</file>
+  </qresource>
   <qresource prefix="Icono">
     <file>../Images-UI/Icono.png</file>
   </qresource>
   <qresource prefix="Shield">
     <file>../Images-UI/QverShield.png</file>
-  </qresource>
-  <qresource prefix="Images">
-    <file>931823302_o.jpg</file>
-    <file>avengers-7.jpg</file>
-    <file>black-panther-web.jpg</file>
   </qresource>
 </RCC>

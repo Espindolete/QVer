@@ -16,12 +16,12 @@
   <property name="styleSheet">
    <string notr="true">background-color: rgb(0, 0, 0)</string>
   </property>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="superRecomendame">
    <property name="geometry">
     <rect>
-     <x>140</x>
-     <y>430</y>
-     <width>461</width>
+     <x>240</x>
+     <y>440</y>
+     <width>271</width>
      <height>71</height>
     </rect>
    </property>
@@ -39,7 +39,7 @@ color: rgb(255, 255, 255);
     <string>RECOMENDAME</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_2">
+  <widget class="QLabel" name="botonRecomendame">
    <property name="geometry">
     <rect>
      <x>290</x>
@@ -56,7 +56,7 @@ font: 16pt &quot;BatmanForeverAlternate&quot;;</string>
     <string>RECOMENDAME</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_3">
+  <widget class="QLabel" name="botonMiPerfil">
    <property name="geometry">
     <rect>
      <x>520</x>
@@ -73,7 +73,7 @@ font: 16pt &quot;BatmanForeverAlternate&quot;;</string>
     <string>MI PERFIL</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="botonInicio">
    <property name="geometry">
     <rect>
      <x>180</x>
@@ -96,20 +96,14 @@ font: 16pt &quot;BatmanForeverAlternate&quot;;</string>
      <x>19</x>
      <y>139</y>
      <width>741</width>
-     <height>261</height>
+     <height>251</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
-    <property name="spacing">
-     <number>6</number>
-    </property>
-    <property name="sizeConstraint">
-     <enum>QLayout::SetMaximumSize</enum>
-    </property>
     <item>
-     <widget class="QPushButton" name="pushButton_2">
+     <widget class="QPushButton" name="anteriores">
       <property name="sizePolicy">
-       <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
@@ -118,13 +112,13 @@ font: 16pt &quot;BatmanForeverAlternate&quot;;</string>
        <string/>
       </property>
       <property name="icon">
-       <iconset>
-        <normaloff>botonAnt.png</normaloff>botonAnt.png</iconset>
+       <iconset resource="xz.qrc">
+        <normaloff>:/iconos/Images-UI/botonAnt.png</normaloff>:/iconos/Images-UI/botonAnt.png</iconset>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QLabel" name="label_5">
+     <widget class="QLabel" name="peli1">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
         <horstretch>0</horstretch>
@@ -135,7 +129,7 @@ font: 16pt &quot;BatmanForeverAlternate&quot;;</string>
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap>931823302_o.jpg</pixmap>
+       <pixmap resource="xz.qrc">:/pelis/Images-UI/51poKKV63GL.jpg</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -143,7 +137,7 @@ font: 16pt &quot;BatmanForeverAlternate&quot;;</string>
      </widget>
     </item>
     <item>
-     <widget class="QLabel" name="label_7">
+     <widget class="QLabel" name="peli2">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
         <horstretch>0</horstretch>
@@ -154,7 +148,7 @@ font: 16pt &quot;BatmanForeverAlternate&quot;;</string>
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap>John-Wick-2-900x0-c-default.jpg</pixmap>
+       <pixmap resource="xz.qrc">:/pelis/Images-UI/931823302_o.jpg</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -162,7 +156,7 @@ font: 16pt &quot;BatmanForeverAlternate&quot;;</string>
      </widget>
     </item>
     <item>
-     <widget class="QLabel" name="label_6">
+     <widget class="QLabel" name="peli3">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
         <horstretch>0</horstretch>
@@ -173,7 +167,7 @@ font: 16pt &quot;BatmanForeverAlternate&quot;;</string>
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap>black-panther-web.jpg</pixmap>
+       <pixmap resource="xz.qrc">:/pelis/Images-UI/John-Wick-2-900x0-c-default.jpg</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -181,28 +175,28 @@ font: 16pt &quot;BatmanForeverAlternate&quot;;</string>
      </widget>
     </item>
     <item>
-     <widget class="QLabel" name="label_4">
+     <widget class="QLabel" name="peli4">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
+      <property name="text">
+       <string/>
+      </property>
       <property name="pixmap">
-       <pixmap>avengers-7.jpg</pixmap>
+       <pixmap resource="xz.qrc">:/pelis/Images-UI/black-panther-web.jpg</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
       </property>
-      <property name="wordWrap">
-       <bool>false</bool>
-      </property>
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="pushButton_3">
+     <widget class="QPushButton" name="siguientes">
       <property name="sizePolicy">
-       <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
@@ -211,14 +205,14 @@ font: 16pt &quot;BatmanForeverAlternate&quot;;</string>
        <string/>
       </property>
       <property name="icon">
-       <iconset>
-        <normaloff>botonSig.png</normaloff>botonSig.png</iconset>
+       <iconset resource="xz.qrc">
+        <normaloff>:/iconos/Images-UI/botonSig.png</normaloff>:/iconos/Images-UI/botonSig.png</iconset>
       </property>
      </widget>
     </item>
    </layout>
   </widget>
-  <widget class="QLabel" name="lbl_stc">
+  <widget class="QLabel" name="Qver">
    <property name="geometry">
     <rect>
      <x>60</x>

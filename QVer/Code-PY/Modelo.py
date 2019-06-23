@@ -9,7 +9,7 @@ MEGUSTA=1
 NOLAVI=0
 NOMEGUSTA=-1
 '''
-coneccion=conectar("root","42922075","qver")
+coneccion=conectar("root","root","qver")
 cur=coneccion.cursor()
 cur.execute("select * from peliculas limit 1")
 print(cur.fetchall())

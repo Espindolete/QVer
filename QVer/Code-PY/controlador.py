@@ -26,13 +26,11 @@ class Controlador_Login(object):
         usrpass=[]
         flag=False
         for x in database:
-            print(x)
             usrpass=usrpass+x.split(",")
         for x in usrpass:
             bk=x.replace("\n", "")
             usrpass[usrpass.index(x)]=bk
         for x in usrpass:
-            print(x+user.text())
             try:
                 if (x == user.text()) and (usrpass[usrpass.index(x)+1]==password.text()):
                     flag=True
@@ -57,6 +55,8 @@ class Controlador_Login(object):
             info.setStyleSheet("color: rgb(255, 0, 4);")           
             info.show()
         database.close()
+        if flag:
+            Mostrar_Main()
         #print (usrpass)
 
 class Controlador_Signup(object):
@@ -70,7 +70,7 @@ class Controlador_Signup(object):
     def function(self):
         self.ventanasign.btn_log.clicked.connect(lambda:Mostrar_Login())
         self.ventanasign.btn_sgte.clicked.connect(lambda:self.registrar(self.ventanasign.txt_usr, self.ventanasign.txt_pass, self.ventanasign.txt_pass_con, self.ventanasign.lbl_info, self.ventanasign.txt_mail))
-        self.ventanasign.checkBox.toggled.connect(lambda:self.ver(self.ventanasign.checkBox,self.ventanasign.txt_pass, self.ventanasign.txt_pass_con))
+        #self.ventanasign.checkBox.toggled.connect(lambda:self.ver(self.ventanasign.checkBox,self.ventanasign.txt_pass, self.ventanasign.txt_pass_con))
             
 
     def ver(self, ch, txt_pass, txt_pass_con):
@@ -153,18 +153,43 @@ class Controlador_Signup(object):
                     info.setText("Ingrese solo nombre entre 4 y 15 caracteres.")
                     info.show()
 
+
+class controlador_Main_Menu(object):
+    """docstring for controlador_MainMenu"""
+    def __init__(self): 
+        self.app = QtWidgets.QApplication(sys.argv)
+        self.Dialog = QtWidgets.QDialog()
+        self.ventanamain = Pantalla_Main_Menu()
+        self.ventanamain.setupUi(self.Dialog)
+        self.function()
+
+    def function(self):
+        self.ventanamain.anteriores.clicked.connect(lambda:Cambiar_Pelis(-1))
+        self.ventanamain.siguientes.clicked.connect(lambda:Cambiar_Pelis(1))
+        #self.ventanasign.checkBox.toggled.connect(lambda:self.ver(self.ventanasign.checkBox,self.ventanasign.txt_pass, self.ventanasign.txt_pass_con))
+    def CambiarPelis(self):
+        pass
+
+
 #INSTANCIA LAS PANTALLAS
+
 LoginScreen=Controlador_Login()
 SingupScreen=Controlador_Signup()
-
+MainScreen=controlador_Main_Menu()
 
 #LLAMA A LAS PANTALLAS
 def Mostrar_Login():
     LoginScreen.Dialog.show()
     SingupScreen.Dialog.hide()
+    MainScreen.Dialog.hide()
 def Mostrar_Sign():
     LoginScreen.Dialog.hide()
     SingupScreen.Dialog.show()
+    MainScreen.Dialog.hide()
+def Mostrar_Main():
+    MainScreen.Dialog.show()
+    LoginScreen.Dialog.hide()
+    SingupScreen.Dialog.hide()
 
 
 #CONECTA A LA BD
