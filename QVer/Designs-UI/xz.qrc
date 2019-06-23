@@ -8,4 +8,9 @@
   <qresource prefix="Shield">
     <file>../Images-UI/QverShield.png</file>
   </qresource>
+  <qresource prefix="Images">
+    <file>931823302_o.jpg</file>
+    <file>avengers-7.jpg</file>
+    <file>black-panther-web.jpg</file>
+  </qresource>
 </RCC>
