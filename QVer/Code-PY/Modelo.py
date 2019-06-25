@@ -61,6 +61,9 @@ class Usuario(object):
 				elif (x[3] == user.text()) and (x[2]==password.text()):
 					usuario=x
 					flag=True
+				print (x[1])
+				print (x[2])
+				print (x[3])
 			except Exception as e:
 				pass
 		if flag:
@@ -105,6 +108,7 @@ class Usuario(object):
 									conexion.commit()
 									info.setStyleSheet("color: rgb(50, 200, 40);")
 									info.setText("Usuario registrado con exito!(Sin mail).")
+									usuarios=cursor.fetchall()
 									info.show()
 									self.limpiar(usr, password, passconf, mail)
 								else:
@@ -118,6 +122,7 @@ class Usuario(object):
 											conexion.commit()
 											info.setStyleSheet("color: rgb(50, 200, 40);")
 											info.setText("Usuario registrado con exito!.")
+											usuarios=cursor.fetchall()
 											info.show()
 											self.limpiar(usr, password, passconf, mail)
 										else:
