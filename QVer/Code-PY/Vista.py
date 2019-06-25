@@ -120,7 +120,7 @@ class Pantalla_Signup(object):
 		self.btn_log.setFlat(True)
 		self.btn_log.setObjectName("btn_log")
 		self.lbl_info = QtWidgets.QLabel(self.frame)
-		self.lbl_info.setGeometry(QtCore.QRect(650, 550, 101, 20))
+		self.lbl_info.setGeometry(QtCore.QRect(400, 550, 250, 20))
 		self.lbl_info.setStyleSheet("color: rgb(255, 0, 4);\n"
 		"background-color: rgb(0, 0, 0);")
 		self.lbl_info.setObjectName("lbl_info")
