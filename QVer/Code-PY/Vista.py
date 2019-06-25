@@ -41,7 +41,7 @@ class QLabelClickable(QLabel):
 class Pantalla_Signup(object):
 	def setupUi(self, Dialog):
 		Dialog.setObjectName("Dialog")
-		Dialog.resize(759, 578)
+		Dialog.setFixedSize(759, 578)
 		sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
 		sizePolicy.setHorizontalStretch(0)
 		sizePolicy.setVerticalStretch(0)
@@ -410,7 +410,7 @@ class Pantalla_Main_Menu(object):
 
 
 		Dialog.setObjectName("QVer")
-		Dialog.resize(781, 575)
+		Dialog.setFixedSize(781, 575)
 		Dialog.setStyleSheet("background-color: rgb(0, 0, 0)")
 		self.superRecomendame = QtWidgets.QPushButton(Dialog)
 		self.superRecomendame.setGeometry(QtCore.QRect(240, 440, 271, 71))
@@ -544,7 +544,7 @@ class Pantalla_Main_Menu(object):
 class Pantalla_Login(object):
 	def setupUi(self, Dialog):
 		Dialog.setObjectName("Dialog")
-		Dialog.resize(781, 575)
+		Dialog.setFixedSize(781, 575)
 		sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
 		sizePolicy.setHorizontalStretch(0)
 		sizePolicy.setVerticalStretch(0)
@@ -668,7 +668,7 @@ class Pantalla_Login(object):
 class Pantalla_Info(object):
 	def setupUi(self, Dialog):
 		Dialog.setObjectName("Dialog")
-		Dialog.resize(781, 578)
+		Dialog.setFixedSize(781, 578)
 		Dialog.setStyleSheet("background-color: rgb(0, 0, 0)")
 		self.label_2 = QtWidgets.QLabel(Dialog)
 		self.label_2.setGeometry(QtCore.QRect(290, 40, 201, 31))

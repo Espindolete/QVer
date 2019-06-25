@@ -58,10 +58,7 @@ class Usuario(object):
 				if (x[1] == user.text()) and (x[2]==password.text()):
 					usuario=x
 					flag=True
-			except Exception as e:
-				pass
-			try:
-				if (x[3] == user.text()) and (x[2]==password.text()):
+				elif (x[3] == user.text()) and (x[2]==password.text()):
 					usuario=x
 					flag=True
 			except Exception as e:
