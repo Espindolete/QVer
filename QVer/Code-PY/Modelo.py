@@ -61,9 +61,6 @@ class Usuario(object):
 				elif (x[3] == user.text()) and (x[2]==password.text()):
 					usuario=x
 					flag=True
-				print (x[1])
-				print (x[2])
-				print (x[3])
 			except Exception as e:
 				pass
 		if flag:
