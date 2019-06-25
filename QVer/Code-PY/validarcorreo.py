@@ -1,13 +1,10 @@
-#def validar():
+#def validar() USUARIO:
+from BDConnector import *
 def verexist(dato):
     val=True
-    f = open ("database.txt", "r")
-    for x in f:
-        seccionado=x.split(",")
-        for i in seccionado:
-            if dato == i:
-                val=False
-    f.close()
+    for individuo in usuarios:
+        if dato == individuo[1]:
+            val=False
     return val
 
 def validarcorreo(correo):
@@ -20,6 +17,7 @@ def validarcorreo(correo):
             else:
                 val=False
         return val
+
     def invalidmail(cadena):
         val=True
         caracteres = ["gmail", "outlook", "hotmail", "icloud", "yahoo", "zoho", "gmx", "yandex", "mail", "lycos"]
@@ -28,6 +26,7 @@ def validarcorreo(correo):
         else:
             val=False
         return val
+
     def invalidcharname(cadena):
         val=True
         caracteres = ["-","q","w","e","r","t","y","u","i","o","p","a","s","d","f","g","h","j","k","l","ñ","z","x","c","v","b","n","m","_","0","1","2","3","4","5","6","7","8","9"]
@@ -37,6 +36,7 @@ def validarcorreo(correo):
             else:
                 val=False
         return val
+
     def invalidomain(domain, domain2):
         val=True
         organ=domain
@@ -55,13 +55,11 @@ def validarcorreo(correo):
                 val=False
             return val
         else:
-            print("else")
             organ=domain
             if 1 < len(organ) < 10:
                 val=invalidchar(organ)
             else:
                 val=False
-        print("NO PASO NADA")
         return val
     
     val=False
@@ -94,10 +92,6 @@ def validarcorreo(correo):
                         val=exist(fullmail)
                 else:
                     val=False
-
-
-
-
         '''
         print ("nombre de correo: ", name)
         print ("mail de correo: ", mail)
