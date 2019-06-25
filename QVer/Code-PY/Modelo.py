@@ -53,6 +53,8 @@ class Usuario(object):
 
 	def logearse(self, password, user, info):
 		flag=False
+		cursor.execute("select * from usuario")
+		usuarios=cursor.fetchall()
 		for x in usuarios:
 			try:
 				if (x[1] == user.text()) and (x[2]==password.text()):
@@ -63,6 +65,9 @@ class Usuario(object):
 					flag=True
 			except Exception as e:
 				pass
+			print("usuario: ",x[1])
+			print("contra: ",x[2])
+			print("correo: ",x[3])
 		if flag:
 			info.setText("Valido")
 			info.setStyleSheet("color: rgb(51, 204, 40);")
@@ -103,10 +108,13 @@ class Usuario(object):
 								if len(mail.text())==0:
 									cursor.execute("INSERT INTO `usuario`(`nombre`, `contraseña`) VALUES (%s, %s)", (usr.text(), password.text()))
 									conexion.commit()
+
+									cursor.execute("select * from usuario")
+									conexion.commit()
+									usuario=cursor.fetchall()
+									
 									info.setStyleSheet("color: rgb(50, 200, 40);")
 									info.setText("Usuario registrado con exito!(Sin mail).")
-									cursor.execute("select * from usuario")
-									usuarios=cursor.fetchall()
 									info.show()
 									self.limpiar(usr, password, passconf, mail)
 								else:
@@ -118,10 +126,13 @@ class Usuario(object):
 										if validar:
 											cursor.execute("INSERT INTO `usuario`(`nombre`, `contraseña`, `correo` ) VALUES (%s, %s, %s)", (usr.text(), password.text(), mail.text()))
 											conexion.commit()
+
+											cursor.execute("select * from usuario")
+											conexion.commit()
+											usuario=cursor.fetchall()
+									
 											info.setStyleSheet("color: rgb(50, 200, 40);")
 											info.setText("Usuario registrado con exito!.")
-											cursor.execute("select * from usuario")
-											usuarios=cursor.fetchall()
 											info.show()
 											self.limpiar(usr, password, passconf, mail)
 										else:

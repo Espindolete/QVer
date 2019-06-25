@@ -143,6 +143,7 @@ def Mostrar_Main():
 	MainScreen.Dialog.show()
 	LoginScreen.Dialog.hide()
 	SingupScreen.Dialog.hide()
+	InfoScreen.Dialog.hide()
 def Mostrar_Info(peli, id):
 	MainScreen.Dialog.hide()
 	InfoScreen.Dialog.show()
