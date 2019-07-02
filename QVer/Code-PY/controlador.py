@@ -77,6 +77,9 @@ class Controlador_Signup(object):
 class controlador_Main_Menu(object):
 	def __init__(self): 
 		self.app = QtWidgets.QApplication(sys.argv)
+		self.limite=len(pelis)-1
+		self.posicion = -1 #Esta es la id inicial que carga en el main menu
+		self.id=[0,1,2,3]
 		self.Dialog = QtWidgets.QDialog()
 		self.ventanamain = Pantalla_Main_Menu()
 		self.ventanamain.setupUi(self.Dialog)
@@ -84,31 +87,74 @@ class controlador_Main_Menu(object):
 		self.function()
 
 	def definirpelis(self, *args):
+		args=args[::-1]
 		for x in args:
-			registro=pelis[args.index(x)]
-			URI= registro[6]
-			print(URI)
-			self.url=urllib.request.urlopen(URI).read()
-			x.loadFromData(self.url)
+				self.posicion=self.posicion+1
+				self.id[args.index(x)]=self.posicion
+				#pelis llama de BDconector a la bd a un fetchall que contiene las rows de peliculas en qver BD
+				registro=pelis[self.posicion]
+				#registro tiene 1 registro de la bd contiene: Idpeli nombre genero año tags descripcion igm
+				URI= registro[6]
+				self.url=urllib.request.urlopen(URI).read()
+				x.loadFromData(self.url)
+		self.ventanamain.peli1.setPixmap(args[3])
+		self.ventanamain.peli2.setPixmap(args[2])
+		self.ventanamain.peli3.setPixmap(args[1])
+		self.ventanamain.peli4.setPixmap(args[0])
 
-	
-		self.ventanamain.peli1.setPixmap(args[0])
-		self.ventanamain.peli2.setPixmap(args[1])
-		self.ventanamain.peli3.setPixmap(args[2])
-		self.ventanamain.peli4.setPixmap(args[3])
+	def siguiente(self, *args):
+		args=args[::-1]
+		if self.posicion<=self.limite:
+			for x in args:
+				if self.posicion<self.limite:
+					self.posicion=self.posicion+1
+					self.id[args.index(x)]=self.posicion
+					#pelis llama de BDconector a la bd a un fetchall que contiene las rows de peliculas en qver BD
+					registro=pelis[self.posicion]
+					#registro tiene 1 registro de la bd contiene: Idpeli nombre genero año tags descripcion igm
+					URI= registro[6]
+					self.url=urllib.request.urlopen(URI).read()
+					x.loadFromData(self.url)
+			self.ventanamain.peli1.setPixmap(args[3])
+			self.ventanamain.peli2.setPixmap(args[2])
+			self.ventanamain.peli3.setPixmap(args[1])
+			self.ventanamain.peli4.setPixmap(args[0])
+
+	def anterior(self, *args):
+		args=args[::-1]
+		if self.posicion>=0:
+			for x in args:
+				if self.posicion>0:
+					self.posicion=self.posicion-1
+					self.id[args.index(x)]=self.posicion
+					#pelis llama de BDconector a la bd a un fetchall que contiene las rows de peliculas en qver BD
+					registro=pelis[self.posicion]
+					#registro tiene 1 registro de la bd contiene: Idpeli nombre genero año tags descripcion igm
+					URI= registro[6]
+					self.url=urllib.request.urlopen(URI).read()
+					x.loadFromData(self.url)
+			self.ventanamain.peli1.setPixmap(args[3])
+			self.ventanamain.peli2.setPixmap(args[2])
+			self.ventanamain.peli3.setPixmap(args[1])
+			self.ventanamain.peli4.setPixmap(args[0])
+
 
 	def function(self):
 		#SIGUIENTE ANTERIOR BUTTONS
-		self.ventanamain.anteriores.clicked.connect(lambda:Cambiar_Pelis(-1))
-		self.ventanamain.siguientes.clicked.connect(lambda:Cambiar_Pelis(1))
+		self.ventanamain.anteriores.clicked.connect(lambda:self.Cambiar_Pelis(-1))
+		self.ventanamain.siguientes.clicked.connect(lambda:self.Cambiar_Pelis(1))
 
 		#PELIS
-		self.ventanamain.peli1.clicked.connect(lambda:Mostrar_Info(self.ventanamain.pixmap1, 0))#aca deberia pasar la id de la peli
-		self.ventanamain.peli2.clicked.connect(lambda:Mostrar_Info(self.ventanamain.pixmap2, 1))#aca deberia pasar la id de la peli
-		self.ventanamain.peli3.clicked.connect(lambda:Mostrar_Info(self.ventanamain.pixmap3, 2))#aca deberia pasar la id de la peli
-		self.ventanamain.peli4.clicked.connect(lambda:Mostrar_Info(self.ventanamain.pixmap4, 3))#aca deberia pasar la id de la peli
-	def CambiarPelis(self):
-		pass
+		self.ventanamain.peli1.clicked.connect(lambda:Mostrar_Info(self.ventanamain.pixmap1, self.id[3]))#aca deberia pasar la id de la peli
+		self.ventanamain.peli2.clicked.connect(lambda:Mostrar_Info(self.ventanamain.pixmap2, self.id[2]))#aca deberia pasar la id de la peli
+		self.ventanamain.peli3.clicked.connect(lambda:Mostrar_Info(self.ventanamain.pixmap3, self.id[1]))#aca deberia pasar la id de la peli
+		self.ventanamain.peli4.clicked.connect(lambda:Mostrar_Info(self.ventanamain.pixmap4, self.id[0]))#aca deberia pasar la id de la peli
+	
+	def Cambiar_Pelis(self, accion):
+		if accion == 1 and self.posicion < self.limite:
+			self.siguiente(self.ventanamain.pixmap1, self.ventanamain.pixmap2, self.ventanamain.pixmap3, self.ventanamain.pixmap4)
+		if accion == -1 and self.posicion > 0:
+			self.anterior(self.ventanamain.pixmap1, self.ventanamain.pixmap2, self.ventanamain.pixmap3, self.ventanamain.pixmap4)
 
 class controlador_Info(object):
 	def __init__(self): 

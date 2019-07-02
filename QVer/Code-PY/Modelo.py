@@ -65,9 +65,6 @@ class Usuario(object):
 					flag=True
 			except Exception as e:
 				pass
-			print("usuario: ",x[1])
-			print("contra: ",x[2])
-			print("correo: ",x[3])
 		if flag:
 			info.setText("Valido")
 			info.setStyleSheet("color: rgb(51, 204, 40);")
