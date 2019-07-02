@@ -9,7 +9,7 @@ from BDConnector import *
 import pymysql
 import sys
 
-
+import threading
 class Controlador_Login(object):
 	def __init__(self): 
 		self.app = QtWidgets.QApplication(sys.argv)
@@ -83,7 +83,11 @@ class controlador_Main_Menu(object):
 		self.Dialog = QtWidgets.QDialog()
 		self.ventanamain = Pantalla_Main_Menu()
 		self.ventanamain.setupUi(self.Dialog)
-		self.definirpelis(self.ventanamain.pixmap1, self.ventanamain.pixmap2, self.ventanamain.pixmap3, self.ventanamain.pixmap4)
+		hilo1 = threading.Thread(name='chequear', 
+                         target=self.definirpelis,
+                         args=(self.ventanamain.pixmap1, self.ventanamain.pixmap2, self.ventanamain.pixmap3, self.ventanamain.pixmap4,),
+                         daemon=True)
+		hilo1.start()
 		self.function()
 
 	def definirpelis(self, *args):
@@ -95,12 +99,27 @@ class controlador_Main_Menu(object):
 				registro=pelis[self.posicion]
 				#registro tiene 1 registro de la bd contiene: Idpeli nombre genero año tags descripcion igm
 				URI= registro[6]
+				print(URI)
 				self.url=urllib.request.urlopen(URI).read()
 				x.loadFromData(self.url)
-		self.ventanamain.peli1.setPixmap(args[3])
-		self.ventanamain.peli2.setPixmap(args[2])
-		self.ventanamain.peli3.setPixmap(args[1])
-		self.ventanamain.peli4.setPixmap(args[0])
+
+				try:
+					print("try1")
+					self.ventanamain.peli1.setPixmap(args[3])
+					self.ventanamain.peli2.setPixmap(args[2])
+					self.ventanamain.peli3.setPixmap(args[1])
+					self.ventanamain.peli4.setPixmap(args[0])
+				except Exception as e:
+					pass
+				try:
+					print("try2")
+					self.ventanamain.peli4.setPixmap(args[0])
+					self.ventanamain.peli3.setPixmap(args[1])
+					self.ventanamain.peli2.setPixmap(args[2])
+					self.ventanamain.peli1.setPixmap(args[3])
+				except Exception as e:
+					pass
+				
 
 	def siguiente(self, *args):
 		args=args[::-1]
@@ -115,10 +134,24 @@ class controlador_Main_Menu(object):
 					URI= registro[6]
 					self.url=urllib.request.urlopen(URI).read()
 					x.loadFromData(self.url)
-			self.ventanamain.peli1.setPixmap(args[3])
-			self.ventanamain.peli2.setPixmap(args[2])
-			self.ventanamain.peli3.setPixmap(args[1])
-			self.ventanamain.peli4.setPixmap(args[0])
+				try:
+					print("try1")
+					self.ventanamain.peli1.setPixmap(args[3])
+					self.ventanamain.peli2.setPixmap(args[2])
+					self.ventanamain.peli3.setPixmap(args[1])
+					self.ventanamain.peli4.setPixmap(args[0])
+				except Exception as e:
+					pass
+				try:
+					print("try2")
+					self.ventanamain.peli4.setPixmap(args[0])
+					self.ventanamain.peli3.setPixmap(args[1])
+					self.ventanamain.peli2.setPixmap(args[2])
+					self.ventanamain.peli1.setPixmap(args[3])
+				except Exception as e:
+					pass
+
+				
 
 	def anterior(self, *args):
 		args=args[::-1]
@@ -133,10 +166,23 @@ class controlador_Main_Menu(object):
 					URI= registro[6]
 					self.url=urllib.request.urlopen(URI).read()
 					x.loadFromData(self.url)
-			self.ventanamain.peli1.setPixmap(args[3])
-			self.ventanamain.peli2.setPixmap(args[2])
-			self.ventanamain.peli3.setPixmap(args[1])
-			self.ventanamain.peli4.setPixmap(args[0])
+				try:
+					print("try1")
+					self.ventanamain.peli1.setPixmap(args[3])
+					self.ventanamain.peli2.setPixmap(args[2])
+					self.ventanamain.peli3.setPixmap(args[1])
+					self.ventanamain.peli4.setPixmap(args[0])
+				except Exception as e:
+					pass
+				try:
+					print("try2")
+					self.ventanamain.peli4.setPixmap(args[0])
+					self.ventanamain.peli3.setPixmap(args[1])
+					self.ventanamain.peli2.setPixmap(args[2])
+					self.ventanamain.peli1.setPixmap(args[3])
+				except Exception as e:
+					pass
+			
 
 
 	def function(self):
@@ -150,12 +196,19 @@ class controlador_Main_Menu(object):
 		self.ventanamain.peli3.clicked.connect(lambda:Mostrar_Info(self.ventanamain.pixmap3, self.id[1]))#aca deberia pasar la id de la peli
 		self.ventanamain.peli4.clicked.connect(lambda:Mostrar_Info(self.ventanamain.pixmap4, self.id[0]))#aca deberia pasar la id de la peli
 	
-	def Cambiar_Pelis(self, accion):
+
+	def hilera(self, accion):
 		if accion == 1 and self.posicion < self.limite:
 			self.siguiente(self.ventanamain.pixmap1, self.ventanamain.pixmap2, self.ventanamain.pixmap3, self.ventanamain.pixmap4)
 		if accion == -1 and self.posicion > 0:
 			self.anterior(self.ventanamain.pixmap1, self.ventanamain.pixmap2, self.ventanamain.pixmap3, self.ventanamain.pixmap4)
-
+	
+	def Cambiar_Pelis(self, accion):
+		hilito = threading.Thread(name='chequear', 
+                         target=self.hilera,
+                         args=(accion,),
+                         daemon=True)
+		hilito.start()
 class controlador_Info(object):
 	def __init__(self): 
 		self.app = QtWidgets.QApplication(sys.argv)
@@ -173,6 +226,7 @@ class controlador_Info(object):
 
 
 #INSTANCIA LAS PANTALLAS
+
 LoginScreen=Controlador_Login()
 SingupScreen=Controlador_Signup()
 MainScreen=controlador_Main_Menu()
