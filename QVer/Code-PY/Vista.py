@@ -667,6 +667,11 @@ class Pantalla_Login(object):
 
 class Pantalla_Info(object):
 	def setupUi(self, Dialog):
+		
+		#esto puso agustin para identificar la pelicula
+		self.idPeli=0
+
+
 		Dialog.setObjectName("Dialog")
 		Dialog.setFixedSize(781, 578)
 		Dialog.setStyleSheet("background-color: rgb(0, 0, 0)")
