@@ -8,8 +8,8 @@ import pymysql
 
 
 class Usuario(object):
-	def __init__(self, nombre=None,contraseña=None, correo=None):
-		#id tal vez?
+	def __init__(self, identificador=None,nombre=None,contraseña=None, correo=None):
+		self.id=identificador
 		self.nombre=nombre
 		self.correo=correo
 		self.contraseña=contraseña
@@ -18,10 +18,19 @@ class Usuario(object):
 		#so...
 		#hay que hacer una clase respuesta?
 
+	def getId(self):
+		return self.id
 	def login(self):
 		pass
 	def signin(self):
 		pass
+
+	def newUser(self,usuario):
+		self.id=usuario.id
+		self.nombre=usuario.nombre
+		self.correo=usuario.correo
+		self.contraseña=usuario.contraseña
+		self.respuestas=usuario.respuestas
 
 	def getPeliculas(self,calif):
 		#aca geteamos solo las peliculas q le gustaron o no o q no vio, depende de llo q queramos

@@ -10,6 +10,9 @@ import pymysql
 import sys
 
 import threading
+
+peliUser=list()
+usuario=Usuario()
 class Controlador_Login(object):
 	def __init__(self): 
 		self.app = QtWidgets.QApplication(sys.argv)
@@ -33,7 +36,9 @@ class Controlador_Login(object):
 	def charge_confirm(*args):
 		Datos=Usuario().logearse(args[1], args[2], args[3])
 		if Datos != None:
-			Sesion=Usuario(Datos[1], Datos[2], Datos[3])
+			Sesion= Usuario(Datos[0],Datos[1], Datos[2], Datos[3])
+			usuario.newUser(Sesion)
+			getPelisUsuario(usuario.getId(),peliUser)
 			Mostrar_Main()
 
 	def cerrar(self, ventana1):
@@ -99,12 +104,10 @@ class controlador_Main_Menu(object):
 				registro=pelis[self.posicion]
 				#registro tiene 1 registro de la bd contiene: Idpeli nombre genero año tags descripcion igm
 				URI= registro[6]
-				print(URI)
 				self.url=urllib.request.urlopen(URI).read()
 				x.loadFromData(self.url)
 
 				try:
-					print("try1")
 					self.ventanamain.peli1.setPixmap(args[3])
 					self.ventanamain.peli2.setPixmap(args[2])
 					self.ventanamain.peli3.setPixmap(args[1])
@@ -112,7 +115,6 @@ class controlador_Main_Menu(object):
 				except Exception as e:
 					pass
 				try:
-					print("try2")
 					self.ventanamain.peli4.setPixmap(args[0])
 					self.ventanamain.peli3.setPixmap(args[1])
 					self.ventanamain.peli2.setPixmap(args[2])
@@ -135,7 +137,6 @@ class controlador_Main_Menu(object):
 					self.url=urllib.request.urlopen(URI).read()
 					x.loadFromData(self.url)
 				try:
-					print("try1")
 					self.ventanamain.peli1.setPixmap(args[3])
 					self.ventanamain.peli2.setPixmap(args[2])
 					self.ventanamain.peli3.setPixmap(args[1])
@@ -143,7 +144,6 @@ class controlador_Main_Menu(object):
 				except Exception as e:
 					pass
 				try:
-					print("try2")
 					self.ventanamain.peli4.setPixmap(args[0])
 					self.ventanamain.peli3.setPixmap(args[1])
 					self.ventanamain.peli2.setPixmap(args[2])
@@ -167,7 +167,6 @@ class controlador_Main_Menu(object):
 					self.url=urllib.request.urlopen(URI).read()
 					x.loadFromData(self.url)
 				try:
-					print("try1")
 					self.ventanamain.peli1.setPixmap(args[3])
 					self.ventanamain.peli2.setPixmap(args[2])
 					self.ventanamain.peli3.setPixmap(args[1])
@@ -175,7 +174,6 @@ class controlador_Main_Menu(object):
 				except Exception as e:
 					pass
 				try:
-					print("try2")
 					self.ventanamain.peli4.setPixmap(args[0])
 					self.ventanamain.peli3.setPixmap(args[1])
 					self.ventanamain.peli2.setPixmap(args[2])
@@ -209,17 +207,40 @@ class controlador_Main_Menu(object):
                          args=(accion,),
                          daemon=True)
 		hilito.start()
+
 class controlador_Info(object):
 	def __init__(self): 
 		self.app = QtWidgets.QApplication(sys.argv)
 		self.Dialog = QtWidgets.QDialog()
 		self.info = Pantalla_Info()
 		self.info.setupUi(self.Dialog)
+
 		self.function()
+
+	def TransicionarAMain(self):
+		flag=False
+		if(InfoScreen.info.r_dislike.isChecked()==True):
+			for peli in peliUser:
+				if(InfoScreen.info.idPeli==peli[0]):
+					update(peli[0],usuario.getId(),-1)
+					flag=True
+					break
+			if flag==False:
+				insert(peli[0],usuario.getId(),-1)
+		elif(InfoScreen.info.r_like.isChecked()==True):
+			for peli in peliUser:
+				if(InfoScreen.info.idPeli==peli[0]):
+					update(peli[0],usuario.getId(),1)
+					flag=True
+					break
+			if flag==False:
+				insert(peli[0],usuario.getId(),-1)
+		Mostrar_Main()
+
 
 	def function(self):
 		pass
-		self.info.label.clicked.connect(lambda:Mostrar_Main())
+		self.info.label.clicked.connect(lambda:self.TransicionarAMain())
 		#self.info.anteriores.clicked.connect(lambda:Cambiar_Pelis(-1))
 		#self.info.siguientes.clicked.connect(lambda:Cambiar_Pelis(1))
 		#self.ventanasign.checkBox.toggled.connect(lambda:self.ver(self.ventanasign.checkBox,self.ventanasign.txt_pass, self.ventanasign.txt_pass_con))
@@ -250,6 +271,26 @@ def Mostrar_Info(peli, id):
 
 	InfoScreen.info.img_peli.setPixmap(peli)
 
+
+
+	InfoScreen.info.r_dislike.setAutoExclusive(False)
+	InfoScreen.info.r_like.setAutoExclusive(False)
+	InfoScreen.info.r_dislike.setChecked(False)
+	InfoScreen.info.r_like.setChecked(False)
+
+	InfoScreen.info.r_dislike.setAutoExclusive(True)
+	InfoScreen.info.r_like.setAutoExclusive(True)
+	for peli in peliUser:
+		if(peli[0]==pelis[id][0]):
+			if(peli[1]==1):
+				InfoScreen.info.r_like.setChecked(True)
+			elif(peli[1]==-1):
+				InfoScreen.info.r_dislike.setChecked(True)
+			else:
+				InfoScreen.info.r_dislike.setChecked(False)
+				InfoScreen.info.r_like.setChecked(False)
+		
+	InfoScreen.info.idPeli=pelis[id][0]
 	pelicula=pelis[id]
 	InfoScreen.info.title_peli.setText(pelicula[1])
 	InfoScreen.info.desc_peli.setText(pelicula[5])
