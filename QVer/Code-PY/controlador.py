@@ -219,22 +219,26 @@ class controlador_Info(object):
 
 	def TransicionarAMain(self):
 		flag=False
+		print(InfoScreen.info.idPeli)
 		if(InfoScreen.info.r_dislike.isChecked()==True):
-			for peli in peliUser:
-				if(InfoScreen.info.idPeli==peli[0]):
-					update(peli[0],usuario.getId(),-1)
-					flag=True
-					break
+			if(len(peliUser)>0):
+				for peli in peliUser:
+					print(peli[0])
+					if(InfoScreen.info.idPeli==peli[0]):
+						update(peli[0],usuario.getId(),-1)
+						flag=True
+						break
 			if flag==False:
-				insert(peli[0],usuario.getId(),-1)
+				insert(InfoScreen.info.idPeli,usuario.getId(),-1)
 		elif(InfoScreen.info.r_like.isChecked()==True):
-			for peli in peliUser:
-				if(InfoScreen.info.idPeli==peli[0]):
-					update(peli[0],usuario.getId(),1)
-					flag=True
-					break
+			if(len(peliUser)>0):
+				for peli in peliUser:
+					if(InfoScreen.info.idPeli==peli[0]):
+						update(peli[0],usuario.getId(),1)
+						flag=True
+						break
 			if flag==False:
-				insert(peli[0],usuario.getId(),-1)
+				insert(InfoScreen.info.idPeli,usuario.getId(),-1)
 		Mostrar_Main()
 
 
@@ -265,6 +269,8 @@ def Mostrar_Main():
 	LoginScreen.Dialog.hide()
 	SingupScreen.Dialog.hide()
 	InfoScreen.Dialog.hide()
+	getPelisUsuario(usuario.getId(),peliUser)
+
 def Mostrar_Info(peli, id):
 	MainScreen.Dialog.hide()
 	InfoScreen.Dialog.show()
