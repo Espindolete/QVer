@@ -3,7 +3,8 @@ import pymysql
 #CONECTA A LA BD
 def conectar(usr='', passwod='', bd=''):
     # Connect to the database
-    connection = pymysql.connect(host='localhost',
+    connection = pymysql.connect(host='192.168.42.85',
+    							 port=3306,
                                  user=usr,
                                  password=passwod,
                                  charset='utf8mb4',
@@ -11,7 +12,7 @@ def conectar(usr='', passwod='', bd=''):
     return connection
 
 
-conexion=conectar("root","","qver")
+conexion=conectar("agus","agus123","qver")
 cursor=conexion.cursor()
 cursor.execute("select * from usuario")
 usuarios=cursor.fetchall()
