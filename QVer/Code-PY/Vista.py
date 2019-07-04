@@ -41,7 +41,7 @@ class QLabelClickable(QLabel):
 class Pantalla_Signup(object):
 	def setupUi(self, Dialog):
 		Dialog.setObjectName("Dialog")
-		Dialog.setFixedSize(759, 578)
+		Dialog.resize(703, 546)
 		sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
 		sizePolicy.setHorizontalStretch(0)
 		sizePolicy.setVerticalStretch(0)
@@ -49,7 +49,7 @@ class Pantalla_Signup(object):
 		Dialog.setSizePolicy(sizePolicy)
 		Dialog.setStyleSheet("background-color: rgb(255, 255, 255);")
 		self.frame = QtWidgets.QFrame(Dialog)
-		self.frame.setGeometry(QtCore.QRect(0, 0, 761, 581))
+		self.frame.setGeometry(QtCore.QRect(-10, -20, 761, 581))
 		palette = QtGui.QPalette()
 		brush = QtGui.QBrush(QtGui.QColor(252, 252, 252))
 		brush.setStyle(QtCore.Qt.SolidPattern)
@@ -102,16 +102,20 @@ class Pantalla_Signup(object):
 		self.btn_sgte.setStyleSheet(".QPushButton{\n"
 		"border: 1px solid gray;\n"
 		"border-radius: 5px;\n"
-		"background-color: rgb(0, 115, 173);\n"
-		"color: rgb(255, 255, 255);\n"
+		"    background-color: rgb(80, 92, 124);\n"
+		"    color: rgb(152, 136, 41);\n"
 		"border-color: rgb(217, 217, 217);\n"
 		"font: 30pt \"Jurassic Park\";}\n"
+		"\n"
+		"\n"
+		"\n"
+		"\n"
 		"")
 		self.btn_sgte.setIconSize(QtCore.QSize(16, 16))
 		self.btn_sgte.setObjectName("btn_sgte")
 		self.btn_log = QtWidgets.QPushButton(self.frame)
 		self.btn_log.setGeometry(QtCore.QRect(60, 510, 271, 29))
-		self.btn_log.setStyleSheet("color: rgb(0, 112, 168);\n"
+		self.btn_log.setStyleSheet("color: rgb(80, 92, 124);\n"
 		"font: 30pt \"Jurassic Park\";\n"
 		"")
 		self.btn_log.setCheckable(False)
@@ -120,11 +124,11 @@ class Pantalla_Signup(object):
 		self.btn_log.setFlat(True)
 		self.btn_log.setObjectName("btn_log")
 		self.lbl_info = QtWidgets.QLabel(self.frame)
-		self.lbl_info.setGeometry(QtCore.QRect(400, 550, 250, 20))
+		self.lbl_info.setGeometry(QtCore.QRect(400, 550, 301, 20))
 		self.lbl_info.setStyleSheet("color: rgb(255, 0, 4);\n"
 		"background-color: rgb(0, 0, 0);")
-		self.lbl_info.setObjectName("lbl_info")
 		self.lbl_info.hide()
+		self.lbl_info.setObjectName("lbl_info")
 		self.lbl_regla1 = QtWidgets.QLabel(self.frame)
 		self.lbl_regla1.setGeometry(QtCore.QRect(50, 430, 431, 21))
 		font = QtGui.QFont()
@@ -191,9 +195,9 @@ class Pantalla_Signup(object):
 		"background-color: rgba(0, 0, 0,0%);")
 		self.label.setObjectName("label")
 		self.lbl_cc = QtWidgets.QLabel(self.frame)
-		self.lbl_cc.setGeometry(QtCore.QRect(200, 100, 260, 31))
+		self.lbl_cc.setGeometry(QtCore.QRect(210, 100, 201, 31))
 		self.lbl_cc.setStyleSheet("font: 18pt \"Avengeance\";\n"
-		"color: rgb(255, 255, 255);\n"
+		";color: rgb(152, 136, 41);\n"
 		"background-color: rgba(0, 0, 0,0%);")
 		self.lbl_cc.setObjectName("lbl_cc")
 		self.lbl_dt = QtWidgets.QLabel(self.frame)
@@ -288,26 +292,29 @@ class Pantalla_Signup(object):
 		palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.ToolTipText, brush)
 		self.txt_usr.setPalette(palette)
 		font = QtGui.QFont()
-		font.setFamily("Arial")
-		font.setPointSize(16)
+		font.setFamily("Fixedsys")
+		font.setPointSize(8)
+		font.setBold(False)
+		font.setWeight(50)
 		self.txt_usr.setFont(font)
 		self.txt_usr.setStyleSheet(".QLineEdit{border: 1px solid gray;\n"
 		"border-radius: 5px;\n"
-		"border-color: rgb(217, 217, 217);\n"
-		"\n"
+		"border-color: rgb(255, 255, 255);\n"
 		"\n"
 		"\n"
 		"background-color: rgb(0, 0, 0);}\n"
 		".QLineEdit:focus{border: 1px solid blue;\n"
 		"border-radius: 5px;\n"
-		"border-color: rgb(0, 120, 226);\n"
+		"border-color: rgb(152, 136, 41);\n"
 		"}")
 		self.txt_usr.setObjectName("txt_usr")
 		self.txt_mail = QtWidgets.QLineEdit(self.frame)
 		self.txt_mail.setGeometry(QtCore.QRect(52, 280, 371, 31))
 		font = QtGui.QFont()
-		font.setFamily("Arial")
-		font.setPointSize(16)
+		font.setFamily("Fixedsys")
+		font.setPointSize(18)
+		font.setBold(False)
+		font.setWeight(50)
 		self.txt_mail.setFont(font)
 		self.txt_mail.setStyleSheet(".QLineEdit{border: 1px solid gray;\n"
 		"border-radius: 5px;\n"
@@ -318,15 +325,14 @@ class Pantalla_Signup(object):
 		"background-color: rgb(0, 0, 0);}\n"
 		".QLineEdit:focus{border: 1px solid blue;\n"
 		"border-radius: 5px;\n"
-		"border-color: rgb(0, 120, 226);\n"
+		"border-color: rgb(152, 136, 41);\n"
 		"}")
 		self.txt_mail.setObjectName("txt_mail")
 		self.txt_pass = QtWidgets.QLineEdit(self.frame)
 		self.txt_pass.setGeometry(QtCore.QRect(50, 370, 161, 31))
-		self.txt_pass.setEchoMode(QtWidgets.QLineEdit.Password)
 		font = QtGui.QFont()
-		font.setFamily("Arial")
-		font.setPointSize(16)
+		font.setFamily("Fixedsys")
+		font.setPointSize(8)
 		self.txt_pass.setFont(font)
 		self.txt_pass.setStyleSheet(".QLineEdit{border: 1px solid gray;\n"
 		"border-radius: 5px;\n"
@@ -335,15 +341,15 @@ class Pantalla_Signup(object):
 		"background-color: rgb(0, 0, 0);}\n"
 		".QLineEdit:focus{border: 1px solid blue;\n"
 		"border-radius: 5px;\n"
-		"border-color: rgb(0, 120, 226);\n"
+		"border-color: rgb(152, 136, 41);\n"
 		"}")
 		self.txt_pass.setObjectName("txt_pass")
+		self.txt_pass.setEchoMode(QtWidgets.QLineEdit.Password)
 		self.txt_pass_con = QtWidgets.QLineEdit(self.frame)
 		self.txt_pass_con.setGeometry(QtCore.QRect(240, 370, 181, 31))
-		self.txt_pass_con.setEchoMode(QtWidgets.QLineEdit.Password)
 		font = QtGui.QFont()
-		font.setFamily("Arial")
-		font.setPointSize(16)
+		font.setFamily("Fixedsys")
+		font.setPointSize(8)
 		self.txt_pass_con.setFont(font)
 		self.txt_pass_con.setStyleSheet(".QLineEdit{border: 1px solid gray;\n"
 		"border-radius: 5px;\n"
@@ -354,15 +360,16 @@ class Pantalla_Signup(object):
 		"    color: rgb(255, 255, 255);}\n"
 		".QLineEdit:focus{border: 1px solid blue;\n"
 		"border-radius: 5px;\n"
-		"border-color: rgb(0, 120, 226);\n"
+		"border-color: rgb(152, 136, 41);\n"
 		"}")
 		self.txt_pass_con.setObjectName("txt_pass_con")
-
+		self.txt_pass_con.setEchoMode(QtWidgets.QLineEdit.Password)
 		self.checkBox = QtWidgets.QCheckBox(self.frame)
 		self.checkBox.setGeometry(QtCore.QRect(450, 375, 41, 24))
 		self.checkBox.setObjectName("checkBox")
 		self.checkBox.setStyleSheet(".QCheckBox{background-color: rgb(0, 0, 0);\n"
 		"    color: rgb(255, 255, 255);}\n")
+
 
 		self.retranslateUi(Dialog)
 		QtCore.QMetaObject.connectSlotsByName(Dialog)
@@ -406,58 +413,60 @@ class Pantalla_Main_Menu(object):
 		
 		print ("Imagenes cargadas!")
 
-
-
-
-		Dialog.setObjectName("QVer")
-		Dialog.setFixedSize(781, 575)
+		Dialog.setObjectName("Dialog")
+		Dialog.resize(742, 471)
 		Dialog.setStyleSheet("background-color: rgb(0, 0, 0)")
 		self.superRecomendame = QtWidgets.QPushButton(Dialog)
-		self.superRecomendame.setGeometry(QtCore.QRect(240, 440, 271, 71))
+		self.superRecomendame.setGeometry(QtCore.QRect(230, 360, 271, 71))
 		self.superRecomendame.setStyleSheet("QPushButton {\n"
 		"\n"
 		"    \n"
-		"    background-color: rgb(0, 100, 150);\n"
+		"    \n"
+		"    \n"
+		"    \n"
+		"    \n"
+		";\n"
+		"    \n"
+		"    background-color: rgb(80, 92, 124);\n"
 		"    font: 46pt \"Jurassic Park\";\n"
-		"color: rgb(255, 255, 255);\n"
+		";\n"
+		"    \n"
+		"    color: rgb(152, 136, 41);\n"
 		"\n"
 		"}")
 		self.superRecomendame.setObjectName("superRecomendame")
 		self.botonRecomendame = QtWidgets.QLabel(Dialog)
 		self.botonRecomendame.setGeometry(QtCore.QRect(290, 40, 201, 31))
-		self.botonRecomendame.setStyleSheet("color: rgb(255, 255, 255);\n"
+		self.botonRecomendame.setStyleSheet("color: rgb(80, 92, 124);\n"
 		"font: 16pt \"BatmanForeverAlternate\";")
 		self.botonRecomendame.setObjectName("botonRecomendame")
 		self.botonMiPerfil = QtWidgets.QLabel(Dialog)
 		self.botonMiPerfil.setGeometry(QtCore.QRect(520, 40, 151, 31))
-		self.botonMiPerfil.setStyleSheet("color: rgb(255, 255, 255);\n"
+		self.botonMiPerfil.setStyleSheet("color: rgb(80, 92, 124);\n"
 		"font: 16pt \"BatmanForeverAlternate\";")
 		self.botonMiPerfil.setObjectName("botonMiPerfil")
 		self.botonInicio = QtWidgets.QLabel(Dialog)
 		self.botonInicio.setGeometry(QtCore.QRect(180, 40, 81, 31))
-		self.botonInicio.setStyleSheet("color: rgb(255, 255, 255);\n"
+		self.botonInicio.setStyleSheet("color: rgb(80, 92, 124);\n"
 		"font: 16pt \"BatmanForeverAlternate\";")
 		self.botonInicio.setObjectName("botonInicio")
 		self.horizontalLayoutWidget = QtWidgets.QWidget(Dialog)
-		self.horizontalLayoutWidget.setGeometry(QtCore.QRect(19, 139, 741, 251))
+		self.horizontalLayoutWidget.setGeometry(QtCore.QRect(49, 100, 641, 230))
 		self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
 		self.horizontalLayout = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
 		self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
 		self.horizontalLayout.setObjectName("horizontalLayout")
 
-		#Anterior
-		self.anteriores = QtWidgets.QPushButton(self.horizontalLayoutWidget)
-		sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
-		sizePolicy.setHorizontalStretch(0)
-		sizePolicy.setVerticalStretch(0)
-		sizePolicy.setHeightForWidth(self.anteriores.sizePolicy().hasHeightForWidth())
-		self.anteriores.setSizePolicy(sizePolicy)
-		self.anteriores.setText("")
-		icon = QtGui.QIcon()
-		icon.addPixmap(QtGui.QPixmap("../Images-UI/botonAnt.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-		self.anteriores.setIcon(icon)
+
+		#Siguientes
+		self.anteriores = QtWidgets.QPushButton(Dialog)
+		self.anteriores.setGeometry(QtCore.QRect(10, 210, 31, 31))
+		self.anteriores.setStyleSheet("    color: rgb(152, 136, 41);\n"
+		"background-color: rgb(0, 0, 0);\n"
+		"font: 30pt \"MS Shell Dlg 2\";")
 		self.anteriores.setObjectName("anteriores")
-		self.horizontalLayout.addWidget(self.anteriores)
+
+
 
 		#SetPeli1
 		self.peli1 = QLabelClickable()
@@ -507,28 +516,25 @@ class Pantalla_Main_Menu(object):
 		self.peli4.setObjectName("peli4")
 		self.horizontalLayout.addWidget(self.peli4)
 
-		#Siguiente
-		self.siguientes = QtWidgets.QPushButton(self.horizontalLayoutWidget)
-		sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
-		sizePolicy.setHorizontalStretch(0)
-		sizePolicy.setVerticalStretch(0)
-		sizePolicy.setHeightForWidth(self.siguientes.sizePolicy().hasHeightForWidth())
-		self.siguientes.setSizePolicy(sizePolicy)
-		self.siguientes.setText("")
-		icon1 = QtGui.QIcon()
-		icon1.addPixmap(QtGui.QPixmap("../Images-UI/botonSig.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-		self.siguientes.setIcon(icon1)
-		self.siguientes.setObjectName("siguientes")
-		self.horizontalLayout.addWidget(self.siguientes)
 
 
 
 		self.Qver = QtWidgets.QLabel(Dialog)
 		self.Qver.setGeometry(QtCore.QRect(60, 40, 61, 31))
 		self.Qver.setStyleSheet("font: 18pt \"Avengeance\";\n"
-		"color: rgb(255, 255, 255);\n"
+		"color: rgb(152, 136, 41);\n"
 		"background-color: rgba(0, 0, 0,0%);")
 		self.Qver.setObjectName("Qver")
+
+
+		self.siguientes = QtWidgets.QPushButton(Dialog)
+		self.siguientes.setGeometry(QtCore.QRect(700, 210, 31, 31))
+		self.siguientes.setStyleSheet("    color: rgb(152, 136, 41);\n"
+		"background-color: rgb(0, 0, 0);\n"
+		"font: 30pt \"MS Shell Dlg 2\";")
+		self.siguientes.setObjectName("siguientes")
+
+
 		self.retranslateUi(Dialog)
 		QtCore.QMetaObject.connectSlotsByName(Dialog)
 
@@ -540,11 +546,13 @@ class Pantalla_Main_Menu(object):
 		self.botonMiPerfil.setText(_translate("Dialog", "MI PERFIL"))
 		self.botonInicio.setText(_translate("Dialog", "INICIO"))
 		self.Qver.setText(_translate("Dialog", " QVer"))
+		self.siguientes.setText(_translate("Dialog", "▶️"))
+		self.anteriores.setText(_translate("Dialog", "◀️"))
 
 class Pantalla_Login(object):
 	def setupUi(self, Dialog):
 		Dialog.setObjectName("Dialog")
-		Dialog.setFixedSize(781, 575)
+		Dialog.resize(781, 575)
 		sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
 		sizePolicy.setHorizontalStretch(0)
 		sizePolicy.setVerticalStretch(0)
@@ -580,7 +588,7 @@ class Pantalla_Login(object):
 		self.btn_cc = QtWidgets.QPushButton(self.frame)
 		self.btn_cc.setGeometry(QtCore.QRect(80, 380, 131, 29))
 		self.btn_cc.setStyleSheet("font: 30pt \"Jurassic Park\";\n"
-		"color: rgb(0, 107, 161);")
+		"color: rgb(80, 92, 124);")
 		self.btn_cc.setCheckable(False)
 		self.btn_cc.setAutoDefault(True)
 		self.btn_cc.setDefault(False)
@@ -602,16 +610,16 @@ class Pantalla_Login(object):
 		self.frame_2.setLineWidth(0)
 		self.frame_2.setObjectName("frame_2")
 		self.lbl_stc = QtWidgets.QLabel(self.frame)
-		self.lbl_stc.setGeometry(QtCore.QRect(133, 50, 250, 31))
+		self.lbl_stc.setGeometry(QtCore.QRect(160, 50, 211, 31))
 		self.lbl_stc.setStyleSheet("font: 18pt \"Avengeance\";\n"
-		"color: rgb(255, 255, 255);\n"
+		"color: rgb(152, 136, 41);\n"
 		"background-color: rgba(0, 0, 0,0%);")
 		self.lbl_stc.setObjectName("lbl_stc")
 		self.txt_usr = QtWidgets.QLineEdit(self.frame)
 		self.txt_usr.setGeometry(QtCore.QRect(90, 200, 341, 51))
 		font = QtGui.QFont()
-		font.setFamily("Arial")
-		font.setPointSize(16)
+		font.setFamily("Fixedsys")
+		font.setPointSize(8)
 		self.txt_usr.setFont(font)
 		self.txt_usr.setStyleSheet(".QLineEdit{border: 1px solid gray;\n"
 		"border-radius: 5px;\n"
@@ -621,15 +629,14 @@ class Pantalla_Login(object):
 		"color: rgb(255, 255, 255);}\n"
 		".QLineEdit:focus{border: 1px solid blue;\n"
 		"border-radius: 5px;\n"
-		"border-color: rgb(0, 120, 226);\n"
+		"border-color: rgb(152, 136, 41);\n"
 		"}")
 		self.txt_usr.setObjectName("txt_usr")
 		self.txt_pass = QtWidgets.QLineEdit(self.frame)
 		self.txt_pass.setGeometry(QtCore.QRect(90, 270, 341, 51))
-		self.txt_pass.setEchoMode(QtWidgets.QLineEdit.Password)
 		font = QtGui.QFont()
-		font.setFamily("THE GONjURING")
-		font.setPointSize(16)
+		font.setFamily("Fixedsys")
+		font.setPointSize(11)
 		self.txt_pass.setFont(font)
 		self.txt_pass.setStyleSheet(".QLineEdit{border: 1px solid gray;\n"
 		"border-radius: 5px;\n"
@@ -639,18 +646,24 @@ class Pantalla_Login(object):
 		"color: rgb(255, 255, 255);}\n"
 		".QLineEdit:focus{border: 1px solid blue;\n"
 		"border-radius: 5px;\n"
-		"border-color: rgb(0, 120, 226);\n"
+		"border-color: rgb(152, 136, 41);\n"
 		"}")
 		self.txt_pass.setObjectName("txt_pass")
+		self.txt_pass.setEchoMode(QtWidgets.QLineEdit.Password)
 		self.btn_sgte = QtWidgets.QPushButton(self.frame)
 		self.btn_sgte.setGeometry(QtCore.QRect(310, 380, 111, 31))
-		self.btn_sgte.setStyleSheet(".QPushButton{\n"
+		self.btn_sgte.setStyleSheet("\n"
+		"\n"
+		".QPushButton{\n"
 		"border: 1px solid gray;\n"
 		"border-radius: 5px;\n"
-		"background-color: rgb(0, 117, 175);\n"
-		"color: rgb(255, 255, 255);\n"
+		"    background-color: rgb(80, 92, 124);\n"
+		"    color: rgb(152, 136, 41);\n"
+		"border-color: rgb(217, 217, 217);\n"
+		"font: 26pt \"Jurassic Park\";}\n"
 		"\n"
-		"font: 26pt \"Jurassic Park\"}")
+		"\n"
+		"")
 		self.btn_sgte.setObjectName("btn_sgte")
 
 		self.retranslateUi(Dialog)
@@ -673,28 +686,25 @@ class Pantalla_Info(object):
 
 
 		Dialog.setObjectName("Dialog")
-		Dialog.setFixedSize(781, 578)
+		Dialog.resize(752, 502)
 		Dialog.setStyleSheet("background-color: rgb(0, 0, 0)")
-		self.label_2 = QtWidgets.QLabel(Dialog)
+		self.label_2 = QLabelClickable(Dialog)
 		self.label_2.setGeometry(QtCore.QRect(290, 40, 201, 31))
-		self.label_2.setStyleSheet("color: rgb(255, 255, 255);\n"
+		self.label_2.setStyleSheet("color: rgb(80, 92, 124);\n"
 		"font: 16pt \"BatmanForeverAlternate\";")
 		self.label_2.setObjectName("label_2")
-		self.label_3 = QtWidgets.QLabel(Dialog)
+		self.label_3 = QLabelClickable(Dialog)
 		self.label_3.setGeometry(QtCore.QRect(520, 40, 151, 31))
-		self.label_3.setStyleSheet("color: rgb(255, 255, 255);\n"
+		self.label_3.setStyleSheet("color: rgb(80, 92, 124);\n"
 		"font: 16pt \"BatmanForeverAlternate\";")
 		self.label_3.setObjectName("label_3")
-
-
 		self.label = QLabelClickable(Dialog)
-
 		self.label.setGeometry(QtCore.QRect(180, 40, 81, 31))
-		self.label.setStyleSheet("color: rgb(255, 255, 255);\n"
+		self.label.setStyleSheet("color: rgb(80, 92, 124);\n"
 		"font: 16pt \"BatmanForeverAlternate\";")
 		self.label.setObjectName("label")
 		self.horizontalLayoutWidget = QtWidgets.QWidget(Dialog)
-		self.horizontalLayoutWidget.setGeometry(QtCore.QRect(19, 139, 211, 261))
+		self.horizontalLayoutWidget.setGeometry(QtCore.QRect(31, 125, 190, 261))
 		self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
 		self.horizontalLayout = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
 		self.horizontalLayout.setSizeConstraint(QtWidgets.QLayout.SetMaximumSize)
@@ -708,46 +718,54 @@ class Pantalla_Info(object):
 		sizePolicy.setHeightForWidth(self.img_peli.sizePolicy().hasHeightForWidth())
 		self.img_peli.setSizePolicy(sizePolicy)
 		self.img_peli.setText("")
-		self.img_peli.setPixmap(QtGui.QPixmap("931823302_o.jpg"))
+		self.img_peli.setPixmap(QtGui.QPixmap("../../../../Downloads/931823302_o.jpg"))
 		self.img_peli.setScaledContents(True)
 		self.img_peli.setObjectName("img_peli")
 		self.horizontalLayout.addWidget(self.img_peli)
 		self.lbl_stc = QtWidgets.QLabel(Dialog)
 		self.lbl_stc.setGeometry(QtCore.QRect(60, 40, 61, 31))
 		self.lbl_stc.setStyleSheet("font: 18pt \"Avengeance\";\n"
-		"color: rgb(255, 255, 255);\n"
+		"color: rgb(152, 136, 41);\n"
 		"background-color: rgba(0, 0, 0,0%);")
 		self.lbl_stc.setObjectName("lbl_stc")
 		self.groupBox = QtWidgets.QGroupBox(Dialog)
 		self.groupBox.setGeometry(QtCore.QRect(20, 410, 211, 80))
 		self.groupBox.setTitle("")
 		self.groupBox.setObjectName("groupBox")
+		self.r_like_2 = QtWidgets.QPushButton(self.groupBox)
+		self.r_like_2.setGeometry(QtCore.QRect(50, 10, 41, 41))
+		self.r_like_2.setStyleSheet("color:  rgb(0, 153, 31);\n"
+		"background-color: rgb(0, 0, 0);\n"
+		"font: 20pt \"MS Shell Dlg 2\";")
+		self.r_like_2.setObjectName("r_like_2")
+		self.r_dislike_2 = QtWidgets.QPushButton(self.groupBox)
+		self.r_dislike_2.setGeometry(QtCore.QRect(140, 20, 41, 41))
+		self.r_dislike_2.setStyleSheet("color: rgb(165, 0, 0);\n"
+		"    \n"
+		"background-color: rgb(0, 0, 0);\n"
+		"font: 20pt \"MS Shell Dlg 2\";")
+		self.r_dislike_2.setObjectName("r_dislike_2")
 		self.r_like = QtWidgets.QRadioButton(self.groupBox)
-		self.r_like.setGeometry(QtCore.QRect(30, 30, 82, 17))
-		self.r_like.setStyleSheet("color: rgb(0, 232, 0);\n"
-		"font: 75 8pt \"MS Shell Dlg 2\";")
+		self.r_like.setGeometry(QtCore.QRect(30, 30, 16, 17))
 		self.r_like.setObjectName("r_like")
 		self.r_dislike = QtWidgets.QRadioButton(self.groupBox)
-		self.r_dislike.setGeometry(QtCore.QRect(120, 30, 71, 17))
-		sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Ignored)
-		sizePolicy.setHorizontalStretch(0)
-		sizePolicy.setVerticalStretch(0)
-		sizePolicy.setHeightForWidth(self.r_dislike.sizePolicy().hasHeightForWidth())
-		self.r_dislike.setSizePolicy(sizePolicy)
-		self.r_dislike.setStyleSheet("color: rgb(194, 0, 0);\n"
-		"font: 75 8pt \"MS Shell Dlg 2\";")
+		self.r_dislike.setGeometry(QtCore.QRect(120, 30, 16, 17))
 		self.r_dislike.setObjectName("r_dislike")
 		self.desc_peli = QtWidgets.QTextEdit(Dialog)
 		self.desc_peli.setEnabled(False)
-		self.desc_peli.setGeometry(QtCore.QRect(260, 230, 501, 171))
+		self.desc_peli.setGeometry(QtCore.QRect(260, 230, 431, 171))
+		font = QtGui.QFont()
+		font.setFamily("Arial")
+		font.setPointSize(10)
+		self.desc_peli.setFont(font)
 		self.desc_peli.setStyleSheet("color: rgb(255, 255, 255);")
 		self.desc_peli.setFrameShape(QtWidgets.QFrame.NoFrame)
 		self.desc_peli.setObjectName("desc_peli")
 		self.title_peli = QtWidgets.QTextEdit(Dialog)
 		self.title_peli.setEnabled(False)
-		self.title_peli.setGeometry(QtCore.QRect(253, 130, 511, 81))
+		self.title_peli.setGeometry(QtCore.QRect(253, 130, 441, 81))
 		self.title_peli.setStyleSheet("color: rgb(255, 255, 255);\n"
-		"font: 20pt \"MS Shell Dlg 2\";")
+		"font: 20pt \"Arial\";")
 		self.title_peli.setFrameShape(QtWidgets.QFrame.NoFrame)
 		self.title_peli.setLineWidth(1)
 		self.title_peli.setObjectName("title_peli")
@@ -762,19 +780,90 @@ class Pantalla_Info(object):
 		self.label_3.setText(_translate("Dialog", "MI PERFIL"))
 		self.label.setText(_translate("Dialog", "INICIO"))
 		self.lbl_stc.setText(_translate("Dialog", " QVer"))
-		self.r_like.setText(_translate("Dialog", "👍"))
-		self.r_dislike.setText(_translate("Dialog", "👎"))
+		self.r_like_2.setText(_translate("Dialog", "👍"))
+		self.r_dislike_2.setText(_translate("Dialog", "👎"))
+		self.r_like.setText(_translate("Dialog", "r_"))
+		self.r_dislike.setText(_translate("Dialog", "RadioButton"))
 		self.desc_peli.setHtml(_translate("Dialog", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 		"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 		"p, li { white-space: pre-wrap; }\n"
-		"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-		"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:11pt;\">era una piba q tiraba rayos con las manos y volaba muy rapido tipo superman</span></p>\n"
-		"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;\"><br /></p></body></html>"))
+		"</style></head><body style=\" font-family:\'Arial\'; font-size:32pt; font-weight:400; font-style:normal;\">\n"
+		"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\'; font-size:11pt;\">Descripción de la película, tal vez el trailer, la puntuación seguramente, ya veremos...</span></p></body></html>"))
 		self.title_peli.setHtml(_translate("Dialog", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 		"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 		"p, li { white-space: pre-wrap; }\n"
-		"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:20pt; font-weight:400; font-style:normal;\">\n"
-		"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">alguna huevada</p></body></html>"))
+		"</style></head><body style=\" font-family:\'Arial\'; font-size:32pt; font-weight:400; font-style:normal;\">\n"
+		"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\'; font-size:20pt;\">Título de la película 🎬</span></p></body></html>"))
+
+class Pantalla_Quiz(object):
+	def setupUi(self, Dialog):
+		Dialog.setObjectName("Dialog")
+		Dialog.resize(735, 466)
+		Dialog.setStyleSheet("background-color: rgb(0, 0, 0)")
+		self.recomendame = QtWidgets.QLabel(Dialog)
+		self.recomendame.setGeometry(QtCore.QRect(290, 40, 201, 31))
+		self.recomendame.setStyleSheet("color: rgb(80, 92, 124);\n"
+		"font: 16pt \"BatmanForeverAlternate\";")
+		self.recomendame.setObjectName("recomendame")
+		self.miperfil = QtWidgets.QLabel(Dialog)
+		self.miperfil.setGeometry(QtCore.QRect(520, 40, 151, 31))
+		self.miperfil.setStyleSheet("color: rgb(80, 92, 124);\n"
+		"font: 16pt \"BatmanForeverAlternate\";")
+		self.miperfil.setObjectName("miperfil")
+		self.inicio = QLabelClickable(Dialog)
+		self.inicio.setGeometry(QtCore.QRect(180, 40, 81, 31))
+		self.inicio.setStyleSheet("color: rgb(80, 92, 124);\n"
+		"font: 16pt \"BatmanForeverAlternate\";")
+		self.inicio.setObjectName("inicio")
+		self.qver = QtWidgets.QLabel(Dialog)
+		self.qver.setGeometry(QtCore.QRect(60, 40, 61, 31))
+		self.qver.setStyleSheet("font: 18pt \"Avengeance\"\n"
+		";color: rgb(152, 136, 41);\n"
+		"background-color: rgba(0, 0, 0,0%);")
+		self.qver.setObjectName("qver")
+		self.dislikebtn = QtWidgets.QPushButton(Dialog)
+		self.dislikebtn.setGeometry(QtCore.QRect(430, 320, 41, 41))
+		self.dislikebtn.setStyleSheet("color: rgb(165, 0, 0);\n"
+		"    \n"
+		"background-color: rgb(0, 0, 0);\n"
+		"font: 20pt \"MS Shell Dlg 2\";")
+		self.dislikebtn.setObjectName("dislikebtn")
+		self.likebtn = QtWidgets.QPushButton(Dialog)
+		self.likebtn.setGeometry(QtCore.QRect(270, 320, 41, 41))
+		self.likebtn.setStyleSheet("color:  rgb(0, 153, 31);\n"
+		"background-color: rgb(0, 0, 0);\n"
+		"font: 20pt \"MS Shell Dlg 2\";")
+		self.likebtn.setObjectName("likebtn")
+		self.verticalLayoutWidget = QtWidgets.QWidget(Dialog)
+		self.verticalLayoutWidget.setGeometry(QtCore.QRect(210, 90, 301, 211))
+		self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
+		self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
+		self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+		self.verticalLayout.setObjectName("verticalLayout")
+		self.label_4 = QtWidgets.QLabel(self.verticalLayoutWidget)
+		self.label_4.setObjectName("label_4")
+		self.verticalLayout.addWidget(self.label_4)
+		self.novibtn = QtWidgets.QPushButton(Dialog)
+		self.novibtn.setGeometry(QtCore.QRect(310, 380, 141, 51))
+		self.novibtn.setStyleSheet("color: rgb(70, 0, 97);\n"
+		"background-color: rgb(0, 0, 0) ;\n"
+		"font: 28pt \"Jurassic Park\";")
+		self.novibtn.setObjectName("novibtn")
+
+		self.retranslateUi(Dialog)
+		QtCore.QMetaObject.connectSlotsByName(Dialog)
+
+	def retranslateUi(self, Dialog):
+		_translate = QtCore.QCoreApplication.translate
+		Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
+		self.recomendame.setText(_translate("Dialog", "RECOMENDAME"))
+		self.miperfil.setText(_translate("Dialog", "MI PERFIL"))
+		self.inicio.setText(_translate("Dialog", "INICIO"))
+		self.qver.setText(_translate("Dialog", " QVer"))
+		self.dislikebtn.setText(_translate("Dialog", "👎"))
+		self.likebtn.setText(_translate("Dialog", "👍"))
+		self.label_4.setText(_translate("Dialog", "TextLabel"))
+		self.novibtn.setText(_translate("Dialog", "NO LA VI 🤘"))
 
 
 import xz_rc

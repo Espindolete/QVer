@@ -5,8 +5,6 @@ import pymysql
 
 #la clase controlador se fija en el algoritmo
 
-
-
 class Usuario(object):
 	def __init__(self, identificador=None,nombre=None,contraseña=None, correo=None):
 		self.id=identificador
@@ -162,24 +160,6 @@ class Usuario(object):
 				else:
 					info.setText("Ingrese solo nombre entre 4 y 15 caracteres.")
 					info.show()
-		
-
-
-class respuesta(object):
-	def __init__(self, pelicula,respuesta):
-		self.pelicula=pelicula
-		self.respuesta=respuesta
-
-	def getPelicula(self):
-		return self.pelicula
-	def getNombre(self):
-		return pelicula.getNombre
-
-	def getRespuesta(self):
-		return self.respuesta
-	def setRespuesta(self,respuesta):
-		self.respuesta=respuesta
-
 
 class Pelicula:
 	def __init__(self,nombre,genero,año,descripcion,img,*args):

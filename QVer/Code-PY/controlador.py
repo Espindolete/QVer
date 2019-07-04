@@ -194,6 +194,8 @@ class controlador_Main_Menu(object):
 		self.ventanamain.peli3.clicked.connect(lambda:Mostrar_Info(self.ventanamain.pixmap3, self.id[1]))#aca deberia pasar la id de la peli
 		self.ventanamain.peli4.clicked.connect(lambda:Mostrar_Info(self.ventanamain.pixmap4, self.id[0]))#aca deberia pasar la id de la peli
 	
+		#Recomendame
+		self.ventanamain.superRecomendame.clicked.connect(lambda:Mostrar_Quiz())
 
 	def hilera(self, accion):
 		if accion == 1 and self.posicion < self.limite:
@@ -238,7 +240,7 @@ class controlador_Info(object):
 						flag=True
 						break
 			if flag==False:
-				insert(InfoScreen.info.idPeli,usuario.getId(),-1)
+				insert(InfoScreen.info.idPeli,usuario.getId(),1)
 		Mostrar_Main()
 
 
@@ -249,6 +251,24 @@ class controlador_Info(object):
 		#self.info.siguientes.clicked.connect(lambda:Cambiar_Pelis(1))
 		#self.ventanasign.checkBox.toggled.connect(lambda:self.ver(self.ventanasign.checkBox,self.ventanasign.txt_pass, self.ventanasign.txt_pass_con))
 
+class controlador_Quiz(object):
+	def __init__(self): 
+		self.app = QtWidgets.QApplication(sys.argv)
+		self.Dialog = QtWidgets.QDialog()
+		self.quiz = Pantalla_Quiz()
+		self.quiz.setupUi(self.Dialog)
+
+		self.function()
+
+
+	def function(self):
+		pass
+		self.quiz.inicio.clicked.connect(lambda:Mostrar_Main()) 
+		#self.info.anteriores.clicked.connect(lambda:Cambiar_Pelis(-1))
+		#self.info.siguientes.clicked.connect(lambda:Cambiar_Pelis(1))
+		#self.ventanasign.checkBox.toggled.connect(lambda:self.ver(self.ventanasign.checkBox,self.ventanasign.txt_pass, self.ventanasign.txt_pass_con))
+
+
 
 #INSTANCIA LAS PANTALLAS
 
@@ -256,6 +276,7 @@ LoginScreen=Controlador_Login()
 SingupScreen=Controlador_Signup()
 MainScreen=controlador_Main_Menu()
 InfoScreen=controlador_Info()
+QuizScreen=controlador_Quiz()
 
 #LLAMA A LAS PANTALLAS DE UNA MANERA POCO PRACTICA :v
 def Mostrar_Login():
@@ -270,14 +291,11 @@ def Mostrar_Main():
 	SingupScreen.Dialog.hide()
 	InfoScreen.Dialog.hide()
 	getPelisUsuario(usuario.getId(),peliUser)
-
 def Mostrar_Info(peli, id):
 	MainScreen.Dialog.hide()
 	InfoScreen.Dialog.show()
 
 	InfoScreen.info.img_peli.setPixmap(peli)
-
-
 
 	InfoScreen.info.r_dislike.setAutoExclusive(False)
 	InfoScreen.info.r_like.setAutoExclusive(False)
@@ -300,6 +318,11 @@ def Mostrar_Info(peli, id):
 	pelicula=pelis[id]
 	InfoScreen.info.title_peli.setText(pelicula[1])
 	InfoScreen.info.desc_peli.setText(pelicula[5])
+
+def Mostrar_Quiz():
+	MainScreen.Dialog.hide()
+	InfoScreen.Dialog.hide()
+	QuizScreen.Dialog.show()
 
 
 
