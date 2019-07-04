@@ -92,11 +92,17 @@ class Usuario(object):
 	def validar_registro(self, usr, password, passconf, info, mail):
 		#Casos Emptys
 		if len(usr.text()) == 0:
+			info.setStyleSheet(".QLabel{color: rgb(255, 0, 0);\n"
+								"background-color: rgba(255, 0, 0,0%);\n"
+								"}")
 			info.setText("Campo usuario vacío.")
 			info.show()
 		else:
 			info.hide()
 			if 0 == len(password.text()):
+				info.setStyleSheet(".QLabel{color: rgb(255, 0, 0);\n"
+								"background-color: rgba(255, 0, 0,0%);\n"
+								"}")
 				info.setText("Campo contraseña vacío.")
 				info.show() 
 			else:
@@ -112,12 +118,12 @@ class Usuario(object):
 								if len(mail.text())==0:
 									cursor.execute("INSERT INTO `usuario`(`nombre`, `contraseña`) VALUES (%s, %s)", (usr.text(), password.text()))
 									conexion.commit()
-
 									cursor.execute("select * from usuario")
 									conexion.commit()
 									usuario=cursor.fetchall()
-									
-									info.setStyleSheet("color: rgb(50, 200, 40);")
+									info.setStyleSheet(".QLabel{color: rgb(0, 153, 31);\n"
+														"background-color: rgba(255, 0, 0,0%);\n"
+														"}")
 									info.setText("Usuario registrado con exito!(Sin mail).")
 									info.show()
 									self.limpiar(usr, password, passconf, mail)
@@ -134,30 +140,46 @@ class Usuario(object):
 											cursor.execute("select * from usuario")
 											conexion.commit()
 											usuario=cursor.fetchall()
-									
-											info.setStyleSheet("color: rgb(50, 200, 40);")
+											info.setStyleSheet(".QLabel{color: rgb(0, 153, 31);\n"
+																"background-color: rgba(255, 0, 0,0%);\n"
+																"}")
 											info.setText("Usuario registrado con exito!.")
 											info.show()
 											self.limpiar(usr, password, passconf, mail)
 										else:
-											info.setStyleSheet("color: rgb(255, 0, 4);")
+											info.setStyleSheet(".QLabel{color: rgb(255, 0, 0);\n"
+															"background-color: rgba(255, 0, 0,0%);\n"
+															"}")
 											info.setText("Ya existe un usuario regisrado con su mail.")
 											info.show()
 									else:
-										info.setStyleSheet("color: rgb(255, 0, 4);")
+										info.setStyleSheet(".QLabel{color: rgb(255, 0, 0);\n"
+															"background-color: rgba(255, 0, 0,0%);\n"
+															"}")
 										info.setText("El E-mail es invalido.")
 										info.show()
 							else:
-								info.setStyleSheet("color: rgb(255, 0, 4);")
+								info.setStyleSheet(".QLabel{color: rgb(255, 0, 0);\n"
+													"background-color: rgba(255, 0, 0,0%);\n"
+													"}")
 								info.setText("El usuario ya existe.")
 								info.show()
 						else:
+							info.setStyleSheet(".QLabel{color: rgb(255, 0, 0);\n"
+												"background-color: rgba(255, 0, 0,0%);\n"
+												"}")
 							info.setText("Las contraseñas no coinciden.")
 							info.show()    
 					else:
+						info.setStyleSheet(".QLabel{color: rgb(255, 0, 0);\n"
+											"background-color: rgba(255, 0, 0,0%);\n"
+											"}")
 						info.setText("Contraseña insegura, coloque más de 8 caracteres.")
 						info.show()    
 				else:
+					info.setStyleSheet(".QLabel{color: rgb(255, 0, 0);\n"
+										"background-color: rgba(255, 0, 0,0%);\n"
+										"}")
 					info.setText("Ingrese solo nombre entre 4 y 15 caracteres.")
 					info.show()
 

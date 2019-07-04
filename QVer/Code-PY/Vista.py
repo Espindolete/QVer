@@ -176,7 +176,7 @@ class Pantalla_Signup(object):
 		"background-color: rgba(0, 0, 0,0%);")
 		self.label_2.setObjectName("label_2")
 		self.label_4 = QtWidgets.QLabel(self.frame)
-		self.label_4.setGeometry(QtCore.QRect(250, 330, 151, 16))
+		self.label_4.setGeometry(QtCore.QRect(250, 330, 155, 16))
 		self.label_4.setStyleSheet("font: 12pt \"Star Jedi\";\n"
 		"color: rgb(255, 255, 255);\n"
 		"background-color: rgba(0, 0, 0,0%);")
@@ -328,6 +328,15 @@ class Pantalla_Signup(object):
 		"border-color: rgb(152, 136, 41);\n"
 		"}")
 		self.txt_mail.setObjectName("txt_mail")
+
+		self.ojito = QtWidgets.QPushButton(self.frame)
+		self.ojito.setGeometry(QtCore.QRect(430, 370, 31, 31))
+		self.ojito.setStyleSheet("color: rgb(255, 255, 255);\n"
+		"background-color: rgb(0, 0, 0);\n"
+		"font: 11pt \"MS Shell Dlg 2\";")
+		self.ojito.setObjectName("ojito")
+
+
 		self.txt_pass = QtWidgets.QLineEdit(self.frame)
 		self.txt_pass.setGeometry(QtCore.QRect(50, 370, 161, 31))
 		font = QtGui.QFont()
@@ -364,12 +373,6 @@ class Pantalla_Signup(object):
 		"}")
 		self.txt_pass_con.setObjectName("txt_pass_con")
 		self.txt_pass_con.setEchoMode(QtWidgets.QLineEdit.Password)
-		self.checkBox = QtWidgets.QCheckBox(self.frame)
-		self.checkBox.setGeometry(QtCore.QRect(450, 375, 41, 24))
-		self.checkBox.setObjectName("checkBox")
-		self.checkBox.setStyleSheet(".QCheckBox{background-color: rgb(0, 0, 0);\n"
-		"    color: rgb(255, 255, 255);}\n")
-
 
 		self.retranslateUi(Dialog)
 		QtCore.QMetaObject.connectSlotsByName(Dialog)
@@ -380,14 +383,15 @@ class Pantalla_Signup(object):
 		self.btn_sgte.setText(_translate("Dialog", "Siguiente"))
 		self.btn_log.setText(_translate("Dialog", "Acceder a tu cuenta en su lugar"))
 		self.lbl_info.setText(_translate("Dialog", "<html><head/><body><p align=\"right\">Datos invalidos.</p></body></html>"))
-		self.lbl_regla1.setText(_translate("Dialog", "<html><head/><body><p><span style=\" font-size:10pt;\">usa 8 o más caracteres con combinación de letras,</span></p></body></html>"))
-		self.lbl_regla2.setText(_translate("Dialog", "<html><head/><body><p><span style=\" font-size:10pt;\">números y símbolos. Los campos con (✳️) son obligatorios.</span></p></body></html>"))
-		self.label_2.setText(_translate("Dialog", "Contraseña"))
-		self.label_4.setText(_translate("Dialog", "confirmación"))
+		self.lbl_regla1.setText(_translate("Dialog", "<html><head/><body><p><span style=\" font-size:10pt;\">usa 8 o más caracteres.</span></p></body></html>"))
+		self.lbl_regla2.setText(_translate("Dialog", "<html><head/><body><p><span style=\" font-size:10pt;\">Los campos con (✳️) son obligatorios.</span></p></body></html>"))
+		self.label_2.setText(_translate("Dialog", "Contraseña ✳️"))
+		self.label_4.setText(_translate("Dialog", "Confirmación ✳️"))
 		self.label_3.setText(_translate("Dialog", "Correo"))
-		self.label.setText(_translate("Dialog", "usuario"))
+		self.label.setText(_translate("Dialog", "usuario ✳️"))
 		self.lbl_cc.setText(_translate("Dialog", "Crea tu cuenta en QVer"))
 		self.lbl_dt.setText(_translate("Dialog", "Dream Team"))
+		self.ojito.setText(_translate("Dialog", "👁️"))
 
 class Pantalla_Main_Menu(object):
 	def setupUi(self, Dialog):
@@ -632,6 +636,7 @@ class Pantalla_Login(object):
 		"border-color: rgb(152, 136, 41);\n"
 		"}")
 		self.txt_usr.setObjectName("txt_usr")
+		self.txt_usr.setPlaceholderText("Usuario") 
 		self.txt_pass = QtWidgets.QLineEdit(self.frame)
 		self.txt_pass.setGeometry(QtCore.QRect(90, 270, 341, 51))
 		font = QtGui.QFont()
@@ -650,6 +655,7 @@ class Pantalla_Login(object):
 		"}")
 		self.txt_pass.setObjectName("txt_pass")
 		self.txt_pass.setEchoMode(QtWidgets.QLineEdit.Password)
+		self.txt_pass.setPlaceholderText("Contraseña") 
 		self.btn_sgte = QtWidgets.QPushButton(self.frame)
 		self.btn_sgte.setGeometry(QtCore.QRect(310, 380, 111, 31))
 		self.btn_sgte.setStyleSheet("\n"

@@ -3,6 +3,7 @@ import pymysql
 #CONECTA A LA BD
 def conectar(usr='', passwod='', bd=''):
     # Connect to the database
+    #PARA EJECUCION EL LOCAL CAMBIAR HOST A host='localhost' y eliminar port=3306
     connection = pymysql.connect(host='192.168.42.85',
     							 port=3306,
                                  user=usr,

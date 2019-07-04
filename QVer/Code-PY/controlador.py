@@ -56,24 +56,27 @@ class Controlador_Login(object):
 
 class Controlador_Signup(object):
 	def __init__(self): 
+		self.visible=False
 		self.app = QtWidgets.QApplication(sys.argv)
 		self.Dialog = QtWidgets.QDialog()
 		self.ventanasignup = Pantalla_Signup()
 		self.ventanasignup.setupUi(self.Dialog)
 		self.function()
 
-	def ver(self, ch, txt_pass, txt_pass_con):
-		if ch.isChecked() == True:
+	def ver(self, txt_pass, txt_pass_con):
+		if self.visible == False:
 			self.ventanasignup.txt_pass.setEchoMode(QtWidgets.QLineEdit.Normal)
 			self.ventanasignup.txt_pass_con.setEchoMode(QtWidgets.QLineEdit.Normal)
+			self.visible=True
 		else:
 			self.ventanasignup.txt_pass.setEchoMode(QtWidgets.QLineEdit.Password)
 			self.ventanasignup.txt_pass_con.setEchoMode(QtWidgets.QLineEdit.Password)
+			self.visible=False
 
 	def function(self):
 		self.ventanasignup.btn_log.clicked.connect(lambda:Mostrar_Login())
 		self.ventanasignup.btn_sgte.clicked.connect(lambda:self.registrar(self.ventanasignup.txt_usr, self.ventanasignup.txt_pass, self.ventanasignup.txt_pass_con, self.ventanasignup.lbl_info, self.ventanasignup.txt_mail))
-		self.ventanasignup.checkBox.toggled.connect(lambda:self.ver(self.ventanasignup.checkBox,self.ventanasignup.txt_pass, self.ventanasignup.txt_pass_con))
+		self.ventanasignup.ojito.clicked.connect(lambda:self.ver(self.ventanasignup.txt_pass, self.ventanasignup.txt_pass_con))
 
 
 	def registrar(*args):
