@@ -3,8 +3,8 @@ import pymysql
 #CONECTA A LA BD
 def conectar(usr='', passwod='', bd=''):
     # Connect to the database
-    connection = pymysql.connect(host='192.168.42.85',
-    							 port=3306,
+    #PARA EJECUCION EL LOCAL CAMBIAR HOST A host='localhost' y eliminar port=3306
+    connection = pymysql.connect(host='localhost',
                                  user=usr,
                                  password=passwod,
                                  charset='utf8mb4',
@@ -12,7 +12,7 @@ def conectar(usr='', passwod='', bd=''):
     return connection
 
 
-conexion=conectar("agus","agus123","qver")
+conexion=conectar("root","","qver")
 cursor=conexion.cursor()
 cursor.execute("select * from usuario")
 usuarios=cursor.fetchall()
@@ -34,18 +34,53 @@ def getPelisUsuario(idusuario,request):
 def update(idpeli,idusuario,decision):
 	cursor3=conexion.cursor()
 	Query= "UPDATE relacionusuariopelis set calificacion ="+str(decision)+" where idusuario="+str(idusuario)+" and IdPeli="+str(idpeli)
-	print(Query)
 	cursor3.execute(Query)
 	conexion.commit()
 
 def insert(idpeli,idusuario,decision):
 	cursor3=conexion.cursor()
 	Query= "INSERT INTO relacionusuariopelis (idRelacion, IdUsuario, IdPeli, calificacion) VALUES (NULL,'"+str(idusuario)+" ', '"+str(idpeli)+"', '"+str(decision)+"')"
-	print(Query)
 	cursor3.execute(Query)
 	conexion.commit()
 	
 	
+def getRecomendaciones(IdUsuario):
+	cursor3=conexion.cursor()
+	Query= "call xd("+str(IdUsuario)+")"
+	cursor3.execute(Query)
+	aber=cursor3.fetchall()
+	xd=list()
+	for abersito in aber:
+		xd.append(abersito[0])
+	return xd
 
+#consulta para las recomendaciones
+'''
+donde dice sesion cambiar por el usuario que queres
+SELECT idpeliculas from peliculas
+LEFT JOIN
+	(select sum(val) valor,idpeli from 
+		(SELECT IdPeli,tabla2.val,idusuario,calificacion from relacionusuariopelis
+		INNER JOIN
+		        (SELECT count(*) val,relacionusuariopelis.IdUsuario us from relacionusuariopelis
+		        INNER JOIN
+		                (SELECT * from relacionusuariopelis
+		                WHERE IdUsuario=sesion
+		                and Calificacion <> 0)objetivo
+		        on objetivo.idPeli=relacionusuariopelis.IdPeli
+		        AND objetivo.calificacion=relacionusuariopelis.Calificacion
+		        WHERE relacionusuariopelis.IdUsuario<>sesion
+		        GROUP by relacionusuariopelis.IdUsuario) tabla2
+		on tabla2.us=relacionusuariopelis.IdUsuario) xd
+	WHERE xd.calificacion=1
+	group by idpeli , calificacion) tablafinal
+ON tablafinal.idpeli=peliculas.idpeliculas
+where idpeliculas not in 
+	(SELECT idpeli from relacionusuariopelis
+    where idusuario=sesion
+    and calificacion<>0)
+order by tablafinal.valor DESC
+limit 10
+'''
 #Sentencia para XAMPP MySQL
 #INSERT INTO `usuario` ( `nombre`, `contraseña`, `correo`) VALUES ("Braiunito", "42922075", "braiantablet@gmail.com")

@@ -11,8 +11,13 @@ import sys
 
 import threading
 
+#defino cosas aca para que vean cuando lo abren y porque por ahi no me detecta como global alguna variable
 peliUser=list()
 usuario=Usuario()
+recomendaciones=list()
+iterador=0
+
+
 class Controlador_Login(object):
 	def __init__(self): 
 		self.app = QtWidgets.QApplication(sys.argv)
@@ -24,13 +29,7 @@ class Controlador_Login(object):
 
 	def function(self):
 		self.ventanalogin.btn_sgte.clicked.connect(lambda:self.charge_confirm(self.ventanalogin.txt_pass, self.ventanalogin.txt_usr, self.ventanalogin.lbl_info))
-		self.ventanalogin.btn_cc.clicked.connect(lambda:self.gotosign())
-
-
-	def function(self):
-		self.ventanalogin.btn_sgte.clicked.connect(lambda:self.charge_confirm(self.ventanalogin.txt_pass, self.ventanalogin.txt_usr, self.ventanalogin.lbl_info))
 		self.ventanalogin.btn_cc.clicked.connect(lambda:Mostrar_Sign())
-
 
 	#Accedes a la APP y guardas tu sesion
 	def charge_confirm(*args):
@@ -56,24 +55,27 @@ class Controlador_Login(object):
 
 class Controlador_Signup(object):
 	def __init__(self): 
+		self.visible=False
 		self.app = QtWidgets.QApplication(sys.argv)
 		self.Dialog = QtWidgets.QDialog()
 		self.ventanasignup = Pantalla_Signup()
 		self.ventanasignup.setupUi(self.Dialog)
 		self.function()
 
-	def ver(self, ch, txt_pass, txt_pass_con):
-		if ch.isChecked() == True:
+	def ver(self, txt_pass, txt_pass_con):
+		if self.visible == False:
 			self.ventanasignup.txt_pass.setEchoMode(QtWidgets.QLineEdit.Normal)
 			self.ventanasignup.txt_pass_con.setEchoMode(QtWidgets.QLineEdit.Normal)
+			self.visible=True
 		else:
 			self.ventanasignup.txt_pass.setEchoMode(QtWidgets.QLineEdit.Password)
 			self.ventanasignup.txt_pass_con.setEchoMode(QtWidgets.QLineEdit.Password)
+			self.visible=False
 
 	def function(self):
 		self.ventanasignup.btn_log.clicked.connect(lambda:Mostrar_Login())
 		self.ventanasignup.btn_sgte.clicked.connect(lambda:self.registrar(self.ventanasignup.txt_usr, self.ventanasignup.txt_pass, self.ventanasignup.txt_pass_con, self.ventanasignup.lbl_info, self.ventanasignup.txt_mail))
-		self.ventanasignup.checkBox.toggled.connect(lambda:self.ver(self.ventanasignup.checkBox,self.ventanasignup.txt_pass, self.ventanasignup.txt_pass_con))
+		self.ventanasignup.ojito.clicked.connect(lambda:self.ver(self.ventanasignup.txt_pass, self.ventanasignup.txt_pass_con))
 
 
 	def registrar(*args):
@@ -187,6 +189,7 @@ class controlador_Main_Menu(object):
 		#SIGUIENTE ANTERIOR BUTTONS
 		self.ventanamain.anteriores.clicked.connect(lambda:self.Cambiar_Pelis(-1))
 		self.ventanamain.siguientes.clicked.connect(lambda:self.Cambiar_Pelis(1))
+		self.ventanamain.botonRecomendame.clicked.connect(lambda:Mostrar_Quiz())
 
 		#PELIS
 		self.ventanamain.peli1.clicked.connect(lambda:Mostrar_Info(self.ventanamain.pixmap1, self.id[3]))#aca deberia pasar la id de la peli
@@ -194,6 +197,8 @@ class controlador_Main_Menu(object):
 		self.ventanamain.peli3.clicked.connect(lambda:Mostrar_Info(self.ventanamain.pixmap3, self.id[1]))#aca deberia pasar la id de la peli
 		self.ventanamain.peli4.clicked.connect(lambda:Mostrar_Info(self.ventanamain.pixmap4, self.id[0]))#aca deberia pasar la id de la peli
 	
+		#Recomendame
+		self.ventanamain.superRecomendame.clicked.connect(lambda:Mostrar_Quiz())
 
 	def hilera(self, accion):
 		if accion == 1 and self.posicion < self.limite:
@@ -214,7 +219,6 @@ class controlador_Info(object):
 		self.Dialog = QtWidgets.QDialog()
 		self.info = Pantalla_Info()
 		self.info.setupUi(self.Dialog)
-
 		self.function()
 
 	def TransicionarAMain(self):
@@ -238,16 +242,68 @@ class controlador_Info(object):
 						flag=True
 						break
 			if flag==False:
-				insert(InfoScreen.info.idPeli,usuario.getId(),-1)
+				insert(InfoScreen.info.idPeli,usuario.getId(),1)
 		Mostrar_Main()
-
 
 	def function(self):
 		pass
 		self.info.label.clicked.connect(lambda:self.TransicionarAMain())
+		self.info.label_2.clicked.connect(lambda:Mostrar_Quiz())
 		#self.info.anteriores.clicked.connect(lambda:Cambiar_Pelis(-1))
 		#self.info.siguientes.clicked.connect(lambda:Cambiar_Pelis(1))
 		#self.ventanasign.checkBox.toggled.connect(lambda:self.ver(self.ventanasign.checkBox,self.ventanasign.txt_pass, self.ventanasign.txt_pass_con))
+
+class controlador_Quiz(object):
+	def __init__(self): 
+		self.app = QtWidgets.QApplication(sys.argv)
+		self.Dialog = QtWidgets.QDialog()
+		self.quiz = Pantalla_Quiz()
+		self.quiz.setupUi(self.Dialog)
+		self.id=0		
+		self.function()
+		hilo1 = threading.Thread(name='chequear', 
+                         target=self.cargarpelis,
+                         daemon=True)
+		hilo1.start()
+
+
+	#Cada que sea llamada cargara la siguiente pelicula y asi sucesivamente
+	def cargarpelis(self):
+		try:	
+			#pelis llama de BDconector a la bd a un fetchall que contiene las rows de peliculas en qver BD
+			registro=pelis[self.id]
+			#registro tiene 1 registro de la bd contiene: Idpeli nombre genero año tags descripcion igm
+			URI= registro[6]
+			self.url=urllib.request.urlopen(URI).read()
+			self.quiz.pixmap.loadFromData(self.url)
+			self.quiz.label_4.setPixmap(self.quiz.pixmap)
+			
+		except Exception as e:
+			print("Maximo de peliculas cargadas")
+		
+	def like(self, id=0):
+		insert(id,usuario.getId(),1)
+		self.id=aumentarIterador()
+		self.cargarpelis()
+	def dislike(self, id=0):
+		insert(id,usuario.getId(),-1)
+		self.id=aumentarIterador()
+		self.cargarpelis()
+	def novi(self, id=0):
+		insert(id,usuario.getId(),0)
+		self.id=aumentarIterador()
+		self.cargarpelis()
+
+	def function(self):
+		self.cargarpelis()
+		self.quiz.inicio.clicked.connect(lambda:Mostrar_Main())
+		self.quiz.likebtn.clicked.connect(lambda:self.like(self.id))
+		self.quiz.dislikebtn.clicked.connect(lambda:self.dislike(self.id))
+		self.quiz.novibtn.clicked.connect(lambda:self.novi(self.id))
+		#self.info.anteriores.clicked.connect(lambda:Cambiar_Pelis(-1))
+		#self.info.siguientes.clicked.connect(lambda:Cambiar_Pelis(1))
+		#self.ventanasign.checkBox.toggled.connect(lambda:self.ver(self.ventanasign.checkBox,self.ventanasign.txt_pass, self.ventanasign.txt_pass_con))
+
 
 
 #INSTANCIA LAS PANTALLAS
@@ -256,29 +312,37 @@ LoginScreen=Controlador_Login()
 SingupScreen=Controlador_Signup()
 MainScreen=controlador_Main_Menu()
 InfoScreen=controlador_Info()
+QuizScreen=controlador_Quiz()
 
 #LLAMA A LAS PANTALLAS DE UNA MANERA POCO PRACTICA :v
 def Mostrar_Login():
 	LoginScreen.Dialog.show()
 	SingupScreen.Dialog.hide()
 def Mostrar_Sign():
-	LoginScreen.Dialog.hide()
 	SingupScreen.Dialog.show()
+	LoginScreen.Dialog.hide()
 def Mostrar_Main():
+	#conseguimos las peliculas q posiblemente le gusten al usuario
+	global recomendaciones
+	global iterador
+	iterador=0
+	recomendaciones=getRecomendaciones(usuario.getId())
+	QuizScreen.id=recomendaciones[iterador]
 	MainScreen.Dialog.show()
 	LoginScreen.Dialog.hide()
 	SingupScreen.Dialog.hide()
 	InfoScreen.Dialog.hide()
+	QuizScreen.Dialog.hide()
+	#esto lo hacemos para que cargue las peliculas que tenemos en recomendaciones, sino intenta cargar cosas q no tiene q cargar
+	
+	#conseguimos las peliculas de las que ya opinó el usuario
 	getPelisUsuario(usuario.getId(),peliUser)
-
 def Mostrar_Info(peli, id):
-	MainScreen.Dialog.hide()
 	InfoScreen.Dialog.show()
+	MainScreen.Dialog.hide()
 
+	#seteamos la informacion en base si el usuario ya le gusto una pelicula o no
 	InfoScreen.info.img_peli.setPixmap(peli)
-
-
-
 	InfoScreen.info.r_dislike.setAutoExclusive(False)
 	InfoScreen.info.r_like.setAutoExclusive(False)
 	InfoScreen.info.r_dislike.setChecked(False)
@@ -301,8 +365,23 @@ def Mostrar_Info(peli, id):
 	InfoScreen.info.title_peli.setText(pelicula[1])
 	InfoScreen.info.desc_peli.setText(pelicula[5])
 
+def Mostrar_Quiz():
+	MainScreen.Dialog.hide()
+	InfoScreen.Dialog.hide()
+	QuizScreen.Dialog.show()
 
-
+#aumentamos el puntero q indica que pelicula recomendar y manejamos cuando llega al limito de la consulta
+def aumentarIterador():
+	global recomendaciones
+	global iterador
+	print(iterador)
+	if iterador<9:
+		iterador=iterador+1
+	else:
+		iterador=0
+		recomendaciones=getRecomendaciones(usuario.getId())
+	return recomendaciones[iterador]
+	
 
 
 #INIT DEL LOGIN
