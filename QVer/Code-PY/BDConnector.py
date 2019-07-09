@@ -11,8 +11,7 @@ def conectar(usr='', passwod='', bd=''):
                                  db=bd)
     return connection
 
-
-conexion=conectar("root","","qver")
+conexion=conectar("root","","aver")
 cursor=conexion.cursor()
 cursor.execute("select * from usuario")
 usuarios=cursor.fetchall()
@@ -29,7 +28,10 @@ def getPelisUsuario(idusuario,request):
 	cursor3.execute("select idpeli,calificacion from relacionusuariopelis where idusuario="+str(idusuario))
 	peliUser=cursor3.fetchall()
 	for peli in peliUser:
-		request.append(peli)
+		xd=list()
+		xd.append(peli[0])
+		xd.append(peli[1])
+		request.append(xd)
 
 def update(idpeli,idusuario,decision):
 	cursor3=conexion.cursor()
@@ -39,14 +41,29 @@ def update(idpeli,idusuario,decision):
 
 def insert(idpeli,idusuario,decision):
 	cursor3=conexion.cursor()
-	Query= "INSERT INTO relacionusuariopelis (idRelacion, IdUsuario, IdPeli, calificacion) VALUES (NULL,'"+str(idusuario)+" ', '"+str(idpeli)+"', '"+str(decision)+"')"
+	Query= "INSERT INTO relacionusuariopelis (idRelacion, IdUsuario, IdPeli, calificacion) VALUES (NULL,"+str(idusuario)+" , "+str(idpeli)+", "+str(decision)+")"
+	print(Query)
 	cursor3.execute(Query)
 	conexion.commit()
 	
-	
+
+#recomendaciones1 te consigue las peliculas que no hayas dado feedback q te puedan gustar
+#y recomendaciones2 te consigue las peliculas que te puedan gustar (aca incluyendo si no la viste)
+
+def getRecomendaciones2(IdUsuario):
+	cursor3=conexion.cursor()
+	Query= "call recomendacionPerfil("+str(IdUsuario)+")"
+	cursor3.execute(Query)
+	aber=cursor3.fetchall()
+	xd=list()
+	for abersito in aber:
+		xd.append(abersito[0])
+	return xd
+
+
 def getRecomendaciones(IdUsuario):
 	cursor3=conexion.cursor()
-	Query= "call xd("+str(IdUsuario)+")"
+	Query= "call recomendacionQuiz("+str(IdUsuario)+")"
 	cursor3.execute(Query)
 	aber=cursor3.fetchall()
 	xd=list()

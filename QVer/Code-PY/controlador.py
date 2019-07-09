@@ -223,26 +223,33 @@ class controlador_Info(object):
 
 	def TransicionarAMain(self):
 		flag=False
-		print(InfoScreen.info.idPeli)
+		decision=[]
+		decision.append(InfoScreen.info.idPeli)
+		
 		if(InfoScreen.info.r_dislike.isChecked()==True):
 			if(len(peliUser)>0):
 				for peli in peliUser:
-					print(peli[0])
 					if(InfoScreen.info.idPeli==peli[0]):
+						peli[1]=-1
 						update(peli[0],usuario.getId(),-1)
 						flag=True
 						break
 			if flag==False:
+				decision.append(-1)
 				insert(InfoScreen.info.idPeli,usuario.getId(),-1)
+				peliUser.append(decision)
 		elif(InfoScreen.info.r_like.isChecked()==True):
 			if(len(peliUser)>0):
 				for peli in peliUser:
 					if(InfoScreen.info.idPeli==peli[0]):
+						peli[1]=1
 						update(peli[0],usuario.getId(),1)
 						flag=True
 						break
 			if flag==False:
+				decision.append(1)
 				insert(InfoScreen.info.idPeli,usuario.getId(),1)
+				peliUser.append(decision)
 		Mostrar_Main()
 
 	def function(self):
@@ -271,7 +278,7 @@ class controlador_Quiz(object):
 	def cargarpelis(self):
 		try:	
 			#pelis llama de BDconector a la bd a un fetchall que contiene las rows de peliculas en qver BD
-			registro=pelis[self.id]
+			registro=pelis[self.id-1]
 			#registro tiene 1 registro de la bd contiene: Idpeli nombre genero año tags descripcion igm
 			URI= registro[6]
 			self.url=urllib.request.urlopen(URI).read()
@@ -328,15 +335,13 @@ def Mostrar_Main():
 	iterador=0
 	recomendaciones=getRecomendaciones(usuario.getId())
 	QuizScreen.id=recomendaciones[iterador]
+	QuizScreen.cargarpelis()
 	MainScreen.Dialog.show()
 	LoginScreen.Dialog.hide()
 	SingupScreen.Dialog.hide()
 	InfoScreen.Dialog.hide()
 	QuizScreen.Dialog.hide()
 	#esto lo hacemos para que cargue las peliculas que tenemos en recomendaciones, sino intenta cargar cosas q no tiene q cargar
-	
-	#conseguimos las peliculas de las que ya opinó el usuario
-	getPelisUsuario(usuario.getId(),peliUser)
 def Mostrar_Info(peli, id):
 	InfoScreen.Dialog.show()
 	MainScreen.Dialog.hide()
@@ -351,6 +356,8 @@ def Mostrar_Info(peli, id):
 	InfoScreen.info.r_dislike.setAutoExclusive(True)
 	InfoScreen.info.r_like.setAutoExclusive(True)
 	for peli in peliUser:
+		print(peli)
+		print(pelis[id][0])
 		if(peli[0]==pelis[id][0]):
 			if(peli[1]==1):
 				InfoScreen.info.r_like.setChecked(True)
@@ -374,7 +381,6 @@ def Mostrar_Quiz():
 def aumentarIterador():
 	global recomendaciones
 	global iterador
-	print(iterador)
 	if iterador<9:
 		iterador=iterador+1
 	else:
