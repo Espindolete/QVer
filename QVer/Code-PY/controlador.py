@@ -88,6 +88,7 @@ class controlador_Main_Menu(object):
 		self.limite=len(pelis)-1
 		self.posicion = -1 #Esta es la id inicial que carga en el main menu
 		self.id=[0,1,2,3]
+		self.listaPelis=[]
 		self.Dialog = QtWidgets.QDialog()
 		self.ventanamain = Pantalla_Main_Menu()
 		self.ventanamain.setupUi(self.Dialog)
@@ -108,55 +109,43 @@ class controlador_Main_Menu(object):
 				#registro tiene 1 registro de la bd contiene: Idpeli nombre genero año tags descripcion igm
 				URI= registro[6]
 				self.url=urllib.request.urlopen(URI).read()
-				x.loadFromData(self.url)
-
-				try:
-					self.ventanamain.peli1.setPixmap(args[3])
-					self.ventanamain.peli2.setPixmap(args[2])
-					self.ventanamain.peli3.setPixmap(args[1])
-					self.ventanamain.peli4.setPixmap(args[0])
-				except Exception as e:
-					pass
-				try:
-					self.ventanamain.peli4.setPixmap(args[0])
-					self.ventanamain.peli3.setPixmap(args[1])
-					self.ventanamain.peli2.setPixmap(args[2])
-					self.ventanamain.peli1.setPixmap(args[3])
-				except Exception as e:
-					pass
-				
-
+				parte=[]
+				parte.append(self.posicion)
+				xd=QPixmap()
+				xd.loadFromData(self.url)
+				parte.append(xd)
+				self.listaPelis.insert(0,parte)
+		self.ventanamain.peli4.setPixmap(self.listaPelis[0][1])
+		self.ventanamain.peli3.setPixmap(self.listaPelis[1][1])
+		self.ventanamain.peli2.setPixmap(self.listaPelis[2][1])
+		self.ventanamain.peli1.setPixmap(self.listaPelis[3][1])
+			
 	def siguiente(self, *args):
+		self.posicion=self.listaPelis[0][0]
 		args=args[::-1]
 		if self.posicion<=self.limite:
 			for x in args:
 				if self.posicion<self.limite:
 					self.posicion=self.posicion+1
-					self.id[args.index(x)]=self.posicion
 					#pelis llama de BDconector a la bd a un fetchall que contiene las rows de peliculas en qver BD
 					registro=pelis[self.posicion]
 					#registro tiene 1 registro de la bd contiene: Idpeli nombre genero año tags descripcion igm
 					URI= registro[6]
 					self.url=urllib.request.urlopen(URI).read()
-					x.loadFromData(self.url)
-				try:
-					self.ventanamain.peli1.setPixmap(args[3])
-					self.ventanamain.peli2.setPixmap(args[2])
-					self.ventanamain.peli3.setPixmap(args[1])
-					self.ventanamain.peli4.setPixmap(args[0])
-				except Exception as e:
-					pass
-				try:
-					self.ventanamain.peli4.setPixmap(args[0])
-					self.ventanamain.peli3.setPixmap(args[1])
-					self.ventanamain.peli2.setPixmap(args[2])
-					self.ventanamain.peli1.setPixmap(args[3])
-				except Exception as e:
-					pass
-
-				
+					parte=[]
+					parte.append(self.posicion)
+					xd=QPixmap()
+					xd.loadFromData(self.url)
+					parte.append(xd)
+					self.listaPelis.insert(0,parte)
+					self.listaPelis.pop(4)
+					self.ventanamain.peli4.setPixmap(self.listaPelis[0][1])
+					self.ventanamain.peli3.setPixmap(self.listaPelis[1][1])
+					self.ventanamain.peli2.setPixmap(self.listaPelis[2][1])
+					self.ventanamain.peli1.setPixmap(self.listaPelis[3][1])
 
 	def anterior(self, *args):
+		self.posicion=self.listaPelis[3][0]
 		args=args[::-1]
 		if self.posicion>=0:
 			for x in args:
@@ -168,24 +157,18 @@ class controlador_Main_Menu(object):
 					#registro tiene 1 registro de la bd contiene: Idpeli nombre genero año tags descripcion igm
 					URI= registro[6]
 					self.url=urllib.request.urlopen(URI).read()
-					x.loadFromData(self.url)
-				try:
-					self.ventanamain.peli1.setPixmap(args[3])
-					self.ventanamain.peli2.setPixmap(args[2])
-					self.ventanamain.peli3.setPixmap(args[1])
-					self.ventanamain.peli4.setPixmap(args[0])
-				except Exception as e:
-					pass
-				try:
-					self.ventanamain.peli4.setPixmap(args[0])
-					self.ventanamain.peli3.setPixmap(args[1])
-					self.ventanamain.peli2.setPixmap(args[2])
-					self.ventanamain.peli1.setPixmap(args[3])
-				except Exception as e:
-					pass
-			
-
-
+					parte=[]
+					parte.append(self.posicion)
+					xd=QPixmap()
+					xd.loadFromData(self.url)
+					parte.append(xd)
+					self.listaPelis.append(parte)
+					self.listaPelis.pop(0)
+					self.ventanamain.peli4.setPixmap(self.listaPelis[0][1])
+					self.ventanamain.peli3.setPixmap(self.listaPelis[1][1])
+					self.ventanamain.peli2.setPixmap(self.listaPelis[2][1])
+					self.ventanamain.peli1.setPixmap(self.listaPelis[3][1])
+				
 	def function(self):
 		self.ventanamain.botonMiPerfil.clicked.connect(lambda:Mostrar_Profile())
 		#SIGUIENTE ANTERIOR BUTTONS
@@ -193,12 +176,11 @@ class controlador_Main_Menu(object):
 		self.ventanamain.siguientes.clicked.connect(lambda:self.Cambiar_Pelis(1))
 		self.ventanamain.botonRecomendame.clicked.connect(lambda:Mostrar_Quiz())
 
-
 		#PELIS
-		self.ventanamain.peli1.clicked.connect(lambda:Mostrar_Info(self.ventanamain.pixmap1, self.id[3]))#aca deberia pasar la id de la peli
-		self.ventanamain.peli2.clicked.connect(lambda:Mostrar_Info(self.ventanamain.pixmap2, self.id[2]))#aca deberia pasar la id de la peli
-		self.ventanamain.peli3.clicked.connect(lambda:Mostrar_Info(self.ventanamain.pixmap3, self.id[1]))#aca deberia pasar la id de la peli
-		self.ventanamain.peli4.clicked.connect(lambda:Mostrar_Info(self.ventanamain.pixmap4, self.id[0]))#aca deberia pasar la id de la peli
+		self.ventanamain.peli1.clicked.connect(lambda:Mostrar_Info(self.listaPelis[3][1], self.listaPelis[3][0]))#aca deberia pasar la id de la peli
+		self.ventanamain.peli2.clicked.connect(lambda:Mostrar_Info(self.listaPelis[2][1], self.listaPelis[2][0]))#aca deberia pasar la id de la peli
+		self.ventanamain.peli3.clicked.connect(lambda:Mostrar_Info(self.listaPelis[1][1], self.listaPelis[1][0]))#aca deberia pasar la id de la peli
+		self.ventanamain.peli4.clicked.connect(lambda:Mostrar_Info(self.listaPelis[0][1], self.listaPelis[0][0]))#aca deberia pasar la id de la peli
 	
 		#Recomendame
 		self.ventanamain.superRecomendame.clicked.connect(lambda:Mostrar_Quiz())
@@ -259,7 +241,7 @@ class controlador_Info(object):
 		pass
 		self.info.label.clicked.connect(lambda:self.TransicionarAMain(Mostrar_Main()))
 		self.info.perfil.clicked.connect(lambda:self.TransicionarAMain(Mostrar_Profile()))
-		self.info.label_2.clicked.connect(lambda:Mostrar_Quiz())
+		self.info.label_2.clicked.connect(lambda:self.TransicionarAMain(Mostrar_Quiz()))
 		#self.info.anteriores.clicked.connect(lambda:Cambiar_Pelis(-1))
 		#self.info.siguientes.clicked.connect(lambda:Cambiar_Pelis(1))
 		#self.ventanasign.checkBox.toggled.connect(lambda:self.ver(self.ventanasign.checkBox,self.ventanasign.txt_pass, self.ventanasign.txt_pass_con))
@@ -328,6 +310,8 @@ class controlador_My_Profile(object):
 		self.limitemg=0 # ACA TENES QUE CREAR EN BD UNA VARIABLE pelismg QUE CONTENGA LAS GUSTADAS
 		self.posicionmg = 0 #Esta es la id inicial que carga en el main menu
 		self.idmg=[0,1,2,3]
+		self.listaPelis=[]
+		self.listaPelismg=[]
 		self.Dialog = QtWidgets.QDialog()
 		self.profile = Pantalla_My_Profile()
 		self.profile.setupUi(self.Dialog)
@@ -336,192 +320,156 @@ class controlador_My_Profile(object):
                          target=self.definirpelis,
                          args=(self.profile.pixmap1, self.profile.pixmap2, self.profile.pixmap3, self.profile.pixmap4,),
                          daemon=True)
-		hilo1.start()
-'''
+		hilo1.start()'''
 		self.function()
 
 	def definirpelis(self, *args):
 		args=args[::-1]
 		for x in args:
-				self.id[args.index(x)]=peliUser[self.posicion][0]-1
+				self.posicion=self.posicion+1
 				#pelis llama de BDconector a la bd a un fetchall que contiene las rows de peliculas en qver BD
 				registro=pelis[peliUser[self.posicion][0]-1]
-				self.posicion=self.posicion+1
 				#registro tiene 1 registro de la bd contiene: Idpeli nombre genero año tags descripcion igm
 				URI= registro[6]
+				print(registro[0])
+				print(registro[1])
 				self.url=urllib.request.urlopen(URI).read()
-				x.loadFromData(self.url)
+				parte=[]
+				parte.append(self.posicion)
+				xd=QPixmap()
+				xd.loadFromData(self.url)
+				parte.append(xd)
+				self.listaPelis.insert(0,parte)
+		self.profile.peli4.setPixmap(self.listaPelis[0][1])
+		self.profile.peli3.setPixmap(self.listaPelis[1][1])
+		self.profile.peli2.setPixmap(self.listaPelis[2][1])
+		self.profile.peli1.setPixmap(self.listaPelis[3][1])
 
-				try:
-					self.profile.peli1.setPixmap(args[3])
-					self.profile.peli2.setPixmap(args[2])
-					self.profile.peli3.setPixmap(args[1])
-					self.profile.peli4.setPixmap(args[0])
-				except Exception as e:
-					pass
-				try:
-					self.profile.peli4.setPixmap(args[0])
-					self.profile.peli3.setPixmap(args[1])
-					self.profile.peli2.setPixmap(args[2])
-					self.profile.peli1.setPixmap(args[3])
-				except Exception as e:
-					pass
-				
+
 	def siguiente(self, *args):
+		self.posicion=self.listaPelis[0][0]
 		args=args[::-1]
 		if self.posicion<=self.limite:
 			for x in args:
-				if self.posicion<=self.limite:
-					print(self.posicion)
-					self.id[args.index(x)]=peliUser[self.posicion][0]-1
+				if self.posicion<self.limite:
+					self.posicion=self.posicion+1
 					#pelis llama de BDconector a la bd a un fetchall que contiene las rows de peliculas en qver BD
 					registro=pelis[peliUser[self.posicion][0]-1]
 					#registro tiene 1 registro de la bd contiene: Idpeli nombre genero año tags descripcion igm
 					URI= registro[6]
+					print(registro[0])
+					print(registro[1])
 					self.url=urllib.request.urlopen(URI).read()
-					x.loadFromData(self.url)
-					if self.posicion==self.limite:
-						break
-					self.posicion=self.posicion+1
-				try:
-					self.profile.peli1.setPixmap(args[3])
-					self.profile.peli2.setPixmap(args[2])
-					self.profile.peli3.setPixmap(args[1])
-					self.profile.peli4.setPixmap(args[0])
-				except Exception as e:
-					pass
-				try:
-					self.profile.peli4.setPixmap(args[0])
-					self.profile.peli3.setPixmap(args[1])
-					self.profile.peli2.setPixmap(args[2])
-					self.profile.peli1.setPixmap(args[3])
-				except Exception as e:
-					pass
+					parte=[]
+					parte.append(self.posicion)
+					xd=QPixmap()
+					xd.loadFromData(self.url)
+					parte.append(xd)
+					self.listaPelis.insert(0,parte)
+					self.listaPelis.pop(4)
+					self.profile.peli4.setPixmap(self.listaPelis[0][1])
+					self.profile.peli3.setPixmap(self.listaPelis[1][1])
+					self.profile.peli2.setPixmap(self.listaPelis[2][1])
+					self.profile.peli1.setPixmap(self.listaPelis[3][1])
+
 
 	def anterior(self, *args):
+		self.posicion=self.listaPelis[3][0]
 		args=args[::-1]
 		if self.posicion>=0:
 			for x in args:
 				if self.posicion>0:
-					self.id[args.index(x)]=peliUser[self.posicion][0]-1
+					self.posicion=self.posicion-1
 					#pelis llama de BDconector a la bd a un fetchall que contiene las rows de peliculas en qver BD
 					registro=pelis[peliUser[self.posicion][0]-1]
-					self.posicion=self.posicion-1
 					#registro tiene 1 registro de la bd contiene: Idpeli nombre genero año tags descripcion igm
 					URI= registro[6]
+					print(registro[0])
+					print(registro[1])
 					self.url=urllib.request.urlopen(URI).read()
-					x.loadFromData(self.url)
-				try:
-					self.profile.peli1.setPixmap(args[3])
-					self.profile.peli2.setPixmap(args[2])
-					self.profile.peli3.setPixmap(args[1])
-					self.profile.peli4.setPixmap(args[0])
-				except Exception as e:
-					pass
-				try:
-					self.profile.peli4.setPixmap(args[0])
-					self.profile.peli3.setPixmap(args[1])
-					self.profile.peli2.setPixmap(args[2])
-					self.profile.peli1.setPixmap(args[3])
-				except Exception as e:
-					pass
-			
+					parte=[]
+					parte.append(self.posicion)
+					xd=QPixmap()
+					xd.loadFromData(self.url)
+					parte.append(xd)
+					self.listaPelis.append(parte)
+					self.listaPelis.pop(0)
+					self.profile.peli4.setPixmap(self.listaPelis[0][1])
+					self.profile.peli3.setPixmap(self.listaPelis[1][1])
+					self.profile.peli2.setPixmap(self.listaPelis[2][1])
+					self.profile.peli1.setPixmap(self.listaPelis[3][1])
+
 	def definirpelismg(self, *args):
-		print("xd")
-		print(RecomendacionesPerfil[self.posicion])
-		print("xd")
 		args=args[::-1]
 		for x in args:
-				print(self.posicion)
-				self.idmg[args.index(x)]=RecomendacionesPerfil[self.posicionmg]-1
+				self.posicionmg=self.posicionmg+1
 				#pelis llama de BDconector a la bd a un fetchall que contiene las rows de peliculas en qver BD
 				registro=pelis[RecomendacionesPerfil[self.posicionmg]-1]
-				self.posicionmg=self.posicionmg+1
 				#registro tiene 1 registro de la bd contiene: Idpeli nombre genero año tags descripcion igm
 				URI= registro[6]
 				self.url=urllib.request.urlopen(URI).read()
-				x.loadFromData(self.url)
+				parte=[]
+				parte.append(self.posicion)
+				xd=QPixmap()
+				xd.loadFromData(self.url)
+				parte.append(xd)
+				print(parte[0])
+				self.listaPelismg.insert(0,parte)
+		self.profile.peli4mg.setPixmap(self.listaPelismg[0][1])
+		self.profile.peli3mg.setPixmap(self.listaPelismg[1][1])
+		self.profile.peli2mg.setPixmap(self.listaPelismg[2][1])
+		self.profile.peli1mg.setPixmap(self.listaPelismg[3][1])
 
-				try:
-					self.profile.peli1mg.setPixmap(args[3])
-					self.profile.peli2mg.setPixmap(args[2])
-					self.profile.peli3mg.setPixmap(args[1])
-					self.profile.peli4mg.setPixmap(args[0])
-				except Exception as e:
-					pass
-				try:
-					self.profile.peli4mg.setPixmap(args[0])
-					self.profile.peli3mg.setPixmap(args[1])
-					self.profile.peli2mg.setPixmap(args[2])
-					self.profile.peli1mg.setPixmap(args[3])
-				except Exception as e:
-					pass
-				
+
 	def siguientemg(self, *args):
-		print(RecomendacionesPerfil)
+		self.posicionmg=self.listaPelismg[0][0]
 		args=args[::-1]
 		if self.posicionmg<=self.limitemg:
 			for x in args:
-				if self.posicionmg<=self.limitemg:
-					print(self.posicionmg)
-					self.idmg[args.index(x)]=RecomendacionesPerfil[self.posicionmg]-1
+				if self.posicionmg<self.limitemg:
+					self.posicionmg=self.posicionmg+1
 					#pelis llama de BDconector a la bd a un fetchall que contiene las rows de peliculas en qver BD
-					registro=pelis[RecomendacionesPerfil[self.posicionmg]-1]
-					
+					registro=pelis[RecomendacionesPerfil[self.posicion]-1]
 					#registro tiene 1 registro de la bd contiene: Idpeli nombre genero año tags descripcion igm
 					URI= registro[6]
 					self.url=urllib.request.urlopen(URI).read()
-					x.loadFromData(self.url)
-					if self.posicionmg==self.limitemg:
-						break
-					self.posicionmg=self.posicionmg+1
-				try:
-					self.profile.peli1mg.setPixmap(args[3])
-					self.profile.peli2mg.setPixmap(args[2])
-					self.profile.peli3mg.setPixmap(args[1])
-					self.profile.peli4mg.setPixmap(args[0])
-				except Exception as e:
-					pass
-				try:
-					self.profile.peli4mg.setPixmap(args[0])
-					self.profile.peli3mg.setPixmap(args[1])
-					self.profile.peli2mg.setPixmap(args[2])
-					self.profile.peli1mg.setPixmap(args[3])
-				except Exception as e:
-					pass
+					parte=[]
+					parte.append(self.posicion)
+					xd=QPixmap()
+					xd.loadFromData(self.url)
+					parte.append(xd)
+					self.listaPelismg.insert(0,parte)
+					self.listaPelismg.pop(4)
+					self.profile.peli4mg.setPixmap(self.listaPelismg[0][1])
+					self.profile.peli3mg.setPixmap(self.listaPelismg[1][1])
+					self.profile.peli2mg.setPixmap(self.listaPelismg[2][1])
+					self.profile.peli1mg.setPixmap(self.listaPelismg[3][1])
 
-				
 
 	def anteriormg(self, *args):
-		print(RecomendacionesPerfil[self.posicion])
+		self.posicionmg=self.listaPelismg[3][0]
 		args=args[::-1]
 		if self.posicionmg>=0:
 			for x in args:
 				if self.posicionmg>0:
-					print(self.posicionmg)
-					self.idmg[args.index(x)]=RecomendacionesPerfil[self.posicionmg]-1
+					self.posicionmg=self.posicionmg-1
 					#pelis llama de BDconector a la bd a un fetchall que contiene las rows de peliculas en qver BD
 					registro=pelis[RecomendacionesPerfil[self.posicionmg]-1]
-					self.posicionmg=self.posicionmg-1
 					#registro tiene 1 registro de la bd contiene: Idpeli nombre genero año tags descripcion igm
 					URI= registro[6]
 					self.url=urllib.request.urlopen(URI).read()
-					x.loadFromData(self.url)
-				try:
-					self.profile.peli1mg.setPixmap(args[3])
-					self.profile.peli2mg.setPixmap(args[2])
-					self.profile.peli3mg.setPixmap(args[1])
-					self.profile.peli4mg.setPixmap(args[0])
-				except Exception as e:
-					pass
-				try:
-					self.profile.peli4mg.setPixmap(args[0])
-					self.profile.peli3mg.setPixmap(args[1])
-					self.profile.peli2mg.setPixmap(args[2])
-					self.profile.peli1mg.setPixmap(args[3])
-				except Exception as e:
-					pass
-			
+					parte=[]
+					parte.append(self.posicionmg)
+					xd=QPixmap()
+					xd.loadFromData(self.url)
+					parte.append(xd)
+					self.listaPelismg.append(parte)
+					self.listaPelismg.pop(0)
+					self.profile.peli4mg.setPixmap(self.listaPelismg[0][1])
+					self.profile.peli3mg.setPixmap(self.listaPelismg[1][1])
+					self.profile.peli2mg.setPixmap(self.listaPelismg[2][1])
+					self.profile.peli1mg.setPixmap(self.listaPelismg[3][1])
+						
 
 
 
@@ -532,11 +480,14 @@ class controlador_My_Profile(object):
 		self.profile.anteriores.clicked.connect(lambda:self.Cambiar_Pelis(-1))
 		self.profile.siguientes.clicked.connect(lambda:self.Cambiar_Pelis(1))
 
+
+		
+	
 		#PELIS RECOMENDADAS
-		self.profile.peli1.clicked.connect(lambda:Mostrar_Info(self.profile.pixmap1, self.id[3]))#aca deberia pasar la id de la peli
-		self.profile.peli2.clicked.connect(lambda:Mostrar_Info(self.profile.pixmap2, self.id[2]))#aca deberia pasar la id de la peli
-		self.profile.peli3.clicked.connect(lambda:Mostrar_Info(self.profile.pixmap3, self.id[1]))#aca deberia pasar la id de la peli
-		self.profile.peli4.clicked.connect(lambda:Mostrar_Info(self.profile.pixmap4, self.id[0]))#aca deberia pasar la id de la peli
+		self.profile.peli1.clicked.connect(lambda:Mostrar_Info(self.listaPelis[3][1], self.listaPelis[3][0]))#aca deberia pasar la id de la peli
+		self.profile.peli2.clicked.connect(lambda:Mostrar_Info(self.listaPelis[2][1], self.listaPelis[2][0]))#aca deberia pasar la id de la peli
+		self.profile.peli3.clicked.connect(lambda:Mostrar_Info(self.listaPelis[1][1], self.listaPelis[1][0]))#aca deberia pasar la id de la peli
+		self.profile.peli4.clicked.connect(lambda:Mostrar_Info(self.listaPelis[0][1], self.listaPelis[0][0]))#aca deberia pasar la id de la peli
 
 	#---------------------------------------------------------------------------------------------------------------------
 
@@ -545,10 +496,10 @@ class controlador_My_Profile(object):
 		self.profile.siguientesmg.clicked.connect(lambda:self.Cambiar_Pelismg(1))
 
 		#PELIS GUSTADAS
-		self.profile.peli1mg.clicked.connect(lambda:Mostrar_Info(self.profile.pixmap1mg, self.idmg[3]))#aca deberia pasar la id de la peli
-		self.profile.peli2mg.clicked.connect(lambda:Mostrar_Info(self.profile.pixmap2mg, self.idmg[2]))#aca deberia pasar la id de la peli
-		self.profile.peli3mg.clicked.connect(lambda:Mostrar_Info(self.profile.pixmap3mg, self.idmg[1]))#aca deberia pasar la id de la peli
-		self.profile.peli4mg.clicked.connect(lambda:Mostrar_Info(self.profile.pixmap4mg, self.idmg[0]))#aca deberia pasar la id de la peli
+		self.profile.peli1mg.clicked.connect(lambda:Mostrar_Info(self.listaPelismg[3][1], self.listaPelismg[3][0]))#aca deberia pasar la id de la peli
+		self.profile.peli2mg.clicked.connect(lambda:Mostrar_Info(self.listaPelismg[2][1], self.listaPelismg[2][0]))#aca deberia pasar la id de la peli
+		self.profile.peli3mg.clicked.connect(lambda:Mostrar_Info(self.listaPelismg[1][1], self.listaPelismg[1][0]))#aca deberia pasar la id de la peli
+		self.profile.peli4mg.clicked.connect(lambda:Mostrar_Info(self.listaPelismg[0][1], self.listaPelismg[0][0]))#aca deberia pasar la id de la peli
 
 	def hileramg(self, accion):
 		if accion == 1 and self.posicion < self.limite:
@@ -611,10 +562,17 @@ def Mostrar_Main():
 	RecomendacionesQuiz=getRecomendacionesQuiz(usuario.getId())
 	
 	#seteamos cosas en las otras pantallas
+	QuizScreen.id=RecomendacionesQuiz[iterador]
+	
+	HiloDeQuiz = threading.Thread(name='cargandoPelis', 
+                     target=QuizScreen.cargarpelis,
+                     daemon=True)
+	HiloDeQuiz.start()
+
+	QuizScreen.cargarpelis()
+	
 	ProfileScreen.limite=len(RecomendacionesPerfil)
 	ProfileScreen.limitemg=len(peliUser)
-	QuizScreen.id=RecomendacionesQuiz[iterador]
-	QuizScreen.cargarpelis()
 	ProfileScreen.posicion=0
 	ProfileScreen.posicionmg=0
 	ProfileScreen.definirpelis(ProfileScreen.profile.pixmap1,ProfileScreen.profile.pixmap2,ProfileScreen.profile.pixmap3,ProfileScreen.profile.pixmap4)

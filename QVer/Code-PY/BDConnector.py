@@ -27,6 +27,7 @@ def getPelisUsuario(idusuario,request):
 	cursor3=conexion.cursor()
 	cursor3.execute("select idpeli,calificacion from relacionusuariopelis where idusuario="+str(idusuario))
 	peliUser=cursor3.fetchall()
+	print(peliUser)
 	for peli in peliUser:
 		xd=list()
 		xd.append(peli[0])
