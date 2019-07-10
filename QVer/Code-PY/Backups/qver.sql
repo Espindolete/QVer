@@ -3,15 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
-<<<<<<< HEAD
--- Tiempo de generación: 04-07-2019 a las 21:38:36
--- Versión del servidor: 10.3.15-MariaDB
--- Versión de PHP: 7.1.30
-=======
 -- Tiempo de generación: 07-07-2019 a las 23:46:14
 -- Versión del servidor: 10.3.16-MariaDB
 -- Versión de PHP: 7.3.6
->>>>>>> bfe13c156e38cc92e8b4342583966364af439aa6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -28,8 +22,6 @@ SET time_zone = "+00:00";
 -- Base de datos: `qver`
 --
 
-<<<<<<< HEAD
-=======
 DELIMITER $$
 --
 -- Procedimientos
@@ -61,7 +53,6 @@ limit 10$$
 
 DELIMITER ;
 
->>>>>>> bfe13c156e38cc92e8b4342583966364af439aa6
 -- --------------------------------------------------------
 
 --
@@ -169,8 +160,6 @@ CREATE TABLE `relacionusuariopelis` (
   `Calificacion` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-<<<<<<< HEAD
-=======
 --
 -- Volcado de datos para la tabla `relacionusuariopelis`
 --
@@ -221,7 +210,6 @@ INSERT INTO `relacionusuariopelis` (`IdRelacion`, `IdUsuario`, `IdPeli`, `Califi
 (47, 4, 6, 1),
 (91, 1, 9, 1);
 
->>>>>>> bfe13c156e38cc92e8b4342583966364af439aa6
 -- --------------------------------------------------------
 
 --
@@ -241,15 +229,11 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`idusuario`, `nombre`, `contraseña`, `correo`, `respustas`) VALUES
-<<<<<<< HEAD
-(1, 'Braiunito', 'mypass123', 'braiantablet@gmail.com', NULL);
-=======
 (1, 'Braiunito', 'mypass123', 'braiantablet@gmail.com', NULL),
 (2, 'Agustin', '12345678', NULL, NULL),
 (3, 'Marcos', '12345678', NULL, NULL),
 (4, 'Mateo', '12345678', NULL, NULL),
 (5, 'aber', '12345678', NULL, NULL);
->>>>>>> bfe13c156e38cc92e8b4342583966364af439aa6
 
 --
 -- Índices para tablas volcadas
@@ -287,19 +271,12 @@ ALTER TABLE `peliculas`
 -- AUTO_INCREMENT de la tabla `relacionusuariopelis`
 --
 ALTER TABLE `relacionusuariopelis`
-<<<<<<< HEAD
-  MODIFY `IdRelacion` int(11) NOT NULL AUTO_INCREMENT;
-=======
   MODIFY `IdRelacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=220;
->>>>>>> bfe13c156e38cc92e8b4342583966364af439aa6
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-<<<<<<< HEAD
-  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-=======
   MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
@@ -312,7 +289,6 @@ ALTER TABLE `usuario`
 ALTER TABLE `relacionusuariopelis`
   ADD CONSTRAINT `relacionusuariopelis_ibfk_1` FOREIGN KEY (`IdPeli`) REFERENCES `peliculas` (`idpeliculas`),
   ADD CONSTRAINT `relacionusuariopelis_ibfk_2` FOREIGN KEY (`IdUsuario`) REFERENCES `usuario` (`idusuario`);
->>>>>>> bfe13c156e38cc92e8b4342583966364af439aa6
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

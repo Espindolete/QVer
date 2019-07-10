@@ -10,8 +10,6 @@ import pymysql
 import sys
 
 import threading
-<<<<<<< HEAD
-=======
 
 #defino cosas aca para que vean cuando lo abren y porque por ahi no me detecta como global alguna variable
 peliUser=list()
@@ -20,10 +18,7 @@ RecomendacionesQuiz=list()
 RecomendacionesPerfil=list()
 iterador=0
 
->>>>>>> bfe13c156e38cc92e8b4342583966364af439aa6
 
-peliUser=list()
-usuario=Usuario()
 class Controlador_Login(object):
 	def __init__(self): 
 		self.app = QtWidgets.QApplication(sys.argv)
@@ -227,56 +222,8 @@ class controlador_Info(object):
 		self.Dialog = QtWidgets.QDialog()
 		self.info = Pantalla_Info()
 		self.info.setupUi(self.Dialog)
-
 		self.function()
 
-	def TransicionarAMain(self):
-		flag=False
-		print(InfoScreen.info.idPeli)
-		if(InfoScreen.info.r_dislike.isChecked()==True):
-			if(len(peliUser)>0):
-				for peli in peliUser:
-					print(peli[0])
-					if(InfoScreen.info.idPeli==peli[0]):
-						update(peli[0],usuario.getId(),-1)
-						flag=True
-						break
-			if flag==False:
-				insert(InfoScreen.info.idPeli,usuario.getId(),-1)
-		elif(InfoScreen.info.r_like.isChecked()==True):
-			if(len(peliUser)>0):
-				for peli in peliUser:
-					if(InfoScreen.info.idPeli==peli[0]):
-						update(peli[0],usuario.getId(),1)
-						flag=True
-						break
-			if flag==False:
-				insert(InfoScreen.info.idPeli,usuario.getId(),1)
-		Mostrar_Main()
-
-
-	def function(self):
-		pass
-		self.info.label.clicked.connect(lambda:self.TransicionarAMain())
-		#self.info.anteriores.clicked.connect(lambda:Cambiar_Pelis(-1))
-		#self.info.siguientes.clicked.connect(lambda:Cambiar_Pelis(1))
-		#self.ventanasign.checkBox.toggled.connect(lambda:self.ver(self.ventanasign.checkBox,self.ventanasign.txt_pass, self.ventanasign.txt_pass_con))
-
-class controlador_Quiz(object):
-	def __init__(self): 
-		self.app = QtWidgets.QApplication(sys.argv)
-		self.Dialog = QtWidgets.QDialog()
-		self.quiz = Pantalla_Quiz()
-		self.quiz.setupUi(self.Dialog)
-
-		self.function()
-
-<<<<<<< HEAD
-
-	def function(self):
-		pass
-		self.quiz.inicio.clicked.connect(lambda:Mostrar_Main()) 
-=======
 	def TransicionarAMain(self,func):
 		flag=False
 		decision=[]
@@ -365,7 +312,6 @@ class controlador_Quiz(object):
 		self.quiz.likebtn.clicked.connect(lambda:self.like(self.id))
 		self.quiz.dislikebtn.clicked.connect(lambda:self.dislike(self.id))
 		self.quiz.novibtn.clicked.connect(lambda:self.novi(self.id))
->>>>>>> bfe13c156e38cc92e8b4342583966364af439aa6
 		#self.info.anteriores.clicked.connect(lambda:Cambiar_Pelis(-1))
 		#self.info.siguientes.clicked.connect(lambda:Cambiar_Pelis(1))
 		#self.ventanasign.checkBox.toggled.connect(lambda:self.ver(self.ventanasign.checkBox,self.ventanasign.txt_pass, self.ventanasign.txt_pass_con))
@@ -634,7 +580,6 @@ class controlador_My_Profile(object):
 		hilito.start()
 
 
-
 #INSTANCIA LAS PANTALLAS
 
 LoginScreen=Controlador_Login()
@@ -642,8 +587,6 @@ SingupScreen=Controlador_Signup()
 MainScreen=controlador_Main_Menu()
 InfoScreen=controlador_Info()
 QuizScreen=controlador_Quiz()
-<<<<<<< HEAD
-=======
 ProfileScreen=controlador_My_Profile()
 
 def Mostrar_Profile():
@@ -652,7 +595,6 @@ def Mostrar_Profile():
 	MainScreen.Dialog.hide()
 	ProfileScreen.Dialog.show()
 
->>>>>>> bfe13c156e38cc92e8b4342583966364af439aa6
 
 #LLAMA A LAS PANTALLAS DE UNA MANERA POCO PRACTICA :v
 def Mostrar_Login():
@@ -688,13 +630,9 @@ def Mostrar_Main():
 	LoginScreen.Dialog.hide()
 	SingupScreen.Dialog.hide()
 	InfoScreen.Dialog.hide()
-<<<<<<< HEAD
-	getPelisUsuario(usuario.getId(),peliUser)
-=======
 	QuizScreen.Dialog.hide()
 	ProfileScreen.Dialog.hide()
 	#esto lo hacemos para que cargue las peliculas que tenemos en RecomendacionesQuiz, sino intenta cargar cosas q no tiene q cargar
->>>>>>> bfe13c156e38cc92e8b4342583966364af439aa6
 def Mostrar_Info(peli, id):
 	InfoScreen.Dialog.show()
 	MainScreen.Dialog.hide()
@@ -702,10 +640,6 @@ def Mostrar_Info(peli, id):
 
 	#seteamos la informacion en base si el usuario ya le gusto una pelicula o no
 	InfoScreen.info.img_peli.setPixmap(peli)
-<<<<<<< HEAD
-
-=======
->>>>>>> bfe13c156e38cc92e8b4342583966364af439aa6
 	InfoScreen.info.r_dislike.setAutoExclusive(False)
 	InfoScreen.info.r_like.setAutoExclusive(False)
 	InfoScreen.info.r_dislike.setChecked(False)
@@ -714,10 +648,7 @@ def Mostrar_Info(peli, id):
 	InfoScreen.info.r_dislike.setAutoExclusive(True)
 	InfoScreen.info.r_like.setAutoExclusive(True)
 	for peli in peliUser:
-<<<<<<< HEAD
-=======
 		
->>>>>>> bfe13c156e38cc92e8b4342583966364af439aa6
 		if(peli[0]==pelis[id][0]):
 			if(peli[1]==1):
 				InfoScreen.info.r_like.setChecked(True)
@@ -736,11 +667,6 @@ def Mostrar_Quiz():
 	MainScreen.Dialog.hide()
 	InfoScreen.Dialog.hide()
 	QuizScreen.Dialog.show()
-<<<<<<< HEAD
-
-
-
-=======
 	ProfileScreen.Dialog.hide()
 
 #aumentamos el puntero q indica que pelicula recomendar y manejamos cuando llega al limito de la consulta
@@ -754,7 +680,6 @@ def aumentarIterador():
 		RecomendacionesQuiz=getRecomendacionesQuiz(usuario.getId())
 	return RecomendacionesQuiz[iterador]
 	
->>>>>>> bfe13c156e38cc92e8b4342583966364af439aa6
 
 
 #INIT DEL LOGIN

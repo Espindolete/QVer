@@ -668,13 +668,8 @@ class Pantalla_Login(object):
 		"    color: rgb(152, 136, 41);\n"
 		"border-color: rgb(217, 217, 217);\n"
 		"font: 26pt \"Jurassic Park\";}\n"
-<<<<<<< HEAD
 		"\n"
 		"\n"
-=======
-		"\n"
-		"\n"
->>>>>>> bfe13c156e38cc92e8b4342583966364af439aa6
 		"")
 		self.btn_sgte.setObjectName("btn_sgte")
 
@@ -705,19 +700,11 @@ class Pantalla_Info(object):
 		self.label_2.setStyleSheet("color: rgb(80, 92, 124);\n"
 		"font: 16pt \"BatmanForeverAlternate\";")
 		self.label_2.setObjectName("label_2")
-<<<<<<< HEAD
-		self.label_3 = QLabelClickable(Dialog)
-		self.label_3.setGeometry(QtCore.QRect(520, 40, 151, 31))
-		self.label_3.setStyleSheet("color: rgb(80, 92, 124);\n"
-		"font: 16pt \"BatmanForeverAlternate\";")
-		self.label_3.setObjectName("label_3")
-=======
 		self.perfil = QLabelClickable(Dialog)
 		self.perfil.setGeometry(QtCore.QRect(520, 40, 151, 31))
 		self.perfil.setStyleSheet("color: rgb(80, 92, 124);\n"
 		"font: 16pt \"BatmanForeverAlternate\";")
 		self.perfil.setObjectName("perfil")
->>>>>>> bfe13c156e38cc92e8b4342583966364af439aa6
 		self.label = QLabelClickable(Dialog)
 		self.label.setGeometry(QtCore.QRect(180, 40, 81, 31))
 		self.label.setStyleSheet("color: rgb(80, 92, 124);\n"
@@ -817,11 +804,6 @@ class Pantalla_Info(object):
 
 class Pantalla_Quiz(object):
 	def setupUi(self, Dialog):
-<<<<<<< HEAD
-		Dialog.setObjectName("Dialog")
-		Dialog.resize(735, 466)
-		Dialog.setStyleSheet("background-color: rgb(0, 0, 0)")
-=======
 
 		self.pixmap=QPixmap()
 
@@ -830,49 +812,35 @@ class Pantalla_Quiz(object):
 		Dialog.setStyleSheet("background-color: rgb(0, 0, 0)")
 
 
->>>>>>> bfe13c156e38cc92e8b4342583966364af439aa6
 		self.recomendame = QtWidgets.QLabel(Dialog)
 		self.recomendame.setGeometry(QtCore.QRect(290, 40, 201, 31))
 		self.recomendame.setStyleSheet("color: rgb(80, 92, 124);\n"
 		"font: 16pt \"BatmanForeverAlternate\";")
 		self.recomendame.setObjectName("recomendame")
-<<<<<<< HEAD
-		self.miperfil = QtWidgets.QLabel(Dialog)
-=======
 
 
 		self.miperfil = QLabelClickable(Dialog)
->>>>>>> bfe13c156e38cc92e8b4342583966364af439aa6
 		self.miperfil.setGeometry(QtCore.QRect(520, 40, 151, 31))
 		self.miperfil.setStyleSheet("color: rgb(80, 92, 124);\n"
 		"font: 16pt \"BatmanForeverAlternate\";")
 		self.miperfil.setObjectName("miperfil")
-<<<<<<< HEAD
-=======
 
 
->>>>>>> bfe13c156e38cc92e8b4342583966364af439aa6
 		self.inicio = QLabelClickable(Dialog)
 		self.inicio.setGeometry(QtCore.QRect(180, 40, 81, 31))
 		self.inicio.setStyleSheet("color: rgb(80, 92, 124);\n"
 		"font: 16pt \"BatmanForeverAlternate\";")
 		self.inicio.setObjectName("inicio")
-<<<<<<< HEAD
-=======
 
 
->>>>>>> bfe13c156e38cc92e8b4342583966364af439aa6
 		self.qver = QtWidgets.QLabel(Dialog)
 		self.qver.setGeometry(QtCore.QRect(60, 40, 61, 31))
 		self.qver.setStyleSheet("font: 18pt \"Avengeance\"\n"
 		";color: rgb(152, 136, 41);\n"
 		"background-color: rgba(0, 0, 0,0%);")
 		self.qver.setObjectName("qver")
-<<<<<<< HEAD
-=======
 
 
->>>>>>> bfe13c156e38cc92e8b4342583966364af439aa6
 		self.dislikebtn = QtWidgets.QPushButton(Dialog)
 		self.dislikebtn.setGeometry(QtCore.QRect(430, 320, 41, 41))
 		self.dislikebtn.setStyleSheet("color: rgb(165, 0, 0);\n"
@@ -880,35 +848,22 @@ class Pantalla_Quiz(object):
 		"background-color: rgb(0, 0, 0);\n"
 		"font: 20pt \"MS Shell Dlg 2\";")
 		self.dislikebtn.setObjectName("dislikebtn")
-<<<<<<< HEAD
-=======
 
 
->>>>>>> bfe13c156e38cc92e8b4342583966364af439aa6
 		self.likebtn = QtWidgets.QPushButton(Dialog)
 		self.likebtn.setGeometry(QtCore.QRect(270, 320, 41, 41))
 		self.likebtn.setStyleSheet("color:  rgb(0, 153, 31);\n"
 		"background-color: rgb(0, 0, 0);\n"
 		"font: 20pt \"MS Shell Dlg 2\";")
 		self.likebtn.setObjectName("likebtn")
-<<<<<<< HEAD
-		self.verticalLayoutWidget = QtWidgets.QWidget(Dialog)
-		self.verticalLayoutWidget.setGeometry(QtCore.QRect(210, 90, 301, 211))
-=======
 
 
 		self.verticalLayoutWidget = QtWidgets.QWidget(Dialog)
 		self.verticalLayoutWidget.setGeometry(QtCore.QRect(295, 90, 150, 211))
->>>>>>> bfe13c156e38cc92e8b4342583966364af439aa6
 		self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
 		self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
 		self.verticalLayout.setContentsMargins(0, 0, 0, 0)
 		self.verticalLayout.setObjectName("verticalLayout")
-<<<<<<< HEAD
-		self.label_4 = QtWidgets.QLabel(self.verticalLayoutWidget)
-		self.label_4.setObjectName("label_4")
-		self.verticalLayout.addWidget(self.label_4)
-=======
 
 
 		self.label_4 = QLabelClickable(self.verticalLayoutWidget)
@@ -923,7 +878,6 @@ class Pantalla_Quiz(object):
 		self.verticalLayout.addWidget(self.label_4)
 
 
->>>>>>> bfe13c156e38cc92e8b4342583966364af439aa6
 		self.novibtn = QtWidgets.QPushButton(Dialog)
 		self.novibtn.setGeometry(QtCore.QRect(310, 380, 141, 51))
 		self.novibtn.setStyleSheet("color: rgb(70, 0, 97);\n"
@@ -945,8 +899,6 @@ class Pantalla_Quiz(object):
 		self.likebtn.setText(_translate("Dialog", "👍"))
 		self.label_4.setText(_translate("Dialog", "TextLabel"))
 		self.novibtn.setText(_translate("Dialog", "NO LA VI 🤘"))
-<<<<<<< HEAD
-=======
 
 
 
@@ -1198,7 +1150,6 @@ class Pantalla_My_Profile(object):
 		self.anteriores.setText(_translate("Dialog", "◀️"))
 		self.anterioresmg.setText(_translate("Dialog", "◀️"))
 #RETRANSLATE DE LAS GUSTADAS
->>>>>>> bfe13c156e38cc92e8b4342583966364af439aa6
 
 
 import xz_rc
