@@ -11,7 +11,7 @@ def conectar(usr='', passwod='', bd=''):
                                  db=bd)
     return connection
 
-conexion=conectar("root","","aver")
+conexion=conectar("root","","qver")
 cursor=conexion.cursor()
 cursor.execute("select * from usuario")
 usuarios=cursor.fetchall()

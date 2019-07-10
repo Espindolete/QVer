@@ -530,7 +530,8 @@ class controlador_My_Profile(object):
 
 	def function(self):
 		self.profile.botonRecomendame.clicked.connect(lambda:Mostrar_Quiz())
-
+		self.profile.botonInicio.clicked.connect(lambda:Mostrar_Main())
+		
 		#SIGUIENTE ANTERIOR BUTTONS DE RECOMENDADAS
 		self.profile.anteriores.clicked.connect(lambda:self.Cambiar_Pelis(-1))
 		self.profile.siguientes.clicked.connect(lambda:self.Cambiar_Pelis(1))

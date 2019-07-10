@@ -41,7 +41,7 @@ class QLabelClickable(QLabel):
 class Pantalla_Signup(object):
 	def setupUi(self, Dialog):
 		Dialog.setObjectName("Dialog")
-		Dialog.resize(703, 546)
+		Dialog.setFixedSize(703, 546)
 		sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
 		sizePolicy.setHorizontalStretch(0)
 		sizePolicy.setVerticalStretch(0)
@@ -379,7 +379,7 @@ class Pantalla_Signup(object):
 
 	def retranslateUi(self, Dialog):
 		_translate = QtCore.QCoreApplication.translate
-		Dialog.setWindowTitle(_translate("Dialog", "Signup"))
+		Dialog.setWindowTitle(_translate("Dialog", "QVer"))
 		self.btn_sgte.setText(_translate("Dialog", "Siguiente"))
 		self.btn_log.setText(_translate("Dialog", "Acceder a tu cuenta en su lugar"))
 		self.lbl_info.setText(_translate("Dialog", "<html><head/><body><p align=\"right\">Datos invalidos.</p></body></html>"))
@@ -418,7 +418,7 @@ class Pantalla_Main_Menu(object):
 		print ("Imagenes cargadas!")
 
 		Dialog.setObjectName("Dialog")
-		Dialog.resize(742, 471)
+		Dialog.setFixedSize(742, 471)
 		Dialog.setStyleSheet("background-color: rgb(0, 0, 0)")
 		self.superRecomendame = QtWidgets.QPushButton(Dialog)
 		self.superRecomendame.setGeometry(QtCore.QRect(230, 360, 271, 71))
@@ -545,7 +545,7 @@ class Pantalla_Main_Menu(object):
 
 	def retranslateUi(self, Dialog):
 		_translate = QtCore.QCoreApplication.translate
-		Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
+		Dialog.setWindowTitle(_translate("Dialog", "QVer"))
 		self.superRecomendame.setText(_translate("Dialog", "RECOMENDAME"))
 		self.botonRecomendame.setText(_translate("Dialog", "RECOMENDAME"))
 		self.botonMiPerfil.setText(_translate("Dialog", "MI PERFIL"))
@@ -557,7 +557,7 @@ class Pantalla_Main_Menu(object):
 class Pantalla_Login(object):
 	def setupUi(self, Dialog):
 		Dialog.setObjectName("Dialog")
-		Dialog.resize(781, 575)
+		Dialog.setFixedSize(781, 575)
 		sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
 		sizePolicy.setHorizontalStretch(0)
 		sizePolicy.setVerticalStretch(0)
@@ -678,7 +678,7 @@ class Pantalla_Login(object):
 
 	def retranslateUi(self, Dialog):
 		_translate = QtCore.QCoreApplication.translate
-		Dialog.setWindowTitle(_translate("Dialog", "Login"))
+		Dialog.setWindowTitle(_translate("Dialog", "QVer"))
 		self.DreamTeam.setText(_translate("Dialog", "dream team"))
 		self.btn_cc.setText(_translate("Dialog", "Crear cuenta"))
 		self.lbl_info.setText(_translate("Dialog", "Usuario o Contraseña incorrecto"))
@@ -693,7 +693,7 @@ class Pantalla_Info(object):
 
 
 		Dialog.setObjectName("Dialog")
-		Dialog.resize(752, 502)
+		Dialog.setFixedSize(752, 502)
 		Dialog.setStyleSheet("background-color: rgb(0, 0, 0)")
 		self.label_2 = QLabelClickable(Dialog)
 		self.label_2.setGeometry(QtCore.QRect(290, 40, 201, 31))
@@ -782,7 +782,7 @@ class Pantalla_Info(object):
 
 	def retranslateUi(self, Dialog):
 		_translate = QtCore.QCoreApplication.translate
-		Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
+		Dialog.setWindowTitle(_translate("Dialog", "QVer"))
 		self.label_2.setText(_translate("Dialog", "RECOMENDAME"))
 		self.perfil.setText(_translate("Dialog", "MI PERFIL"))
 		self.label.setText(_translate("Dialog", "INICIO"))
@@ -808,7 +808,7 @@ class Pantalla_Quiz(object):
 		self.pixmap=QPixmap()
 
 		Dialog.setObjectName("Dialog")
-		Dialog.resize(735, 466)
+		Dialog.setFixedSize(735, 466)
 		Dialog.setStyleSheet("background-color: rgb(0, 0, 0)")
 
 
@@ -890,7 +890,7 @@ class Pantalla_Quiz(object):
 
 	def retranslateUi(self, Dialog):
 		_translate = QtCore.QCoreApplication.translate
-		Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
+		Dialog.setWindowTitle(_translate("Dialog", "QVer"))
 		self.recomendame.setText(_translate("Dialog", "RECOMENDAME"))
 		self.miperfil.setText(_translate("Dialog", "MI PERFIL"))
 		self.inicio.setText(_translate("Dialog", "INICIO"))
@@ -899,8 +899,6 @@ class Pantalla_Quiz(object):
 		self.likebtn.setText(_translate("Dialog", "👍"))
 		self.label_4.setText(_translate("Dialog", "TextLabel"))
 		self.novibtn.setText(_translate("Dialog", "NO LA VI 🤘"))
-
-
 
 class Pantalla_My_Profile(object):
 	def setupUi(self, Dialog):
@@ -944,7 +942,7 @@ class Pantalla_My_Profile(object):
 		print ("Imagenes cargadas!")
 
 		Dialog.setObjectName("Dialog")
-		Dialog.resize(742, 471)
+		Dialog.setFixedSize(760, 650)
 		Dialog.setStyleSheet("background-color: rgb(0, 0, 0)")
 		
 		
@@ -960,7 +958,7 @@ class Pantalla_My_Profile(object):
 		"font: 16pt \"BatmanForeverAlternate\";")
 		self.botonMiPerfil.setObjectName("botonMiPerfil")
 
-		self.botonInicio = QtWidgets.QLabel(Dialog)
+		self.botonInicio = QLabelClickable(Dialog)
 		self.botonInicio.setGeometry(QtCore.QRect(180, 40, 81, 31))
 		self.botonInicio.setStyleSheet("color: rgb(80, 92, 124);\n"
 		"font: 16pt \"BatmanForeverAlternate\";")
@@ -968,8 +966,14 @@ class Pantalla_My_Profile(object):
 
 	#_______________________________TODA ESTA SECCION CORRESPONDE A LAS RECOMENDADAS __________________________________________________
 
+		self.txtrecomendadas = QLabelClickable(Dialog)
+		self.txtrecomendadas.setGeometry(QtCore.QRect(60, 90, 230, 31))
+		self.txtrecomendadas.setStyleSheet("color: rgb(80, 92, 124);\n"
+		"font: 18pt \"Avengeance\";")
+		self.txtrecomendadas.setObjectName("txtrecomendadas")
+
 		self.horizontalLayoutWidget = QtWidgets.QWidget(Dialog)
-		self.horizontalLayoutWidget.setGeometry(QtCore.QRect(49, 100, 641, 230))
+		self.horizontalLayoutWidget.setGeometry(QtCore.QRect(49, 120, 641, 230))
 		self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
 		self.horizontalLayout = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
 		self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
@@ -978,11 +982,20 @@ class Pantalla_My_Profile(object):
 
 		#Siguientes
 		self.anteriores = QtWidgets.QPushButton(Dialog)
-		self.anteriores.setGeometry(QtCore.QRect(10, 210, 31, 31))
+		self.anteriores.setGeometry(QtCore.QRect(10, 230, 31, 31))
 		self.anteriores.setStyleSheet("    color: rgb(152, 136, 41);\n"
 		"background-color: rgb(0, 0, 0);\n"
 		"font: 30pt \"MS Shell Dlg 2\";")
 		self.anteriores.setObjectName("anteriores")
+
+
+		self.siguientes = QtWidgets.QPushButton(Dialog)
+		self.siguientes.setGeometry(QtCore.QRect(700, 230, 31, 31))
+		self.siguientes.setStyleSheet("    color: rgb(152, 136, 41);\n"
+		"background-color: rgb(0, 0, 0);\n"
+		"font: 30pt \"MS Shell Dlg 2\";")
+		self.siguientes.setObjectName("siguientes")
+
 
 		#SetPeli1
 		self.peli1 = QLabelClickable()
@@ -1043,21 +1056,23 @@ class Pantalla_My_Profile(object):
 		self.Qver.setObjectName("Qver")
 
 
-		self.siguientes = QtWidgets.QPushButton(Dialog)
-		self.siguientes.setGeometry(QtCore.QRect(700, 210, 31, 31))
-		self.siguientes.setStyleSheet("    color: rgb(152, 136, 41);\n"
-		"background-color: rgb(0, 0, 0);\n"
-		"font: 30pt \"MS Shell Dlg 2\";")
-		self.siguientes.setObjectName("siguientes")
+		
 
 
 	#_____________________________________ RECOMENDADAS HASTA ACA _______________________________________________________
 
 	#_______________________ TODA ESTA SECCION CORRESPONDE A LAS QUE TE GUSTARON ______________________________________________
+		self.txtmegusto = QLabelClickable(Dialog)
+		self.txtmegusto.setGeometry(QtCore.QRect(60, 370, 230, 31))
+		self.txtmegusto.setStyleSheet("color: rgb(80, 92, 124);\n"
+		"font: 18pt \"Avengeance\";")
+		self.txtmegusto.setObjectName("txtmegusto")
+
+
 		self.horizontalLayoutWidgetmg = QtWidgets.QWidget(Dialog)
 
 												  #posicion en x,   pos y,  tamaño x,  tam y
-		self.horizontalLayoutWidgetmg.setGeometry(QtCore.QRect(49,   350,     641,      230))
+		self.horizontalLayoutWidgetmg.setGeometry(QtCore.QRect(49,   400,     641,      230))
 		self.horizontalLayoutWidgetmg.setObjectName("horizontalLayoutWidgetmg")
 		self.horizontalLayoutmg = QtWidgets.QHBoxLayout(self.horizontalLayoutWidgetmg)
 		self.horizontalLayoutmg.setContentsMargins(0, 0, 0, 0)
@@ -1066,11 +1081,19 @@ class Pantalla_My_Profile(object):
 
 		#Siguientes
 		self.anterioresmg = QtWidgets.QPushButton(Dialog)
-		self.anterioresmg.setGeometry(QtCore.QRect(10, 350, 31, 31))
+		self.anterioresmg.setGeometry(QtCore.QRect(10, 490, 31, 31))
 		self.anterioresmg.setStyleSheet("    color: rgb(152, 136, 41);\n"
 		"background-color: rgb(0, 0, 0);\n"
 		"font: 30pt \"MS Shell Dlg 2\";")
 		self.anterioresmg.setObjectName("anterioresmg")
+
+		self.siguientesmg = QtWidgets.QPushButton(Dialog)
+		self.siguientesmg.setGeometry(QtCore.QRect(700, 490, 31, 31))
+		self.siguientesmg.setStyleSheet("    color: rgb(152, 136, 41);\n"
+		"background-color: rgb(0, 0, 0);\n"
+		"font: 30pt \"MS Shell Dlg 2\";")
+		self.siguientesmg.setObjectName("siguientesmg")
+
 
 		#SetPeli1
 		self.peli1mg = QLabelClickable()
@@ -1121,12 +1144,7 @@ class Pantalla_My_Profile(object):
 		self.horizontalLayoutmg.addWidget(self.peli4mg)
 
 
-		self.siguientesmg = QtWidgets.QPushButton(Dialog)
-		self.siguientesmg.setGeometry(QtCore.QRect(700, 350, 31, 31))
-		self.siguientesmg.setStyleSheet("    color: rgb(152, 136, 41);\n"
-		"background-color: rgb(0, 0, 0);\n"
-		"font: 30pt \"MS Shell Dlg 2\";")
-		self.siguientesmg.setObjectName("siguientesmg")
+		
 
 
 		self.retranslateUi(Dialog)
@@ -1140,8 +1158,10 @@ class Pantalla_My_Profile(object):
 	def retranslateUi(self, Dialog):
 #RETRANSLATE DE LAS RECOMENDADAS
 		_translate = QtCore.QCoreApplication.translate
-		Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
+		Dialog.setWindowTitle(_translate("Dialog", "QVer"))
 		self.botonRecomendame.setText(_translate("Dialog", "RECOMENDAME"))
+		self.txtrecomendadas.setText(_translate("Dialog", "Recomendadas:"))
+		self.txtmegusto.setText(_translate("Dialog", "Me gusto:"))
 		self.botonMiPerfil.setText(_translate("Dialog", "MI PERFIL"))
 		self.botonInicio.setText(_translate("Dialog", "INICIO"))
 		self.Qver.setText(_translate("Dialog", " QVer"))
