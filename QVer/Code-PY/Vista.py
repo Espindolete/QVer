@@ -445,7 +445,7 @@ class Pantalla_Main_Menu(object):
 		self.botonRecomendame.setStyleSheet("color: rgb(80, 92, 124);\n"
 		"font: 16pt \"BatmanForeverAlternate\";")
 		self.botonRecomendame.setObjectName("botonRecomendame")
-		self.botonMiPerfil = QtWidgets.QLabel(Dialog)
+		self.botonMiPerfil = QLabelClickable(Dialog)
 		self.botonMiPerfil.setGeometry(QtCore.QRect(520, 40, 151, 31))
 		self.botonMiPerfil.setStyleSheet("color: rgb(80, 92, 124);\n"
 		"font: 16pt \"BatmanForeverAlternate\";")
@@ -700,11 +700,11 @@ class Pantalla_Info(object):
 		self.label_2.setStyleSheet("color: rgb(80, 92, 124);\n"
 		"font: 16pt \"BatmanForeverAlternate\";")
 		self.label_2.setObjectName("label_2")
-		self.label_3 = QLabelClickable(Dialog)
-		self.label_3.setGeometry(QtCore.QRect(520, 40, 151, 31))
-		self.label_3.setStyleSheet("color: rgb(80, 92, 124);\n"
+		self.perfil = QLabelClickable(Dialog)
+		self.perfil.setGeometry(QtCore.QRect(520, 40, 151, 31))
+		self.perfil.setStyleSheet("color: rgb(80, 92, 124);\n"
 		"font: 16pt \"BatmanForeverAlternate\";")
-		self.label_3.setObjectName("label_3")
+		self.perfil.setObjectName("perfil")
 		self.label = QLabelClickable(Dialog)
 		self.label.setGeometry(QtCore.QRect(180, 40, 81, 31))
 		self.label.setStyleSheet("color: rgb(80, 92, 124);\n"
@@ -784,7 +784,7 @@ class Pantalla_Info(object):
 		_translate = QtCore.QCoreApplication.translate
 		Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
 		self.label_2.setText(_translate("Dialog", "RECOMENDAME"))
-		self.label_3.setText(_translate("Dialog", "MI PERFIL"))
+		self.perfil.setText(_translate("Dialog", "MI PERFIL"))
 		self.label.setText(_translate("Dialog", "INICIO"))
 		self.lbl_stc.setText(_translate("Dialog", " QVer"))
 		self.r_like_2.setText(_translate("Dialog", "👍"))
@@ -819,7 +819,7 @@ class Pantalla_Quiz(object):
 		self.recomendame.setObjectName("recomendame")
 
 
-		self.miperfil = QtWidgets.QLabel(Dialog)
+		self.miperfil = QLabelClickable(Dialog)
 		self.miperfil.setGeometry(QtCore.QRect(520, 40, 151, 31))
 		self.miperfil.setStyleSheet("color: rgb(80, 92, 124);\n"
 		"font: 16pt \"BatmanForeverAlternate\";")
@@ -899,6 +899,257 @@ class Pantalla_Quiz(object):
 		self.likebtn.setText(_translate("Dialog", "👍"))
 		self.label_4.setText(_translate("Dialog", "TextLabel"))
 		self.novibtn.setText(_translate("Dialog", "NO LA VI 🤘"))
+
+
+
+class Pantalla_My_Profile(object):
+	def setupUi(self, Dialog):
+		#Esto hizo Agus a mano
+
+
+		#Rellenar con urls de la BD
+		#ESTO CAUSA DELAY EN LA APP
+		print ("Cargando imagenes...")
+
+		#PIXMAPS DE PELIS QUE RECOMENDAMOS (Los de la fila de abajo)
+		self.pixmap1=QPixmap()
+		self.id_p1=None
+
+		self.pixmap2=QPixmap()
+		self.id_p2=None
+		
+
+		self.pixmap3=QPixmap()
+		self.id_p3=None
+		
+
+		self.pixmap4=QPixmap()
+		self.id_p4=None
+
+		#PIXMAPS DE PELIS QUE GUSTARON (Los de la fila de abajo)
+		self.pixmap1mg=QPixmap()
+		self.id_p1=None
+
+		self.pixmap2mg=QPixmap()
+		self.id_p2=None
+		
+
+		self.pixmap3mg=QPixmap()
+		self.id_p3=None
+		
+
+		self.pixmap4mg=QPixmap()
+		self.id_p4=None
+		
+		print ("Imagenes cargadas!")
+
+		Dialog.setObjectName("Dialog")
+		Dialog.resize(742, 471)
+		Dialog.setStyleSheet("background-color: rgb(0, 0, 0)")
+		
+		
+		self.botonRecomendame = QLabelClickable(Dialog)
+		self.botonRecomendame.setGeometry(QtCore.QRect(290, 40, 201, 31))
+		self.botonRecomendame.setStyleSheet("color: rgb(80, 92, 124);\n"
+		"font: 16pt \"BatmanForeverAlternate\";")
+		self.botonRecomendame.setObjectName("botonRecomendame")
+
+		self.botonMiPerfil = QtWidgets.QLabel(Dialog)
+		self.botonMiPerfil.setGeometry(QtCore.QRect(520, 40, 151, 31))
+		self.botonMiPerfil.setStyleSheet("color: rgb(80, 92, 124);\n"
+		"font: 16pt \"BatmanForeverAlternate\";")
+		self.botonMiPerfil.setObjectName("botonMiPerfil")
+
+		self.botonInicio = QtWidgets.QLabel(Dialog)
+		self.botonInicio.setGeometry(QtCore.QRect(180, 40, 81, 31))
+		self.botonInicio.setStyleSheet("color: rgb(80, 92, 124);\n"
+		"font: 16pt \"BatmanForeverAlternate\";")
+		self.botonInicio.setObjectName("botonInicio")
+
+	#_______________________________TODA ESTA SECCION CORRESPONDE A LAS RECOMENDADAS __________________________________________________
+
+		self.horizontalLayoutWidget = QtWidgets.QWidget(Dialog)
+		self.horizontalLayoutWidget.setGeometry(QtCore.QRect(49, 100, 641, 230))
+		self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
+		self.horizontalLayout = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
+		self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
+		self.horizontalLayout.setObjectName("horizontalLayout")
+
+
+		#Siguientes
+		self.anteriores = QtWidgets.QPushButton(Dialog)
+		self.anteriores.setGeometry(QtCore.QRect(10, 210, 31, 31))
+		self.anteriores.setStyleSheet("    color: rgb(152, 136, 41);\n"
+		"background-color: rgb(0, 0, 0);\n"
+		"font: 30pt \"MS Shell Dlg 2\";")
+		self.anteriores.setObjectName("anteriores")
+
+		#SetPeli1
+		self.peli1 = QLabelClickable()
+		sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Ignored, QtWidgets.QSizePolicy.Ignored)
+		sizePolicy.setHorizontalStretch(0)
+		sizePolicy.setVerticalStretch(0)
+		sizePolicy.setHeightForWidth(self.peli1.sizePolicy().hasHeightForWidth())
+		self.peli1.setSizePolicy(sizePolicy)
+		self.peli1.setText("")
+		self.peli1.setScaledContents(True)
+		self.peli1.setObjectName("peli1")
+		self.horizontalLayout.addWidget(self.peli1)
+
+		#SetPeli2
+		self.peli2 = QLabelClickable()
+		sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Ignored, QtWidgets.QSizePolicy.Ignored)
+		sizePolicy.setHorizontalStretch(0)
+		sizePolicy.setVerticalStretch(0)
+		sizePolicy.setHeightForWidth(self.peli2.sizePolicy().hasHeightForWidth())
+		self.peli2.setSizePolicy(sizePolicy)
+		self.peli2.setText("")
+		self.peli2.setScaledContents(True)
+		self.peli2.setObjectName("peli2")
+		self.horizontalLayout.addWidget(self.peli2)
+
+		#SetPeli3
+		self.peli3 = QLabelClickable()
+		sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Ignored, QtWidgets.QSizePolicy.Ignored)
+		sizePolicy.setHorizontalStretch(0)
+		sizePolicy.setVerticalStretch(0)
+		sizePolicy.setHeightForWidth(self.peli3.sizePolicy().hasHeightForWidth())
+		self.peli3.setSizePolicy(sizePolicy)
+		self.peli3.setText("")
+		self.peli3.setScaledContents(True)
+		self.peli3.setObjectName("peli3")
+		self.horizontalLayout.addWidget(self.peli3)
+
+		#SetPeli4
+		self.peli4 = QLabelClickable()
+		sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Ignored, QtWidgets.QSizePolicy.Ignored)
+		sizePolicy.setHorizontalStretch(0)
+		sizePolicy.setVerticalStretch(0)
+		sizePolicy.setHeightForWidth(self.peli4.sizePolicy().hasHeightForWidth())
+		self.peli4.setSizePolicy(sizePolicy)
+		self.peli4.setText("")
+		self.peli4.setScaledContents(True)
+		self.peli4.setObjectName("peli4")
+		self.horizontalLayout.addWidget(self.peli4)
+
+
+
+
+		self.Qver = QtWidgets.QLabel(Dialog)
+		self.Qver.setGeometry(QtCore.QRect(60, 40, 61, 31))
+		self.Qver.setStyleSheet("font: 18pt \"Avengeance\";\n"
+		"color: rgb(152, 136, 41);\n"
+		"background-color: rgba(0, 0, 0,0%);")
+		self.Qver.setObjectName("Qver")
+
+
+		self.siguientes = QtWidgets.QPushButton(Dialog)
+		self.siguientes.setGeometry(QtCore.QRect(700, 210, 31, 31))
+		self.siguientes.setStyleSheet("    color: rgb(152, 136, 41);\n"
+		"background-color: rgb(0, 0, 0);\n"
+		"font: 30pt \"MS Shell Dlg 2\";")
+		self.siguientes.setObjectName("siguientes")
+
+
+	#_____________________________________ RECOMENDADAS HASTA ACA _______________________________________________________
+
+	#_______________________ TODA ESTA SECCION CORRESPONDE A LAS QUE TE GUSTARON ______________________________________________
+		self.horizontalLayoutWidgetmg = QtWidgets.QWidget(Dialog)
+
+												  #posicion en x,   pos y,  tamaño x,  tam y
+		self.horizontalLayoutWidgetmg.setGeometry(QtCore.QRect(49,   350,     641,      230))
+		self.horizontalLayoutWidgetmg.setObjectName("horizontalLayoutWidgetmg")
+		self.horizontalLayoutmg = QtWidgets.QHBoxLayout(self.horizontalLayoutWidgetmg)
+		self.horizontalLayoutmg.setContentsMargins(0, 0, 0, 0)
+		self.horizontalLayoutmg.setObjectName("horizontalLayoutmg")
+
+
+		#Siguientes
+		self.anterioresmg = QtWidgets.QPushButton(Dialog)
+		self.anterioresmg.setGeometry(QtCore.QRect(10, 350, 31, 31))
+		self.anterioresmg.setStyleSheet("    color: rgb(152, 136, 41);\n"
+		"background-color: rgb(0, 0, 0);\n"
+		"font: 30pt \"MS Shell Dlg 2\";")
+		self.anterioresmg.setObjectName("anterioresmg")
+
+		#SetPeli1
+		self.peli1mg = QLabelClickable()
+		sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Ignored, QtWidgets.QSizePolicy.Ignored)
+		sizePolicy.setHorizontalStretch(0)
+		sizePolicy.setVerticalStretch(0)
+		sizePolicy.setHeightForWidth(self.peli1mg.sizePolicy().hasHeightForWidth())
+		self.peli1mg.setSizePolicy(sizePolicy)
+		self.peli1mg.setText("")
+		self.peli1mg.setScaledContents(True)
+		self.peli1mg.setObjectName("peli1mg")
+		self.horizontalLayoutmg.addWidget(self.peli1mg)
+
+		#SetPeli2
+		self.peli2mg = QLabelClickable()
+		sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Ignored, QtWidgets.QSizePolicy.Ignored)
+		sizePolicy.setHorizontalStretch(0)
+		sizePolicy.setVerticalStretch(0)
+		sizePolicy.setHeightForWidth(self.peli2mg.sizePolicy().hasHeightForWidth())
+		self.peli2mg.setSizePolicy(sizePolicy)
+		self.peli2mg.setText("")
+		self.peli2mg.setScaledContents(True)
+		self.peli2mg.setObjectName("peli2mg")
+		self.horizontalLayoutmg.addWidget(self.peli2mg)
+
+		#SetPeli3
+		self.peli3mg = QLabelClickable()
+		sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Ignored, QtWidgets.QSizePolicy.Ignored)
+		sizePolicy.setHorizontalStretch(0)
+		sizePolicy.setVerticalStretch(0)
+		sizePolicy.setHeightForWidth(self.peli3mg.sizePolicy().hasHeightForWidth())
+		self.peli3mg.setSizePolicy(sizePolicy)
+		self.peli3mg.setText("")
+		self.peli3mg.setScaledContents(True)
+		self.peli3mg.setObjectName("peli3mg")
+		self.horizontalLayoutmg.addWidget(self.peli3mg)
+
+		#SetPeli4
+		self.peli4mg = QLabelClickable()
+		sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Ignored, QtWidgets.QSizePolicy.Ignored)
+		sizePolicy.setHorizontalStretch(0)
+		sizePolicy.setVerticalStretch(0)
+		sizePolicy.setHeightForWidth(self.peli4mg.sizePolicy().hasHeightForWidth())
+		self.peli4mg.setSizePolicy(sizePolicy)
+		self.peli4mg.setText("")
+		self.peli4mg.setScaledContents(True)
+		self.peli4mg.setObjectName("peli4")
+		self.horizontalLayoutmg.addWidget(self.peli4mg)
+
+
+		self.siguientesmg = QtWidgets.QPushButton(Dialog)
+		self.siguientesmg.setGeometry(QtCore.QRect(700, 350, 31, 31))
+		self.siguientesmg.setStyleSheet("    color: rgb(152, 136, 41);\n"
+		"background-color: rgb(0, 0, 0);\n"
+		"font: 30pt \"MS Shell Dlg 2\";")
+		self.siguientesmg.setObjectName("siguientesmg")
+
+
+		self.retranslateUi(Dialog)
+		QtCore.QMetaObject.connectSlotsByName(Dialog)
+	#______________________________________ GUSTADAS HASTA ACA ____________________________________________________________
+
+
+
+
+
+	def retranslateUi(self, Dialog):
+#RETRANSLATE DE LAS RECOMENDADAS
+		_translate = QtCore.QCoreApplication.translate
+		Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
+		self.botonRecomendame.setText(_translate("Dialog", "RECOMENDAME"))
+		self.botonMiPerfil.setText(_translate("Dialog", "MI PERFIL"))
+		self.botonInicio.setText(_translate("Dialog", "INICIO"))
+		self.Qver.setText(_translate("Dialog", " QVer"))
+		self.siguientes.setText(_translate("Dialog", "▶️"))
+		self.siguientesmg.setText(_translate("Dialog", "▶️"))
+		self.anteriores.setText(_translate("Dialog", "◀️"))
+		self.anterioresmg.setText(_translate("Dialog", "◀️"))
+#RETRANSLATE DE LAS GUSTADAS
 
 
 import xz_rc

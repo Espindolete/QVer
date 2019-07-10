@@ -50,7 +50,7 @@ def insert(idpeli,idusuario,decision):
 #recomendaciones1 te consigue las peliculas que no hayas dado feedback q te puedan gustar
 #y recomendaciones2 te consigue las peliculas que te puedan gustar (aca incluyendo si no la viste)
 
-def getRecomendaciones2(IdUsuario):
+def getRecomendacionesPerfil(IdUsuario):
 	cursor3=conexion.cursor()
 	Query= "call recomendacionPerfil("+str(IdUsuario)+")"
 	cursor3.execute(Query)
@@ -61,7 +61,7 @@ def getRecomendaciones2(IdUsuario):
 	return xd
 
 
-def getRecomendaciones(IdUsuario):
+def getRecomendacionesQuiz(IdUsuario):
 	cursor3=conexion.cursor()
 	Query= "call recomendacionQuiz("+str(IdUsuario)+")"
 	cursor3.execute(Query)
