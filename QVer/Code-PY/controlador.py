@@ -369,9 +369,10 @@ class controlador_My_Profile(object):
 				
 	def siguiente(self, *args):
 		args=args[::-1]
+		print(peliUser)
 		if self.posicion<=self.limite:
 			for x in args:
-				if self.posicion<=self.limite:
+				if self.posicion<self.limite:
 					print(self.posicion)
 					self.id[args.index(x)]=peliUser[self.posicion][0]-1
 					#pelis llama de BDconector a la bd a un fetchall que contiene las rows de peliculas en qver BD
@@ -380,7 +381,7 @@ class controlador_My_Profile(object):
 					URI= registro[6]
 					self.url=urllib.request.urlopen(URI).read()
 					x.loadFromData(self.url)
-					if self.posicion==self.limite:
+					if self.posicion==self.limite-1:
 						break
 					self.posicion=self.posicion+1
 				try:
@@ -459,11 +460,13 @@ class controlador_My_Profile(object):
 				
 	def siguientemg(self, *args):
 		print(RecomendacionesPerfil)
+		print(self.limitemg)
+		print("si")
 		args=args[::-1]
 		if self.posicionmg<=self.limitemg:
 			for x in args:
-				if self.posicionmg<=self.limitemg:
-					print(self.posicionmg)
+				if self.posicionmg<self.limitemg:
+					
 					self.idmg[args.index(x)]=RecomendacionesPerfil[self.posicionmg]-1
 					#pelis llama de BDconector a la bd a un fetchall que contiene las rows de peliculas en qver BD
 					registro=pelis[RecomendacionesPerfil[self.posicionmg]-1]
@@ -499,10 +502,10 @@ class controlador_My_Profile(object):
 			for x in args:
 				if self.posicionmg>0:
 					print(self.posicionmg)
+					self.posicionmg=self.posicionmg-1
 					self.idmg[args.index(x)]=RecomendacionesPerfil[self.posicionmg]-1
 					#pelis llama de BDconector a la bd a un fetchall que contiene las rows de peliculas en qver BD
 					registro=pelis[RecomendacionesPerfil[self.posicionmg]-1]
-					self.posicionmg=self.posicionmg-1
 					#registro tiene 1 registro de la bd contiene: Idpeli nombre genero año tags descripcion igm
 					URI= registro[6]
 					self.url=urllib.request.urlopen(URI).read()
@@ -611,8 +614,9 @@ def Mostrar_Main():
 	RecomendacionesQuiz=getRecomendacionesQuiz(usuario.getId())
 	
 	#seteamos cosas en las otras pantallas
-	ProfileScreen.limite=len(RecomendacionesPerfil)
-	ProfileScreen.limitemg=len(peliUser)
+	
+	ProfileScreen.limite=len(peliUser)
+	ProfileScreen.limitemg=len(RecomendacionesPerfil)
 	QuizScreen.id=RecomendacionesQuiz[iterador]
 	QuizScreen.cargarpelis()
 	ProfileScreen.posicion=0
