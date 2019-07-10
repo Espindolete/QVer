@@ -341,31 +341,34 @@ class controlador_My_Profile(object):
 		self.function()
 
 	def definirpelis(self, *args):
-		args=args[::-1]
-		for x in args:
-				self.id[args.index(x)]=peliUser[self.posicion][0]-1
-				#pelis llama de BDconector a la bd a un fetchall que contiene las rows de peliculas en qver BD
-				registro=pelis[peliUser[self.posicion][0]-1]
-				self.posicion=self.posicion+1
-				#registro tiene 1 registro de la bd contiene: Idpeli nombre genero año tags descripcion igm
-				URI= registro[6]
-				self.url=urllib.request.urlopen(URI).read()
-				x.loadFromData(self.url)
+		try:
+			args=args[::-1]
+			for x in args:
+					self.id[args.index(x)]=peliUser[self.posicion][0]-1
+					#pelis llama de BDconector a la bd a un fetchall que contiene las rows de peliculas en qver BD
+					registro=pelis[peliUser[self.posicion][0]-1]
+					self.posicion=self.posicion+1
+					#registro tiene 1 registro de la bd contiene: Idpeli nombre genero año tags descripcion igm
+					URI= registro[6]
+					self.url=urllib.request.urlopen(URI).read()
+					x.loadFromData(self.url)
 
-				try:
-					self.profile.peli1.setPixmap(args[3])
-					self.profile.peli2.setPixmap(args[2])
-					self.profile.peli3.setPixmap(args[1])
-					self.profile.peli4.setPixmap(args[0])
-				except Exception as e:
-					pass
-				try:
-					self.profile.peli4.setPixmap(args[0])
-					self.profile.peli3.setPixmap(args[1])
-					self.profile.peli2.setPixmap(args[2])
-					self.profile.peli1.setPixmap(args[3])
-				except Exception as e:
-					pass
+					try:
+						self.profile.peli1.setPixmap(args[3])
+						self.profile.peli2.setPixmap(args[2])
+						self.profile.peli3.setPixmap(args[1])
+						self.profile.peli4.setPixmap(args[0])
+					except Exception as e:
+						pass
+					try:
+						self.profile.peli4.setPixmap(args[0])
+						self.profile.peli3.setPixmap(args[1])
+						self.profile.peli2.setPixmap(args[2])
+						self.profile.peli1.setPixmap(args[3])
+					except Exception as e:
+						pass
+		except Exception as e:
+			print("Sin pelis que definir en mi profile recomendadas")
 				
 	def siguiente(self, *args):
 		args=args[::-1]
@@ -429,34 +432,36 @@ class controlador_My_Profile(object):
 			
 	def definirpelismg(self, *args):
 		print("xd")
-		print(RecomendacionesPerfil[self.posicion])
+		print(PelisGustadas[self.posicion])
 		print("xd")
-		args=args[::-1]
-		for x in args:
-				print(self.posicion)
-				self.idmg[args.index(x)]=RecomendacionesPerfil[self.posicionmg]-1
-				#pelis llama de BDconector a la bd a un fetchall que contiene las rows de peliculas en qver BD
-				registro=pelis[RecomendacionesPerfil[self.posicionmg]-1]
-				self.posicionmg=self.posicionmg+1
-				#registro tiene 1 registro de la bd contiene: Idpeli nombre genero año tags descripcion igm
-				URI= registro[6]
-				self.url=urllib.request.urlopen(URI).read()
-				x.loadFromData(self.url)
+		try:
+			args=args[::-1]
+			for x in args:
+					self.idmg[args.index(x)]=PelisGustadas[self.posicionmg]-1
+					#pelis llama de BDconector a la bd a un fetchall que contiene las rows de peliculas en qver BD
+					registro=pelis[PelisGustadas[self.posicionmg]-1]
+					self.posicionmg=self.posicionmg+1
+					#registro tiene 1 registro de la bd contiene: Idpeli nombre genero año tags descripcion igm
+					URI= registro[6]
+					self.url=urllib.request.urlopen(URI).read()
+					x.loadFromData(self.url)
 
-				try:
-					self.profile.peli1mg.setPixmap(args[3])
-					self.profile.peli2mg.setPixmap(args[2])
-					self.profile.peli3mg.setPixmap(args[1])
-					self.profile.peli4mg.setPixmap(args[0])
-				except Exception as e:
-					pass
-				try:
-					self.profile.peli4mg.setPixmap(args[0])
-					self.profile.peli3mg.setPixmap(args[1])
-					self.profile.peli2mg.setPixmap(args[2])
-					self.profile.peli1mg.setPixmap(args[3])
-				except Exception as e:
-					pass
+					try:
+						self.profile.peli1mg.setPixmap(args[3])
+						self.profile.peli2mg.setPixmap(args[2])
+						self.profile.peli3mg.setPixmap(args[1])
+						self.profile.peli4mg.setPixmap(args[0])
+					except Exception as e:
+						pass
+					try:
+						self.profile.peli4mg.setPixmap(args[0])
+						self.profile.peli3mg.setPixmap(args[1])
+						self.profile.peli2mg.setPixmap(args[2])
+						self.profile.peli1mg.setPixmap(args[3])
+					except Exception as e:
+						pass
+		except Exception as e:
+			print("Sin pelis gustadas")
 				
 	def siguientemg(self, *args):
 		print(RecomendacionesPerfil)
@@ -467,9 +472,9 @@ class controlador_My_Profile(object):
 			for x in args:
 				if self.posicionmg<self.limitemg:
 					
-					self.idmg[args.index(x)]=RecomendacionesPerfil[self.posicionmg]-1
+					self.idmg[args.index(x)]=PelisGustadas[self.posicionmg]-1
 					#pelis llama de BDconector a la bd a un fetchall que contiene las rows de peliculas en qver BD
-					registro=pelis[RecomendacionesPerfil[self.posicionmg]-1]
+					registro=pelis[PelisGustadas[self.posicionmg]-1]
 					
 					#registro tiene 1 registro de la bd contiene: Idpeli nombre genero año tags descripcion igm
 					URI= registro[6]
@@ -503,9 +508,9 @@ class controlador_My_Profile(object):
 				if self.posicionmg>0:
 					print(self.posicionmg)
 					self.posicionmg=self.posicionmg-1
-					self.idmg[args.index(x)]=RecomendacionesPerfil[self.posicionmg]-1
+					self.idmg[args.index(x)]=PelisGustadas[self.posicionmg]-1
 					#pelis llama de BDconector a la bd a un fetchall que contiene las rows de peliculas en qver BD
-					registro=pelis[RecomendacionesPerfil[self.posicionmg]-1]
+					registro=pelis[PelisGustadas[self.posicionmg]-1]
 					#registro tiene 1 registro de la bd contiene: Idpeli nombre genero año tags descripcion igm
 					URI= registro[6]
 					self.url=urllib.request.urlopen(URI).read()
@@ -611,6 +616,7 @@ def Mostrar_Main():
 	global RecomendacionesPerfil
 	iterador=0
 	#conseguimos las peliculas q posiblemente le gusten al usuario
+	PelisGustadas=getGustadas(usuario.getId())
 	RecomendacionesPerfil=getRecomendacionesPerfil(usuario.getId())
 	RecomendacionesQuiz=getRecomendacionesQuiz(usuario.getId())
 	

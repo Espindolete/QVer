@@ -60,6 +60,16 @@ def getRecomendacionesPerfil(IdUsuario):
 		xd.append(abersito[0])
 	return xd
 
+def getGustadas(IdUsuario):
+	cursor3=conexion.cursor()
+	Query= "SELECT * FROM `relacionusuariopelis` WHERE `IdUsuario` =("+str(IdUsuario)+")"
+	cursor3.execute(Query)
+	aber=cursor3.fetchall()
+	xd=list()
+	for abersito in aber:
+		xd.append(abersito[0])
+	return xd
+
 
 def getRecomendacionesQuiz(IdUsuario):
 	cursor3=conexion.cursor()
