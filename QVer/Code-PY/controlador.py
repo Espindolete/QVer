@@ -308,13 +308,14 @@ class controlador_My_Profile(object):
 	def definirpelis(self, *args):
 		try:
 			for x in args:
-					peliUser=list()
 					getPelisUsuario(usuario.getId(),peliUser)
-					ProfileScreen.limite=len(peliUser)-1
+					self.limite=len(peliUser)-1
 					RecomendacionesPerfil=getRecomendacionesPerfil(usuario.getId())
-					self.id[args.index(x)]=peliUser[self.posicion][0]-1
+					print(RecomendacionesPerfil)
+					self.limitemg=len(RecomendacionesPerfil)-1
+					self.id[args.index(x)]=RecomendacionesPerfil[self.posicion]-1
 					#pelis llama de BDconector a la bd a un fetchall que contiene las rows de peliculas en qver BD
-					registro=pelis[peliUser[self.posicion][0]-1]
+					registro=pelis[RecomendacionesPerfil[self.posicion]-1]
 					self.posicion=self.posicion+1
 					#registro tiene 1 registro de la bd contiene: Idpeli nombre genero año tags descripcion igm
 					URI= registro[6]
@@ -336,9 +337,9 @@ class controlador_My_Profile(object):
 			for x in args:
 				if self.posicion<=self.limite:
 					try:
-						self.id[args.index(x)]=peliUser[self.posicion][0]-1
+						self.id[args.index(x)]=RecomendacionesPerfil[self.posicion]-1
 						#pelis llama de BDconector a la bd a un fetchall que contiene las rows de peliculas en qver BD
-						registro=pelis[peliUser[self.posicion][0]-1]
+						registro=pelis[RecomendacionesPerfil[self.posicion]-1]
 						#registro tiene 1 registro de la bd contiene: Idpeli nombre genero año tags descripcion igm
 						URI= registro[6]
 						self.url=urllib.request.urlopen(URI).read()
@@ -361,9 +362,9 @@ class controlador_My_Profile(object):
 					try:
 						if self.posicion>=0:
 							self.posicion=self.posicion-1
-							self.id[args.index(x)]=peliUser[self.posicion][0]-1
+							self.id[args.index(x)]=RecomendacionesPerfil[self.posicion]-1
 							#pelis llama de BDconector a la bd a un fetchall que contiene las rows de peliculas en qver BD
-							registro=pelis[peliUser[self.posicion][0]-1]
+							registro=pelis[RecomendacionesPerfil[self.posicion]-1]
 							#registro tiene 1 registro de la bd contiene: Idpeli nombre genero año tags descripcion igm
 							URI= registro[6]
 							self.url=urllib.request.urlopen(URI).read()
@@ -384,10 +385,11 @@ class controlador_My_Profile(object):
 				try:
 					if self.posicionmg>=0:
 						PelisGustadas=getGustadas(usuario.getId())
+						print(PelisGustadas)
 						ProfileScreen.limitemg=len(PelisGustadas)-1
-						self.idmg[args.index(x)]=PelisGustadas[self.posicionmg][2]-1
+						self.idmg[args.index(x)]=PelisGustadas[self.posicionmg]-1
 						#pelis llama de BDconector a la bd a un fetchall que contiene las rows de peliculas en qver BD
-						registro=pelis[PelisGustadas[self.posicionmg][2]-1]
+						registro=pelis[PelisGustadas[self.posicionmg]-1]
 						self.posicionmg=self.posicionmg+1
 						#registro tiene 1 registro de la bd contiene: Idpeli nombre genero año tags descripcion igm
 						URI= registro[6]
@@ -405,13 +407,14 @@ class controlador_My_Profile(object):
 
 	def siguientemg(self, *args):
 		print("posicionmg siguiente: ", self.posicionmg)
+		print(self.limitemg)
 		if self.posicionmg<self.limitemg:
 			for x in args:
 				if self.posicionmg<=self.limitemg:
 					try:
-						self.idmg[args.index(x)]=PelisGustadas[self.posicionmg][2]-1
+						self.idmg[args.index(x)]=PelisGustadas[self.posicionmg]-1
 						#pelis llama de BDconector a la bd a un fetchall que contiene las rows de peliculas en qver BD
-						registro=pelis[PelisGustadas[self.posicionmg][2]-1]
+						registro=pelis[PelisGustadas[self.posicionmg]-1]
 						#registro tiene 1 registro de la bd contiene: Idpeli nombre genero año tags descripcion igm
 						URI= registro[6]
 						self.url=urllib.request.urlopen(URI).read()
@@ -434,9 +437,9 @@ class controlador_My_Profile(object):
 				if self.posicionmg>0:
 					try:
 						self.posicionmg=self.posicionmg-1
-						self.idmg[args.index(x)]=PelisGustadas[self.posicionmg][2]-1
+						self.idmg[args.index(x)]=PelisGustadas[self.posicionmg]-1
 						#pelis llama de BDconector a la bd a un fetchall que contiene las rows de peliculas en qver BD
-						registro=pelis[PelisGustadas[self.posicionmg][2]-1]
+						registro=pelis[PelisGustadas[self.posicionmg]-1]
 						#registro tiene 1 registro de la bd contiene: Idpeli nombre genero año tags descripcion igm
 						URI= registro[6]
 						self.url=urllib.request.urlopen(URI).read()
@@ -518,6 +521,8 @@ ProfileScreen=controlador_My_Profile()
 #Funcion para actualizar seccion de recomendaciones
 #Aca conseguimos las peliculas q posiblemente le gusten al usuario
 def Actualizar():
+	print(RecomendacionesPerfil)
+	print()
 	ProfileScreen.definirpelis(ProfileScreen.profile.pixmap1,ProfileScreen.profile.pixmap2,ProfileScreen.profile.pixmap3,ProfileScreen.profile.pixmap4)
 	ProfileScreen.definirpelismg(ProfileScreen.profile.pixmap1mg,ProfileScreen.profile.pixmap2mg,ProfileScreen.profile.pixmap3mg,ProfileScreen.profile.pixmap4mg)
 
@@ -526,8 +531,7 @@ def Mostrar_Main():
 	#consigo las variables globales SOLO POR SI ACASO(tuve errores sin esto en su momento)
 	global RecomendacionesQuiz
 	global iterador
-	global RecomendacionesPerfil
-	global PelisGustadas
+
 	iterador=0
 	Actualizar()
 	#seteamos cosas en las otras pantallas
@@ -598,7 +602,6 @@ def aumentarIterador():
 		iterador=iterador+1
 	else:
 		iterador=0
-		RecomendacionesQuiz=getRecomendacionesQuiz(usuario.getId())
 	return RecomendacionesQuiz[iterador]
 	
 

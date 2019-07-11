@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-07-2019 a las 01:12:36
--- Versión del servidor: 10.3.15-MariaDB
--- Versión de PHP: 7.1.30
+-- Tiempo de generación: 11-07-2019 a las 15:43:52
+-- Versión del servidor: 10.3.16-MariaDB
+-- Versión de PHP: 7.3.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `qver`
+-- Base de datos: `bd definitiva`
 --
 
 DELIMITER $$
@@ -27,9 +27,7 @@ DELIMITER $$
 -- Procedimientos
 --
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RecomendacionPerfil` (IN `sesion` INT)  NO SQL
-SELECT idpeliculas,valor from peliculas
-LEFT JOIN
-(select sum(val) valor,idpeli from 
+select sum(val) valor,idpeli from 
 (SELECT IdPeli,tabla2.val,idusuario,calificacion from relacionusuariopelis
 INNER JOIN
         (SELECT count(*) val,relacionusuariopelis.IdUsuario us from relacionusuariopelis
@@ -43,13 +41,13 @@ INNER JOIN
         GROUP by relacionusuariopelis.IdUsuario) tabla2
 on tabla2.us=relacionusuariopelis.IdUsuario) xd
 WHERE xd.calificacion=1
-group by idpeli , calificacion) tablafinal
-ON tablafinal.idpeli=peliculas.idpeliculas
-where idpeliculas not in 
+and IdPeli not in 
 	(SELECT idpeli from relacionusuariopelis
     where idusuario=sesion
     and calificacion<>0)
-order by tablafinal.valor DESC ,idpeliculas ASC
+    
+group by idpeli , calificacion
+order by valor DESC
 limit 10$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RecomendacionQuiz` (IN `sesion` INT)  SELECT idpeliculas,valor from peliculas
@@ -241,7 +239,15 @@ INSERT INTO `relacionusuariopelis` (`IdRelacion`, `IdUsuario`, `IdPeli`, `Califi
 (252, 5, 8, -1),
 (253, 5, 7, 1),
 (254, 5, 6, -1),
-(255, 5, 9, -1);
+(255, 5, 9, -1),
+(256, 5, 22, 1),
+(257, 5, 23, 1),
+(258, 5, 16, 1),
+(259, 5, 26, 1),
+(260, 5, 54, 1),
+(261, 5, 62, 1),
+(262, 5, 41, 1),
+(263, 5, 66, 1);
 
 -- --------------------------------------------------------
 
@@ -300,7 +306,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `relacionusuariopelis`
 --
 ALTER TABLE `relacionusuariopelis`
-  MODIFY `IdRelacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=256;
+  MODIFY `IdRelacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=264;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`

@@ -11,7 +11,7 @@ def conectar(usr='', passwod='', bd=''):
                                  db=bd)
     return connection
 
-conexion=conectar("root","","qver")
+conexion=conectar("root","","bd definitiva")
 cursor=conexion.cursor()
 cursor.execute("select * from usuario")
 usuarios=cursor.fetchall()
@@ -57,15 +57,18 @@ def getRecomendacionesPerfil(IdUsuario):
 	aber=cursor3.fetchall()
 	xd=list()
 	for abersito in aber:
-		xd.append(abersito[0])
+		xd.append(abersito[1])
 	return xd
 
 def getGustadas(IdUsuario):
 	cursor3=conexion.cursor()
-	Query= "SELECT * FROM `relacionusuariopelis` WHERE `IdUsuario` =("+str(IdUsuario)+") AND `Calificacion` = 1"
+	Query= "SELECT idpeli FROM `relacionusuariopelis` WHERE `IdUsuario` =("+str(IdUsuario)+") AND `Calificacion` = 1"
 	cursor3.execute(Query)
 	aber=cursor3.fetchall()
-	return aber
+	xd=list()
+	for abersito in aber:
+		xd.append(abersito[0])
+	return xd
 
 
 def getRecomendacionesQuiz(IdUsuario):
@@ -77,6 +80,9 @@ def getRecomendacionesQuiz(IdUsuario):
 	for abersito in aber:
 		xd.append(abersito[0])
 	return xd
+
+
+
 
 #consulta para las recomendaciones
 '''
