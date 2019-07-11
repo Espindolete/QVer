@@ -48,8 +48,12 @@ class Pantalla_Signup(object):
 		sizePolicy.setHeightForWidth(Dialog.sizePolicy().hasHeightForWidth())
 		Dialog.setSizePolicy(sizePolicy)
 		Dialog.setStyleSheet("background-color: rgb(255, 255, 255);")
+
+
 		self.frame = QtWidgets.QFrame(Dialog)
 		self.frame.setGeometry(QtCore.QRect(-10, -20, 761, 581))
+
+
 		palette = QtGui.QPalette()
 		brush = QtGui.QBrush(QtGui.QColor(252, 252, 252))
 		brush.setStyle(QtCore.Qt.SolidPattern)
@@ -87,6 +91,8 @@ class Pantalla_Signup(object):
 		brush = QtGui.QBrush(QtGui.QColor(4, 4, 4))
 		brush.setStyle(QtCore.Qt.SolidPattern)
 		palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Window, brush)
+
+
 		self.frame.setPalette(palette)
 		self.frame.setStyleSheet(".QFrame{border: 1px solid gray;\n"
 		"border-radius: 10px;\n"
@@ -97,6 +103,8 @@ class Pantalla_Signup(object):
 		self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
 		self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
 		self.frame.setObjectName("frame")
+
+
 		self.btn_sgte = QtWidgets.QPushButton(self.frame)
 		self.btn_sgte.setGeometry(QtCore.QRect(390, 500, 121, 41))
 		self.btn_sgte.setStyleSheet(".QPushButton{\n"
@@ -113,6 +121,8 @@ class Pantalla_Signup(object):
 		"")
 		self.btn_sgte.setIconSize(QtCore.QSize(16, 16))
 		self.btn_sgte.setObjectName("btn_sgte")
+
+
 		self.btn_log = QtWidgets.QPushButton(self.frame)
 		self.btn_log.setGeometry(QtCore.QRect(60, 510, 271, 29))
 		self.btn_log.setStyleSheet("color: rgb(80, 92, 124);\n"
@@ -123,12 +133,16 @@ class Pantalla_Signup(object):
 		self.btn_log.setDefault(False)
 		self.btn_log.setFlat(True)
 		self.btn_log.setObjectName("btn_log")
+
+
 		self.lbl_info = QtWidgets.QLabel(self.frame)
 		self.lbl_info.setGeometry(QtCore.QRect(400, 550, 301, 20))
 		self.lbl_info.setStyleSheet("color: rgb(255, 0, 4);\n"
 		"background-color: rgb(0, 0, 0);")
 		self.lbl_info.hide()
 		self.lbl_info.setObjectName("lbl_info")
+
+
 		self.lbl_regla1 = QtWidgets.QLabel(self.frame)
 		self.lbl_regla1.setGeometry(QtCore.QRect(50, 430, 431, 21))
 		font = QtGui.QFont()
@@ -142,6 +156,8 @@ class Pantalla_Signup(object):
 		"color: rgb(255, 255, 255);\n"
 		"background-color: rgba(0, 0, 0,0%);")
 		self.lbl_regla1.setObjectName("lbl_regla1")
+
+
 		self.frame_4 = QtWidgets.QFrame(self.frame)
 		self.frame_4.setGeometry(QtCore.QRect(50, 30, 61, 71))
 		self.frame_4.setStyleSheet("image: url(:/Icono/Images-UI/Icono.png);\n"
@@ -149,6 +165,8 @@ class Pantalla_Signup(object):
 		self.frame_4.setFrameShape(QtWidgets.QFrame.StyledPanel)
 		self.frame_4.setFrameShadow(QtWidgets.QFrame.Raised)
 		self.frame_4.setObjectName("frame_4")
+
+
 		self.lbl_regla2 = QtWidgets.QLabel(self.frame)
 		self.lbl_regla2.setGeometry(QtCore.QRect(50, 460, 491, 20))
 		font = QtGui.QFont()
@@ -162,6 +180,8 @@ class Pantalla_Signup(object):
 		"color: rgb(255, 255, 255);\n"
 		"background-color: rgba(0, 0, 0,0%);")
 		self.lbl_regla2.setObjectName("lbl_regla2")
+
+
 		self.frame_2 = QtWidgets.QFrame(self.frame)
 		self.frame_2.setGeometry(QtCore.QRect(530, 150, 231, 221))
 		self.frame_2.setStyleSheet("border-image: url(:/Shield/Images-UI/QverShield.png);\n"
@@ -175,12 +195,16 @@ class Pantalla_Signup(object):
 		"color: rgb(255, 255, 255);\n"
 		"background-color: rgba(0, 0, 0,0%);")
 		self.label_2.setObjectName("label_2")
+
+
 		self.label_4 = QtWidgets.QLabel(self.frame)
 		self.label_4.setGeometry(QtCore.QRect(250, 330, 155, 16))
 		self.label_4.setStyleSheet("font: 12pt \"Star Jedi\";\n"
 		"color: rgb(255, 255, 255);\n"
 		"background-color: rgba(0, 0, 0,0%);")
 		self.label_4.setObjectName("label_4")
+
+
 		self.label_3 = QtWidgets.QLabel(self.frame)
 		self.label_3.setGeometry(QtCore.QRect(50, 240, 81, 20))
 		self.label_3.setStyleSheet("\n"
@@ -188,26 +212,36 @@ class Pantalla_Signup(object):
 		"color: rgb(255, 255, 255);\n"
 		"background-color: rgba(0, 0, 0,0%);")
 		self.label_3.setObjectName("label_3")
+
+
 		self.label = QtWidgets.QLabel(self.frame)
 		self.label.setGeometry(QtCore.QRect(50, 150, 131, 21))
 		self.label.setStyleSheet("font: 12pt \"Star Jedi\";\n"
 		"color: rgb(255, 255, 255);\n"
 		"background-color: rgba(0, 0, 0,0%);")
 		self.label.setObjectName("label")
+
+
 		self.lbl_cc = QtWidgets.QLabel(self.frame)
 		self.lbl_cc.setGeometry(QtCore.QRect(210, 100, 201, 31))
 		self.lbl_cc.setStyleSheet("font: 18pt \"Avengeance\";\n"
 		";color: rgb(152, 136, 41);\n"
 		"background-color: rgba(0, 0, 0,0%);")
 		self.lbl_cc.setObjectName("lbl_cc")
+
+
 		self.lbl_dt = QtWidgets.QLabel(self.frame)
 		self.lbl_dt.setGeometry(QtCore.QRect(230, 40, 181, 31))
 		self.lbl_dt.setStyleSheet("font: 18pt \"Star Jedi\";\n"
 		"color: rgb(255, 255, 255);\n"
 		"background-color: rgba(0, 0, 0,0%);")
 		self.lbl_dt.setObjectName("lbl_dt")
+
+
 		self.txt_usr = QtWidgets.QLineEdit(self.frame)
 		self.txt_usr.setGeometry(QtCore.QRect(52, 190, 371, 31))
+
+
 		palette = QtGui.QPalette()
 		brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
 		brush.setStyle(QtCore.Qt.SolidPattern)
@@ -296,6 +330,9 @@ class Pantalla_Signup(object):
 		font.setPointSize(8)
 		font.setBold(False)
 		font.setWeight(50)
+
+
+
 		self.txt_usr.setFont(font)
 		self.txt_usr.setStyleSheet(".QLineEdit{border: 1px solid gray;\n"
 		"border-radius: 5px;\n"
@@ -308,6 +345,9 @@ class Pantalla_Signup(object):
 		"border-color: rgb(152, 136, 41);\n"
 		"}")
 		self.txt_usr.setObjectName("txt_usr")
+
+
+
 		self.txt_mail = QtWidgets.QLineEdit(self.frame)
 		self.txt_mail.setGeometry(QtCore.QRect(52, 280, 371, 31))
 		font = QtGui.QFont()
@@ -329,13 +369,6 @@ class Pantalla_Signup(object):
 		"}")
 		self.txt_mail.setObjectName("txt_mail")
 
-		self.ojito = QtWidgets.QPushButton(self.frame)
-		self.ojito.setGeometry(QtCore.QRect(430, 370, 31, 31))
-		self.ojito.setStyleSheet("color: rgb(255, 255, 255);\n"
-		"background-color: rgb(0, 0, 0);\n"
-		"font: 11pt \"MS Shell Dlg 2\";")
-		self.ojito.setObjectName("ojito")
-
 
 		self.txt_pass = QtWidgets.QLineEdit(self.frame)
 		self.txt_pass.setGeometry(QtCore.QRect(50, 370, 161, 31))
@@ -354,6 +387,9 @@ class Pantalla_Signup(object):
 		"}")
 		self.txt_pass.setObjectName("txt_pass")
 		self.txt_pass.setEchoMode(QtWidgets.QLineEdit.Password)
+
+
+
 		self.txt_pass_con = QtWidgets.QLineEdit(self.frame)
 		self.txt_pass_con.setGeometry(QtCore.QRect(240, 370, 181, 31))
 		font = QtGui.QFont()
@@ -373,6 +409,17 @@ class Pantalla_Signup(object):
 		"}")
 		self.txt_pass_con.setObjectName("txt_pass_con")
 		self.txt_pass_con.setEchoMode(QtWidgets.QLineEdit.Password)
+
+
+
+
+		self.ojito = QtWidgets.QPushButton(self.frame)
+		self.ojito.setGeometry(QtCore.QRect(430, 370, 31, 31))
+		self.ojito.setStyleSheet("color: rgb(255, 255, 255);\n"
+		"background-color: rgb(0, 0, 0);\n"
+		"font: 11pt \"MS Shell Dlg 2\";")
+		self.ojito.setObjectName("ojito")
+
 
 		self.retranslateUi(Dialog)
 		QtCore.QMetaObject.connectSlotsByName(Dialog)
@@ -564,23 +611,32 @@ class Pantalla_Login(object):
 		sizePolicy.setHeightForWidth(Dialog.sizePolicy().hasHeightForWidth())
 		Dialog.setSizePolicy(sizePolicy)
 		Dialog.setStyleSheet("background-color: rgb(0, 0, 0);")
+
+
+
 		self.frame_3 = QtWidgets.QFrame(Dialog)
 		self.frame_3.setGeometry(QtCore.QRect(-2, 0, 811, 61))
 		self.frame_3.setFrameShape(QtWidgets.QFrame.StyledPanel)
 		self.frame_3.setFrameShadow(QtWidgets.QFrame.Raised)
 		self.frame_3.setObjectName("frame_3")
+
+
 		self.frame_4 = QtWidgets.QFrame(self.frame_3)
 		self.frame_4.setGeometry(QtCore.QRect(20, 10, 51, 51))
 		self.frame_4.setStyleSheet("border-image: url(:/Icono/Images-UI/Icono.png);")
 		self.frame_4.setFrameShape(QtWidgets.QFrame.StyledPanel)
 		self.frame_4.setFrameShadow(QtWidgets.QFrame.Raised)
 		self.frame_4.setObjectName("frame_4")
+
+
 		self.DreamTeam = QtWidgets.QLabel(self.frame_3)
 		self.DreamTeam.setGeometry(QtCore.QRect(90, 20, 201, 31))
 		self.DreamTeam.setStyleSheet("font: 18pt \"Star Jedi\";\n"
 		"color: rgb(255, 255, 255);\n"
 		"background-color: rgba(0, 0, 0,0%);")
 		self.DreamTeam.setObjectName("DreamTeam")
+
+
 		self.frame = QtWidgets.QFrame(Dialog)
 		self.frame.setGeometry(QtCore.QRect(150, 80, 511, 451))
 		self.frame.setStyleSheet(".QFrame{border: 1px solid gray;\n"
@@ -590,20 +646,15 @@ class Pantalla_Login(object):
 		self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
 		self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
 		self.frame.setObjectName("frame")
-		self.btn_cc = QtWidgets.QPushButton(self.frame)
-		self.btn_cc.setGeometry(QtCore.QRect(80, 380, 131, 29))
-		self.btn_cc.setStyleSheet("font: 30pt \"Jurassic Park\";\n"
-		"color: rgb(80, 92, 124);")
-		self.btn_cc.setCheckable(False)
-		self.btn_cc.setAutoDefault(True)
-		self.btn_cc.setDefault(False)
-		self.btn_cc.setFlat(True)
-		self.btn_cc.setObjectName("btn_cc")
+
+
 		self.lbl_info = QtWidgets.QLabel(self.frame)
 		self.lbl_info.setGeometry(QtCore.QRect(90, 330, 221, 19))
 		self.lbl_info.setStyleSheet("color: rgb(255, 0, 4);")
 		self.lbl_info.setObjectName("lbl_info")
 		self.lbl_info.hide()
+
+
 		self.frame_2 = QtWidgets.QFrame(self.frame)
 		self.frame_2.setEnabled(True)
 		self.frame_2.setGeometry(QtCore.QRect(220, 110, 61, 61))
@@ -614,12 +665,8 @@ class Pantalla_Login(object):
 		self.frame_2.setFrameShadow(QtWidgets.QFrame.Raised)
 		self.frame_2.setLineWidth(0)
 		self.frame_2.setObjectName("frame_2")
-		self.lbl_stc = QtWidgets.QLabel(self.frame)
-		self.lbl_stc.setGeometry(QtCore.QRect(160, 50, 211, 31))
-		self.lbl_stc.setStyleSheet("font: 18pt \"Avengeance\";\n"
-		"color: rgb(152, 136, 41);\n"
-		"background-color: rgba(0, 0, 0,0%);")
-		self.lbl_stc.setObjectName("lbl_stc")
+
+
 		self.txt_usr = QtWidgets.QLineEdit(self.frame)
 		self.txt_usr.setGeometry(QtCore.QRect(90, 200, 341, 51))
 		font = QtGui.QFont()
@@ -637,7 +684,10 @@ class Pantalla_Login(object):
 		"border-color: rgb(152, 136, 41);\n"
 		"}")
 		self.txt_usr.setObjectName("txt_usr")
-		self.txt_usr.setPlaceholderText("Usuario") 
+		self.txt_usr.setFocus(True)
+		self.txt_usr.setPlaceholderText("Usuario")
+
+
 		self.txt_pass = QtWidgets.QLineEdit(self.frame)
 		self.txt_pass.setGeometry(QtCore.QRect(90, 270, 341, 51))
 		font = QtGui.QFont()
@@ -657,6 +707,8 @@ class Pantalla_Login(object):
 		self.txt_pass.setObjectName("txt_pass")
 		self.txt_pass.setEchoMode(QtWidgets.QLineEdit.Password)
 		self.txt_pass.setPlaceholderText("Contraseña") 
+
+		
 		self.btn_sgte = QtWidgets.QPushButton(self.frame)
 		self.btn_sgte.setGeometry(QtCore.QRect(310, 380, 111, 31))
 		self.btn_sgte.setStyleSheet("\n"
@@ -671,7 +723,27 @@ class Pantalla_Login(object):
 		"\n"
 		"\n"
 		"")
+	
 		self.btn_sgte.setObjectName("btn_sgte")
+
+
+		self.btn_cc = QtWidgets.QPushButton(self.frame)
+		self.btn_cc.setGeometry(QtCore.QRect(80, 380, 131, 29))
+		self.btn_cc.setStyleSheet("font: 30pt \"Jurassic Park\";\n"
+		"color: rgb(80, 92, 124);")
+		self.btn_cc.setObjectName("btn_cc")
+
+
+
+
+
+		self.lbl_stc = QtWidgets.QLabel(self.frame)
+		self.lbl_stc.setGeometry(QtCore.QRect(160, 50, 211, 31))
+		self.lbl_stc.setStyleSheet("font: 18pt \"Avengeance\";\n"
+		"color: rgb(152, 136, 41);\n"
+		"background-color: rgba(0, 0, 0,0%);")
+		self.lbl_stc.setObjectName("lbl_stc")
+
 
 		self.retranslateUi(Dialog)
 		QtCore.QMetaObject.connectSlotsByName(Dialog)
@@ -680,10 +752,10 @@ class Pantalla_Login(object):
 		_translate = QtCore.QCoreApplication.translate
 		Dialog.setWindowTitle(_translate("Dialog", "QVer"))
 		self.DreamTeam.setText(_translate("Dialog", "dream team"))
-		self.btn_cc.setText(_translate("Dialog", "Crear cuenta"))
+		self.btn_sgte.setText(_translate("Dialog", "SIGUIENTE"))
 		self.lbl_info.setText(_translate("Dialog", "Usuario o Contraseña incorrecto"))
 		self.lbl_stc.setText(_translate("Dialog", "Usa tu cuenta de QVer"))
-		self.btn_sgte.setText(_translate("Dialog", "SIGUIENTE"))
+		self.btn_cc.setText(_translate("Dialog", "Crear cuenta"))
 
 class Pantalla_Info(object):
 	def setupUi(self, Dialog):
