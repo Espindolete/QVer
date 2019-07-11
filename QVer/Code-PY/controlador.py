@@ -384,6 +384,7 @@ class controlador_My_Profile(object):
 			for x in args:
 				try:
 					if self.posicionmg>=0:
+						global PelisGustadas
 						PelisGustadas=getGustadas(usuario.getId())
 						print(PelisGustadas)
 						ProfileScreen.limitemg=len(PelisGustadas)-1
@@ -411,48 +412,45 @@ class controlador_My_Profile(object):
 		if self.posicionmg<self.limitemg:
 			for x in args:
 				if self.posicionmg<=self.limitemg:
+					global PelisGustadas
+					self.idmg[args.index(x)]=PelisGustadas[self.posicionmg]-1
+					#pelis llama de BDconector a la bd a un fetchall que contiene las rows de peliculas en qver BD
+					registro=pelis[PelisGustadas[self.posicionmg]-1]
+					#registro tiene 1 registro de la bd contiene: Idpeli nombre genero año tags descripcion igm
+					URI= registro[6]
+					self.url=urllib.request.urlopen(URI).read()
+					x.loadFromData(self.url)
+					self.posicionmg=self.posicionmg+1
 					try:
-						self.idmg[args.index(x)]=PelisGustadas[self.posicionmg]-1
-						#pelis llama de BDconector a la bd a un fetchall que contiene las rows de peliculas en qver BD
-						registro=pelis[PelisGustadas[self.posicionmg]-1]
-						#registro tiene 1 registro de la bd contiene: Idpeli nombre genero año tags descripcion igm
-						URI= registro[6]
-						self.url=urllib.request.urlopen(URI).read()
-						x.loadFromData(self.url)
-						self.posicionmg=self.posicionmg+1
-						try:
-							self.profile.peli1mg.setPixmap(args[0])
-							self.profile.peli2mg.setPixmap(args[1])
-							self.profile.peli3mg.setPixmap(args[2])
-							self.profile.peli4mg.setPixmap(args[3])
-						except Exception as e:
-							pass
+						self.profile.peli1mg.setPixmap(args[0])
+						self.profile.peli2mg.setPixmap(args[1])
+						self.profile.peli3mg.setPixmap(args[2])
+						self.profile.peli4mg.setPixmap(args[3])
 					except Exception as e:
-						print("Sin mas pelis mg siguiente")				
+						pass		
 
 	def anteriormg(self, *args):
 		print("posicion MG anterior: ", self.posicionmg)
 		if self.posicionmg>0:
 			for x in args:
 				if self.posicionmg>0:
+					global PelisGustadas
+					self.posicionmg=self.posicionmg-1
+					self.idmg[args.index(x)]=PelisGustadas[self.posicionmg]-1
+					#pelis llama de BDconector a la bd a un fetchall que contiene las rows de peliculas en qver BD
+					registro=pelis[PelisGustadas[self.posicionmg]-1]
+					#registro tiene 1 registro de la bd contiene: Idpeli nombre genero año tags descripcion igm
+					URI= registro[6]
+					self.url=urllib.request.urlopen(URI).read()
+					x.loadFromData(self.url)
 					try:
-						self.posicionmg=self.posicionmg-1
-						self.idmg[args.index(x)]=PelisGustadas[self.posicionmg]-1
-						#pelis llama de BDconector a la bd a un fetchall que contiene las rows de peliculas en qver BD
-						registro=pelis[PelisGustadas[self.posicionmg]-1]
-						#registro tiene 1 registro de la bd contiene: Idpeli nombre genero año tags descripcion igm
-						URI= registro[6]
-						self.url=urllib.request.urlopen(URI).read()
-						x.loadFromData(self.url)
-						try:
-							self.profile.peli1mg.setPixmap(args[0])
-							self.profile.peli2mg.setPixmap(args[1])
-							self.profile.peli3mg.setPixmap(args[2])
-							self.profile.peli4mg.setPixmap(args[3])
-						except Exception as e:
-							pass
+						self.profile.peli1mg.setPixmap(args[0])
+						self.profile.peli2mg.setPixmap(args[1])
+						self.profile.peli3mg.setPixmap(args[2])
+						self.profile.peli4mg.setPixmap(args[3])
 					except Exception as e:
-						print("No mas pelis MG anteriores")
+						pass
+
 			
 	def function(self):
 		self.profile.botonRecomendame.clicked.connect(lambda:Mostrar_Quiz())
@@ -533,7 +531,6 @@ def Mostrar_Main():
 	global iterador
 
 	iterador=0
-	Actualizar()
 	#seteamos cosas en las otras pantallas
 	RecomendacionesQuiz=getRecomendacionesQuiz(usuario.getId())
 	QuizScreen.id=RecomendacionesQuiz[iterador]
