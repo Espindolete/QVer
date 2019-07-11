@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-07-2019 a las 23:46:14
--- Versión del servidor: 10.3.16-MariaDB
--- Versión de PHP: 7.3.6
+-- Tiempo de generación: 11-07-2019 a las 01:12:36
+-- Versión del servidor: 10.3.15-MariaDB
+-- Versión de PHP: 7.1.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -26,7 +26,8 @@ DELIMITER $$
 --
 -- Procedimientos
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `xd` (IN `sesion` INT)  SELECT idpeliculas,valor from peliculas
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RecomendacionPerfil` (IN `sesion` INT)  NO SQL
+SELECT idpeliculas,valor from peliculas
 LEFT JOIN
 (select sum(val) valor,idpeli from 
 (SELECT IdPeli,tabla2.val,idusuario,calificacion from relacionusuariopelis
@@ -48,6 +49,30 @@ where idpeliculas not in
 	(SELECT idpeli from relacionusuariopelis
     where idusuario=sesion
     and calificacion<>0)
+order by tablafinal.valor DESC ,idpeliculas ASC
+limit 10$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RecomendacionQuiz` (IN `sesion` INT)  SELECT idpeliculas,valor from peliculas
+LEFT JOIN
+(select sum(val) valor,idpeli from 
+(SELECT IdPeli,tabla2.val,idusuario,calificacion from relacionusuariopelis
+INNER JOIN
+        (SELECT count(*) val,relacionusuariopelis.IdUsuario us from relacionusuariopelis
+        INNER JOIN
+                (SELECT * from relacionusuariopelis
+                WHERE IdUsuario=sesion
+                and Calificacion <> 0)objetivo
+        on objetivo.idPeli=relacionusuariopelis.IdPeli
+        AND objetivo.calificacion=relacionusuariopelis.Calificacion
+        WHERE relacionusuariopelis.IdUsuario<>sesion
+        GROUP by relacionusuariopelis.IdUsuario) tabla2
+on tabla2.us=relacionusuariopelis.IdUsuario) xd
+WHERE xd.calificacion=1
+group by idpeli , calificacion) tablafinal
+ON tablafinal.idpeli=peliculas.idpeliculas
+where idpeliculas not in 
+	(SELECT idpeli from relacionusuariopelis
+    where idusuario=sesion)
 order by tablafinal.valor DESC ,idpeliculas ASC
 limit 10$$
 
@@ -74,10 +99,10 @@ CREATE TABLE `peliculas` (
 --
 
 INSERT INTO `peliculas` (`idpeliculas`, `nombre`, `genero`, `año`, `tags`, `descripcion`, `img`) VALUES
-(1, 'John Wick 3: Parabellum', 'Accion', '2019', '#thriller#crimen', 'John Wick regresa de nuevo pero con una recompensa sobre su cabeza que persigue unos mercenarios. Tras asesinar a uno de los miembros de su gremio, Wick es expulsado y se convierte en el foco de atención de todos los sicarios de la organización', 'https://m.media-amazon.com/images/M/MV5BMDg2YzI0ODctYjliMy00NTU0LTkxODYtYTNkNjQwMzVmOTcxXkEyXkFqcGdeQXVyNjg2NjQwMDQ@._V1_SY1000_CR0,0,648,1000_AL_.jpg'),
-(2, 'Avengers:Endgame', 'Accion', '2019', '#aventura#cienciaficcion', 'Los Vengadores restantes deben encontrar una manera de recuperar a sus aliados para un enfrentamiento épico con Thanos, el malvado que diezmó el planeta y el universo.', 'https://pbs.twimg.com/media/D1nmVNuU4AAO2yD.jpg'),
-(3, 'X-Men: Fenix Oscura', 'Accion', '2019', '#aventura#cienciaficcion', 'Los X-Men se enfrentan a su enemigo más poderoso: uno de sus miembros, Jean Grey. Durante una misión de rescate en el espacio, Jean casi muere al ser alcanzada por una misteriosa fuerza cósmica. Cuando regresa a casa, esa radiación la ha hecho más poderosa, pero mucho más inestable. Jean cae en una espiral fuera de control haciendo daño a aquellos que más quiere.', 'http://es.web.img3.acsta.net/r_1280_720/pictures/19/05/10/12/27/4446380.jpg'),
-(4, 'Godzilla: Rey de los monstruos', 'Accion', '2019', '#aventura#fantasia', 'Godzilla, Rey de los Monstruos, surge para combatir a enemigos enormes y malos que se han estado alimentando con los reactores de una planta nuclear y ahora amenazan a la humanidad con aniquilarla.', 'http://www.mubis.es/media/users/12828/229939/poster-godzilla-ii-rey-de-los-monstruos-original.jpg'),
+(1, 'John Wick 3: Parabellum', 'Accion', '2019', '#thriller#crimen', 'John Wick regresa de nuevo pero con una recompensa sobre su cabeza que persigue unos mercenarios. Tras asesinar a uno de los miembros de su gremio, Wick es expulsado y se convierte en el foco de atención de todos los sicarios de la organización', 'https://m.media-amazon.com/images/M/MV5BMDg2YzI0ODctYjliMy00NTU0LTkxODYtYTNkNjQwMzVmOTcxXkEyXkFqcGdeQXVyNjg2NjQwMDQ@._V1_UX182_CR0,0,182,268_AL_.jpg'),
+(2, 'Avengers:Endgame', 'Accion', '2019', '#aventura#cienciaficcion', 'Los Vengadores restantes deben encontrar una manera de recuperar a sus aliados para un enfrentamiento épico con Thanos, el malvado que diezmó el planeta y el universo.', 'https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_UX182_CR0,0,182,268_AL_.jpg'),
+(3, 'X-Men: Fenix Oscura', 'Accion', '2019', '#aventura#cienciaficcion', 'Los X-Men se enfrentan a su enemigo más poderoso: uno de sus miembros, Jean Grey. Durante una misión de rescate en el espacio, Jean casi muere al ser alcanzada por una misteriosa fuerza cósmica. Cuando regresa a casa, esa radiación la ha hecho más poderosa, pero mucho más inestable. Jean cae en una espiral fuera de control haciendo daño a aquellos que más quiere.', 'https://m.media-amazon.com/images/M/MV5BMjAwNDgxNTI0M15BMl5BanBnXkFtZTgwNTY4MDI1NzM@._V1_UX182_CR0,0,182,268_AL_.jpg'),
+(4, 'Godzilla: Rey de los monstruos', 'Accion', '2019', '#aventura#fantasia', 'Godzilla, Rey de los Monstruos, surge para combatir a enemigos enormes y malos que se han estado alimentando con los reactores de una planta nuclear y ahora amenazan a la humanidad con aniquilarla.', 'https://m.media-amazon.com/images/M/MV5BOGFjYWNkMTMtMTg1ZC00Y2I4LTg0ZTYtN2ZlMzI4MGQwNzg4XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_UX182_CR0,0,182,268_AL_.jpg'),
 (5, 'Rocketman', 'Biografia', '2019', '#drama#musica', '\"Rocketman\" cuenta la trayectoria del artista Elton John, desde sus años como niño prodigio del piano en la Royal Academy of Music hasta llegar a ser una superestrella de fama mundial gracias a su talento y a la duradera asociación con su letrista Bernie Taupin.', 'http://es.web.img3.acsta.net/c_215_290/pictures/19/02/19/16/26/1562265.jpg'),
 (6, 'Cadena perpetua', 'Drama', '1994', '#encarcelamiento ilícito#escapar de la prisió', 'Dos hombres encarcelados se unen durante varios años, encontrando consuelo y una eventual redención a través de actos de decencia común.', 'https://m.media-amazon.com/images/M/MV5BMDFkYTc0MGEtZmNhMC00ZDIzLWFmNTEtODM1ZmRlYWMwMWFmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UX182_CR0,0,182,268_AL_.jpg'),
 (7, 'El padrino', 'Drama', '1972', '#drama#suspenso', 'El anciano patriarca de una dinastía del crimen organizado transfiere el control de su imperio clandestino a su renuente hijo.', 'https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_UY268_CR3,0,182,268_AL_.jpg'),
@@ -208,7 +233,15 @@ INSERT INTO `relacionusuariopelis` (`IdRelacion`, `IdUsuario`, `IdPeli`, `Califi
 (45, 4, 54, 1),
 (46, 4, 26, 1),
 (47, 4, 6, 1),
-(91, 1, 9, 1);
+(91, 1, 9, 1),
+(248, 5, 1, 1),
+(249, 5, 2, 1),
+(250, 5, 3, -1),
+(251, 5, 4, -1),
+(252, 5, 8, -1),
+(253, 5, 7, 1),
+(254, 5, 6, -1),
+(255, 5, 9, -1);
 
 -- --------------------------------------------------------
 
@@ -249,7 +282,9 @@ ALTER TABLE `peliculas`
 -- Indices de la tabla `relacionusuariopelis`
 --
 ALTER TABLE `relacionusuariopelis`
-  ADD PRIMARY KEY (`IdRelacion`);
+  ADD PRIMARY KEY (`IdRelacion`),
+  ADD KEY `relacionusuariopelis_ibfk_1` (`IdPeli`),
+  ADD KEY `relacionusuariopelis_ibfk_2` (`IdUsuario`);
 
 --
 -- Indices de la tabla `usuario`
@@ -262,16 +297,10 @@ ALTER TABLE `usuario`
 --
 
 --
--- AUTO_INCREMENT de la tabla `peliculas`
---
-ALTER TABLE `peliculas`
-  MODIFY `idpeliculas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
-
---
 -- AUTO_INCREMENT de la tabla `relacionusuariopelis`
 --
 ALTER TABLE `relacionusuariopelis`
-  MODIFY `IdRelacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=220;
+  MODIFY `IdRelacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=256;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
